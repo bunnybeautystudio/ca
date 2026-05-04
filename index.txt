@@ -1,0 +1,800 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sand:#A89880;--sand-d:#8f7f69;--sand-l:#e8e0d6;--sand-ll:#f5f1ec;
+  --bronze:#615545;--obsidian:#1D1D1D;
+  --muted:#8a7d72;--hint:#b0a698;--bdr:#ddd6cd;--r8:8px;--r12:12px
+}
+body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;background:var(--sand-ll);color:var(--obsidian);line-height:1.6}
+h1,h2,h3{font-weight:400;line-height:1.25}
+.sr-only{position:absolute;left:-9999px}
+nav{background:var(--sand);padding:0 20px;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(255,255,255,.2)}
+.nav-in{max-width:780px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-brand span:first-child{font-size:14px;letter-spacing:.12em;color:#fff;font-family:Georgia,serif;display:block}
+.nav-brand span:last-child{font-size:10px;color:rgba(255,255,255,.65);display:block}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-a{color:rgba(255,255,255,.8);font-size:13px;text-decoration:none;padding:5px 8px}
+.nav-a:hover{color:#fff}
+.nav-btn{background:var(--obsidian);color:#fff;border:none;padding:9px 20px;border-radius:var(--r8);font-size:13px;cursor:pointer;font-family:inherit;font-weight:500}
+.hero{background:var(--sand);padding:66px 20px 58px;text-align:center}
+.hero-tag{display:inline-block;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.35);padding:4px 14px;border-radius:20px;margin-bottom:22px;font-family:Georgia,serif}
+.hero-cn{font-size:22px;color:#fff;font-weight:300;line-height:1.8;margin-bottom:6px;letter-spacing:.06em}
+.hero-slogan{color:rgba(255,255,255,.55);font-size:14px;font-style:italic;font-family:Georgia,serif;margin-bottom:32px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px}
+.pill{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:12px;padding:5px 14px;border-radius:20px}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 24px;border-radius:var(--r8);font-size:14px;cursor:pointer;border:1.5px solid transparent;font-family:inherit;font-weight:500;transition:.15s;text-decoration:none;line-height:1}
+.btn-dark{background:var(--obsidian);color:#fff}.btn-dark:hover{background:#333}
+.btn-white{background:#fff;color:var(--bronze);border-color:#fff}
+.btn-outline{background:transparent;border-color:var(--bdr);color:var(--obsidian)}.btn-outline:hover{border-color:var(--sand);color:var(--bronze)}
+.btn-ghost{background:var(--sand-l);border-color:var(--sand-l);color:var(--bronze)}
+.btn-sand{background:var(--sand);color:#fff;border-color:var(--sand)}.btn-sand:hover{background:var(--sand-d)}
+.btn-sm{padding:8px 16px;font-size:12px}
+.btn:disabled{opacity:.38;cursor:not-allowed;pointer-events:none}
+.strip{background:#fff;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+.strip-in{max-width:780px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;text-align:center}
+.sec{padding:54px 20px;max-width:780px;margin:0 auto}
+.sec-lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sand-d);margin-bottom:10px;font-family:Georgia,serif;display:flex;align-items:center;gap:8px}
+.sec-lbl::before{content:'';display:block;width:18px;height:1px;background:var(--sand)}
+.sec-cn{font-size:22px;margin-bottom:4px}
+.sec-en{font-size:13px;color:var(--hint);font-family:Georgia,serif;margin-bottom:22px}
+/* Style cards */
+.style-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.svc-card{background:#fff;border:1.5px solid var(--bdr);border-radius:var(--r12);padding:18px 16px;text-align:center}
+.book-card{background:#fff;border:1.5px solid var(--bdr);border-radius:var(--r12);padding:18px 16px;cursor:pointer;transition:.15s;position:relative;text-align:center}
+.book-card:hover{border-color:var(--sand)}
+.book-card.sel{border-color:var(--sand);background:var(--sand-l)}
+.book-card.sel::after{content:'✓';position:absolute;top:10px;right:12px;color:var(--bronze);font-size:12px;font-weight:600}
+.sc-emoji{font-size:24px;margin-bottom:8px}
+.sc-cn{font-size:13px;font-weight:500;color:var(--obsidian);margin-bottom:2px}
+.sc-en{font-size:11px;color:var(--hint);font-family:Georgia,serif}
+.sc-sub{font-size:11px;color:var(--hint);margin-bottom:6px}
+.sc-price{font-size:20px;color:var(--bronze);font-weight:400}
+.sc-dur{font-size:11px;color:var(--hint);margin-top:4px}
+/* Price table */
+.price-cat{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--bronze);margin:22px 0 10px;display:flex;align-items:center;gap:8px;font-family:Georgia,serif}
+.price-cat::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px}
+.price-card{background:#fff;border:1px solid var(--bdr);border-radius:var(--r12);padding:16px}
+/* Booking */
+.book-wrap{background:var(--sand-l);border-top:1px solid var(--bdr)}
+.prog{display:flex;align-items:flex-start;margin-bottom:30px}
+.prog-step{text-align:center;flex-shrink:0}
+.pd{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--hint);margin:0 auto 4px}
+.pd.done{background:var(--sand);border-color:var(--sand);color:#fff}
+.pd.act{border-color:var(--sand);color:var(--bronze)}
+.pl{font-size:10px;color:var(--hint);white-space:nowrap}
+.pl.act{color:var(--bronze);font-weight:500}
+.p-line{flex:1;height:1px;background:var(--bdr);top:11px;position:relative;margin:0 5px}
+.p-line.done{background:var(--sand)}
+/* Type selector */
+.type-box{background:#fff;border:1px solid var(--bdr);border-radius:var(--r8);padding:16px;margin-bottom:20px}
+.type-opts{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.type-opt{flex:1;min-width:130px;border:1.5px solid var(--bdr);border-radius:var(--r8);padding:12px 14px;cursor:pointer;transition:.15s;text-align:center;background:#fff}
+.type-opt:hover{border-color:var(--sand)}
+.type-opt.sel{border-color:var(--sand);background:var(--sand-l)}
+.type-opt .to-cn{font-size:14px;font-weight:500;color:var(--obsidian);margin-bottom:3px}
+.type-opt .to-en{font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:5px}
+.type-opt .to-badge{font-size:12px;color:var(--bronze);font-weight:500}
+/* Date/time */
+.date-btn{width:52px;text-align:center;background:#fff;border:1.5px solid var(--bdr);border-radius:var(--r8);padding:8px 4px;cursor:pointer;transition:.15s}
+.date-btn:hover{border-color:var(--sand)}
+.date-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
+.date-btn.sel .ds{color:rgba(255,255,255,.7)}
+.dc{font-size:10px;color:var(--muted);display:block;margin-bottom:2px}
+.dn{font-size:15px;font-weight:500;display:block;margin-bottom:2px}
+.ds{font-size:10px;color:var(--sand);display:block}
+.time-btn{padding:10px 16px;border:1.5px solid var(--bdr);background:#fff;border-radius:var(--r8);cursor:pointer;font-size:14px;font-family:inherit;transition:.15s}
+.time-btn:hover{border-color:var(--sand)}
+.time-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
+/* Form */
+.field{margin-bottom:14px}
+.flbl{font-size:11px;font-weight:500;color:var(--muted);display:block;margin-bottom:5px;letter-spacing:.04em}
+input[type=text],input[type=email],input[type=tel],textarea{font-family:inherit;font-size:14px;border:1.5px solid var(--bdr);border-radius:var(--r8);padding:10px 14px;width:100%;color:var(--obsidian);background:#fff;outline:none;resize:vertical;transition:.15s}
+input:focus,textarea:focus{border-color:var(--sand)}
+.ro{display:flex;align-items:center;gap:7px;font-size:14px;cursor:pointer;color:var(--obsidian)}
+.ro input{width:auto;accent-color:var(--sand)}
+/* Cards */
+.card{background:#fff;border:1px solid var(--bdr);border-radius:var(--r12);padding:20px}
+.rtbl{width:100%;border-collapse:collapse;font-size:14px}
+.rtbl td{padding:9px 0;border-bottom:1px solid var(--bdr);vertical-align:top}
+.rtbl td:first-child{color:var(--muted);width:36%;padding-right:12px;font-size:13px}
+.rtbl tr:last-child td{border-bottom:none}
+.ac-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--bdr)}
+.ac-row:last-child{border-bottom:none}
+.ac-ic{width:36px;height:36px;border-radius:50%;background:var(--sand-l);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.info-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.info-row:last-child{border-bottom:none}
+.ilbl{font-size:12px;font-weight:500;color:var(--obsidian);display:block}
+.ival{font-size:13px;color:var(--muted);display:block}
+.notice{background:#fff;border:1px solid var(--bdr);border-radius:var(--r8);padding:14px 16px;font-size:13px;color:var(--muted);line-height:1.8}
+.gcal-bar{background:var(--sand);border-radius:var(--r12);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.gcal-bar p{color:rgba(255,255,255,.75);font-size:13px;margin:0}
+.gcal-bar strong{color:#fff;display:block;font-size:14px;margin-bottom:3px}
+.conf-top{text-align:center;padding:28px 0 22px}
+footer{background:var(--obsidian);text-align:center;padding:30px 20px;color:rgba(255,255,255,.45)}
+footer strong{color:#fff;display:block;font-size:15px;letter-spacing:.1em;font-family:Georgia,serif;margin-top:10px;margin-bottom:4px}
+footer a{color:var(--sand)}
+.step{display:none}.step.active{display:block}
+</style>
+
+<h2 class="sr-only">Bunny Beauty Studio 预约页面</h2>
+
+<nav>
+<div class="nav-in">
+  <div class="nav-logo">
+    <svg width="44" height="44" viewBox="0 0 100 100" fill="none">
+      <rect width="100" height="100" rx="10" fill="#A89880"/>
+      <rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+      <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.2"/>
+      <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.2"/>
+      <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="white" text-anchor="middle" letter-spacing="-2">BB</text>
+      <path d="M22 74 Q28 80 34 74" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="50" y="92" font-size="8.5" font-family="Georgia,serif" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="2.5">BUNNYBEAUTY STUDIO</text>
+    </svg>
+    <div class="nav-brand">
+      <span>BUNNYBEAUTY STUDIO</span>
+      <span>美睫预约 · Richmond, BC</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a onclick="scrollSec('svc-sec')" class="nav-a" style="cursor:pointer">服务</a>
+    <a onclick="scrollSec('aftercare-sec')" class="nav-a" style="cursor:pointer">护理</a>
+    <a onclick="scrollSec('loc-sec')" class="nav-a" style="cursor:pointer">位置</a>
+    <button class="nav-btn" onclick="scrollSec('book-sec')">立即预约</button>
+  </div>
+</div>
+</nav>
+
+<div class="hero">
+  <svg width="90" height="90" viewBox="0 0 100 100" fill="none" style="margin-bottom:20px">
+    <rect width="100" height="100" rx="12" fill="rgba(255,255,255,0.15)"/>
+    <rect x="5" y="5" width="90" height="90" rx="8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.2"/>
+    <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.2"/>
+    <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="white" text-anchor="middle" letter-spacing="-2">BB</text>
+    <path d="M22 74 Q28 80 34 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <text x="50" y="92" font-size="8.5" font-family="Georgia,serif" fill="rgba(255,255,255,0.8)" text-anchor="middle" letter-spacing="2.5">BUNNYBEAUTY STUDIO</text>
+  </svg>
+  <div class="hero-tag">Private Lash Studio · Richmond BC</div>
+  <div class="hero-cn">新中式美睫 · 自然精致</div>
+  <div style="color:rgba(255,255,255,.8);font-size:14px;margin-bottom:8px">轻薄透气 · 贴合眼型 · 有妆感但不夸张</div>
+  <div class="hero-slogan">Timeless Beauty. Artfully Crafted.</div>
+  <div class="hero-pills">
+    <span class="pill">✔ 上班族 / 学生党</span>
+    <span class="pill">✔ 日常好看</span>
+    <span class="pill">✔ 精致减龄</span>
+    <span class="pill">🕒 1.5 – 2h</span>
+  </div>
+  <div class="hero-btns">
+    <button class="btn btn-dark" onclick="scrollSec('book-sec')">立即预约 / Book Now</button>
+    <a href="#svc-sec" class="btn btn-white">查看款式 / Styles</a>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="strip-in">
+    <div><div style="font-size:18px;margin-bottom:6px">🌿</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">私人工作室</div><div style="font-size:11px;color:var(--hint);font-family:Georgia,serif">Private Studio</div></div>
+    <div><div style="font-size:18px;margin-bottom:6px">✿</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">定制眼型</div><div style="font-size:11px;color:var(--hint);font-family:Georgia,serif">Custom Lash Map</div></div>
+    <div><div style="font-size:18px;margin-bottom:6px">💎</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">顶级材料</div><div style="font-size:11px;color:var(--hint);font-family:Georgia,serif">Premium Quality</div></div>
+    <div><div style="font-size:18px;margin-bottom:6px">📅</div><div style="font-size:13px;font-weight:500;margin-bottom:2px">在线预约</div><div style="font-size:11px;color:var(--hint);font-family:Georgia,serif">Easy Booking</div></div>
+  </div>
+</div>
+
+<!-- SERVICES — always original prices -->
+<div id="svc-sec">
+<div class="sec">
+  <div class="sec-lbl">Services · 美睫款式</div>
+  <div class="sec-cn">可选款式</div>
+  <div class="sec-en">Choose Your Lash Style</div>
+  <div class="style-grid" id="sg-styles"></div>
+  <div style="margin-top:30px">
+    <div class="price-cat">补睫 Refill <span style="font-size:10px;font-weight:400;text-transform:none;letter-spacing:0">(保留50%+)</span></div>
+    <div class="price-grid" id="sg-refill"></div>
+  </div>
+  <div style="margin-top:24px;text-align:center">
+    <button class="btn btn-sand" onclick="scrollSec('book-sec')">立即预约 / Book Now</button>
+  </div>
+</div>
+</div>
+
+<!-- BOOKING -->
+<div class="book-wrap" id="book-sec">
+<div class="sec">
+  <div class="sec-lbl">Online Booking · 在线预约</div>
+  <div class="sec-cn">预约你的时间</div>
+  <div class="sec-en" style="margin-bottom:26px">Reserve Your Spot</div>
+  <div class="prog" id="prog-bar"></div>
+
+  <!-- Step 1: client type + style -->
+  <div id="step1" class="step active">
+    <!-- Client type selector -->
+    <div class="type-box">
+      <h3 style="font-size:14px;margin-bottom:2px">您是新客还是老客？<span style="font-size:11px;color:var(--hint);font-weight:400;font-family:Georgia,serif;margin-left:6px">New or Returning?</span></h3>
+      <p style="font-size:12px;color:var(--hint);margin-bottom:10px">新客享半价优惠 · 老客享8折优惠</p>
+      <div class="type-opts">
+        <div class="type-opt" id="to-new" onclick="setType('new')">
+          <div class="to-cn">新客 🎉</div>
+          <div class="to-en">First Visit</div>
+          <div class="to-badge">半价优惠</div>
+        </div>
+        <div class="type-opt" id="to-ret" onclick="setType('returning')">
+          <div class="to-cn">老客 💛</div>
+          <div class="to-en">Returning</div>
+          <div class="to-badge">8折优惠</div>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-size:15px;margin-bottom:14px">选择款式 <span style="font-size:12px;color:var(--hint);font-weight:400;font-family:Georgia,serif">/ Choose Style</span></h3>
+    <div class="style-grid" id="sp-grid"></div>
+    <div style="margin-top:22px;text-align:right">
+      <button class="btn btn-sand" id="btn1" onclick="go(2)" disabled>下一步 Next →</button>
+    </div>
+  </div>
+
+  <!-- Step 2: date & time -->
+  <div id="step2" class="step">
+    <button class="btn btn-ghost btn-sm" onclick="go(1)" style="margin-bottom:18px">← 返回</button>
+    <h3 style="font-size:15px;margin-bottom:10px">选择日期 <span style="font-size:12px;color:var(--hint);font-weight:400;font-family:Georgia,serif">/ Choose Date</span></h3>
+    <p style="font-size:12px;color:var(--hint);margin-bottom:14px">数字为剩余可预约位数 · Numbers show remaining slots</p>
+    <div id="date-grid" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px"></div>
+    <div id="time-sec" style="display:none">
+      <h3 style="font-size:15px;margin-bottom:10px">选择时间 <span id="t-label" style="color:var(--bronze);font-size:13px;font-weight:400"></span></h3>
+      <div id="time-grid" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px"></div>
+    </div>
+    <div style="text-align:right"><button class="btn btn-sand" id="btn2" onclick="go(3)" disabled>下一步 Next →</button></div>
+  </div>
+
+  <!-- Step 3: info (no client type — already chosen in step 1) -->
+  <div id="step3" class="step">
+    <button class="btn btn-ghost btn-sm" onclick="go(2)" style="margin-bottom:18px">← 返回</button>
+    <h3 style="font-size:15px;margin-bottom:18px">填写信息 <span style="font-size:12px;color:var(--hint);font-weight:400;font-family:Georgia,serif">/ Your Details</span></h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="field"><span class="flbl">姓名 Full Name *</span><input type="text" id="f-name" placeholder="您的姓名" oninput="chk3()"></div>
+      <div class="field"><span class="flbl">电话 Phone <span style="font-weight:400;color:var(--hint)">(选填)</span></span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
+    </div>
+    <div class="field"><span class="flbl">邮箱 Email <span style="font-weight:400;color:var(--hint)">(选填)</span></span><input type="email" id="f-email" placeholder="your@email.com"></div>
+    <div class="field"><span class="flbl">备注 Notes (选填)</span><textarea id="f-notes" rows="2" placeholder="过敏史 / 目前眼睫情况 / 期望效果"></textarea></div>
+    <div style="text-align:right"><button class="btn btn-sand" id="btn3" onclick="go(4)" disabled>确认预约 Review →</button></div>
+  </div>
+
+  <!-- Step 4: review -->
+  <div id="step4" class="step">
+    <button class="btn btn-ghost btn-sm" onclick="go(3)" style="margin-bottom:18px">← 修改</button>
+    <h3 style="font-size:15px;margin-bottom:16px">确认信息 <span style="font-size:12px;color:var(--hint);font-weight:400;font-family:Georgia,serif">/ Review & Confirm</span></h3>
+    <div class="card" style="margin-bottom:14px" id="review-card"></div>
+    <div class="notice" style="margin-bottom:18px">⚠️ 请提前24小时取消或改期，否则可能收取取消费用。<br><span style="font-size:12px;font-family:Georgia,serif;color:var(--hint)">Please cancel or reschedule at least 24 hours in advance.</span></div>
+    <div style="text-align:right"><button class="btn btn-sand" onclick="doConfirm()">确认预约 ✓ / Confirm</button></div>
+  </div>
+
+  <!-- Step 5: confirmed -->
+  <div id="step5" class="step">
+    <div class="conf-top">
+      <svg width="64" height="64" viewBox="0 0 100 100" fill="none" style="margin-bottom:14px">
+        <rect width="100" height="100" rx="50" fill="var(--sand-l)"/>
+        <ellipse cx="37" cy="29" rx="7" ry="13" fill="none" stroke="#A89880" stroke-width="2.2"/>
+        <ellipse cx="63" cy="25" rx="7" ry="13" fill="none" stroke="#A89880" stroke-width="2.2"/>
+        <text x="50" y="72" font-size="36" font-family="Georgia,serif" fill="#615545" text-anchor="middle" letter-spacing="-2">BB</text>
+      </svg>
+      <div style="font-size:22px;color:var(--bronze);margin-bottom:8px">预约成功！🎉</div>
+      <p style="font-family:Georgia,serif;font-size:14px;color:var(--hint)">Booking confirmed · We'll see you soon ✿</p>
+    </div>
+    <div class="gcal-bar">
+      <div>
+        <strong>📅 添加到 Google 日历 / Add to Google Calendar</strong>
+        <p>预约信息已自动填写，一键保存 · All details pre-filled</p>
+      </div>
+      <a id="gcal-link" href="#" target="_blank" class="btn btn-white" style="flex-shrink:0">添加日历 / Add</a>
+    </div>
+    <div class="card" style="margin-bottom:14px" id="conf-sum"></div>
+    <div class="card" style="margin-bottom:14px;background:var(--sand-l);border-color:var(--bdr)">
+      <h3 style="font-size:14px;margin-bottom:12px">📞 联系我们 / Contact Us</h3>
+      <div style="display:grid;gap:8px;font-size:14px">
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--bdr)">
+          <span style="font-size:16px">📱</span>
+          <div><span style="font-size:11px;color:var(--muted);display:block">电话 / 短信 Phone & SMS</span>
+          <a href="tel:+12369967087" style="color:var(--bronze);font-weight:500">(236) 996-7087</a></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 0">
+          <span style="font-size:16px">💬</span>
+          <div><span style="font-size:11px;color:var(--muted);display:block">微信 WeChat</span>
+          <span style="color:var(--bronze);font-weight:500">LanLovesLife</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="font-size:14px;margin-bottom:16px">📍 到店指引 / Getting Here</h3>
+      <div id="loc-conf"></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:14px;margin-bottom:14px">💧 护理提醒 / Aftercare</h3>
+      <div id="ac-mini"></div>
+      <a href="#aftercare-sec" style="display:block;margin-top:12px;font-size:13px;color:var(--bronze)">查看完整护理指南 →</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- LOCATION -->
+<div id="loc-sec" style="background:#fff;border-top:1px solid var(--bdr)">
+<div class="sec">
+  <div class="sec-lbl">Location · 工作室位置</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+    <div>
+      <div class="sec-cn" style="margin-bottom:16px">工作室地址</div>
+      <div id="addr-block"></div>
+      <table id="hours-tbl" style="width:100%;font-size:13px;border-collapse:collapse;margin-top:14px"></table>
+    </div>
+    <div>
+      <div class="sec-cn" style="margin-bottom:16px">停车 & 到达</div>
+      <div id="park-block"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- AFTERCARE -->
+<div id="aftercare-sec" style="border-top:1px solid var(--bdr);background:var(--sand-ll)">
+<div class="sec">
+  <div class="sec-lbl">Aftercare · 睫毛护理</div>
+  <div class="sec-cn">爱护你的美睫</div>
+  <div class="sec-en" style="margin-bottom:24px">Love Your Lashes Longer</div>
+  <div class="card" id="ac-full"></div>
+</div>
+</div>
+
+<footer>
+  <svg width="50" height="50" viewBox="0 0 100 100" fill="none">
+    <rect width="100" height="100" rx="12" fill="rgba(168,152,128,0.2)"/>
+    <rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="rgba(168,152,128,0.4)" stroke-width="1.5"/>
+    <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="#A89880" stroke-width="2"/>
+    <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="#A89880" stroke-width="2"/>
+    <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="#A89880" text-anchor="middle" letter-spacing="-2">BB</text>
+    <path d="M22 74 Q28 80 34 74" stroke="#A89880" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M52 74 Q58 80 64 74" stroke="#A89880" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+  <strong>BUNNYBEAUTY STUDIO</strong>
+  <div>7151 No. 5 Rd, Richmond, BC · <a href="tel:+12369967087">(236) 996-7087</a></div>
+  <div style="margin-top:6px;font-size:11px">Timeless Beauty. Artfully Crafted. ✿</div>
+</footer>
+
+<script>
+const CFG={
+  name:'Bunny Beauty Studio',
+  address:'7151 No. 5 Rd, Richmond, BC',
+  phone:'(236) 996-7087',
+  maps:'https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC',
+  schedule:{
+    0:[],
+    1:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+    2:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+    3:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+    4:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+    5:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+    6:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+  },
+  hours:[['周一 – 周六 Mon–Sat','09:00 – 21:00'],['周日 Sunday','休息 Closed']]
+};
+
+/* ===== STYLES — original prices always shown in services section ===== */
+const STYLES=[
+  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub:'清爽日常，上班学生首选',price:60,newPrice:40,dur:'90 min'},
+  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub:'轻薄灵动，减龄精致',price:80,newPrice:40,dur:'120 min'},
+  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub:'有神有灵气，自然放大眼',price:80,newPrice:40,dur:'120 min'},
+  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub:'妩媚有神，深邃电眼',price:100,newPrice:50,dur:'120 min'},
+  {id:5,emoji:'🦊',cn:'狐系飞扬浓密款',en:'Fox Wispy Dense',sub:'上扬飞扬，浓密时髦',price:100,newPrice:50,dur:'120 min'},
+  {id:6,emoji:'🤍',cn:'其他款式 / 暂未确定',en:'Other / Undecided',sub:'可预约后再沟通款式细节',price:60,priceLabel:'$60+',newPrice:40,dur:'90 min'},
+];
+
+const PRICES=[
+  {cat:'全套 Full Set',items:[
+    {cn:'自然穿插单根',en:'Natural Classic',price:60,dur:'90 min'},
+    {cn:'仙子款',en:'Fairy Style',price:80,dur:'120 min'},
+    {cn:'大/小漫画款',en:'Manga Style',price:80,dur:'120 min'},
+    {cn:'小恶魔款',en:'Little Devil',price:100,dur:'120 min'},
+    {cn:'狐系飞扬浓密款',en:'Fox Wispy Dense',price:100,dur:'120 min'},
+    {cn:'其他/暂未确定',en:'Other/Undecided',price:'60+',dur:'90 min'},
+  ]},
+  {cat:'补睫 Refill (保留50%+)',items:[
+    {cn:'自然款补睫',en:'Natural Refill',price:30,dur:'60 min'},
+    {cn:'仙子/漫画补睫',en:'Fairy/Manga Refill',price:40,dur:'60 min'},
+    {cn:'小恶魔/狐系补睫',en:'Devil/Fox Refill',price:50,dur:'75 min'},
+  ]},
+  {cat:'加项 Add-ons',items:[
+    {cn:'卸睫毛',en:'Lash Removal',price:10,dur:'+10 min'},
+    {cn:'下睫毛',en:'Bottom Lashes',price:10,dur:'+15 min'},
+  ]},
+];
+
+const AC=[
+  {i:'💧',cn:'8小时内避水避蒸汽',en:'Stay dry — 8 hours',d:'避开水、蒸汽、桑拿、出汗，让胶水充分固化。8小时后可正常洗脸，但仍需避免大量水冲眼部'},
+  {i:'🚫',cn:'避免油性产品',en:'Go oil-free',d:'油脂会溶解胶水，更换无油洁面及卸妆产品'},
+  {i:'🤲',cn:'不要揉眼睛',en:'No rubbing or picking',d:'揉眼会造成过早脱落，如有不适请联系我们'},
+  {i:'🌙',cn:'尽量仰睡',en:'Sleep on your back',d:'侧睡会压变睫毛形状，建议使用真丝枕套'},
+  {i:'✿',cn:'每天梳理睫毛',en:'Brush every morning',d:'使用螺旋刷从根部轻轻梳理，保持蓬松感'},
+  {i:'💄',cn:'不需要刷睫毛膏',en:'Skip mascara',d:'接睫后无需睫毛膏，使用会使睫毛结块'},
+  {i:'🧴',cn:'每周清洁两次',en:'Cleanse twice a week',d:'使用专用泡沫清洁睫毛，清洁度决定持久度'},
+  {i:'📅',cn:'2–3周来补睫',en:'Fill at 2–3 weeks',d:'自然睫毛每6–8周脱落一轮，定期补睫保持效果'},
+];
+
+const PARKING=[
+  {i:'🔍',label:'入口较隐秘，请注意！',val:'沿No.5 Rd行驶，留意路边两侧茂密大树夹道的入口，门牌号 7151 在左侧石柱上，容易错过请放慢车速 / Look for the lush tree-lined driveway — gate number 7151 on the left stone pillar'},
+  {i:'🅿️',label:'停车位置',val:'进入大门后靠右手边停车 / Park on the right side after entering the gate'},
+  {i:'🚶',label:'到达后步行',val:'停车后往内院方向步行，我在一楼迎接，然后带您上二楼工作室 / Walk to inner courtyard — I\'ll greet you on 1F and take you up to 2F studio'},
+  {i:'🚇',label:'Bridgeport 地铁站',val:'步行约10分钟 · Canada Line'},
+  {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'},
+];
+
+/* ===== STATE ===== */
+let S={step:1,svc:null,ctype:'',date:null,time:null,name:'',email:'',phone:'',notes:''};
+let BOOKED={};
+
+// 👇 部署 Apps Script 后把网址粘贴到这里
+const GCAL_URL = 'https://script.google.com/macros/s/AKfycbz6UwCJAWTjQixfuHuH7MoKJMc7s1UFpUiG99AjqVCcCEd_yF2B9abkX-3zeLJu73yC/exec';
+
+let busyPeriods = []; // 从 Google Calendar 读取的忙碌时段
+
+async function fetchCalendarBusy() {
+  if (!GCAL_URL || GCAL_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  try {
+    const s = new Date(), e = new Date();
+    e.setDate(s.getDate() + 50);
+    const url = `${GCAL_URL}?action=busy&start=${s.toISOString()}&end=${e.toISOString()}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.busy) busyPeriods = data.busy.map(b => ({ s: new Date(b.start), e: new Date(b.end) }));
+  } catch(ex) { console.log('Google Calendar 连接失败:', ex); }
+}
+
+function calConflict(date, t, durMin) {
+  if (!busyPeriods.length) return false;
+  const [h, m] = t.split(':').map(Number);
+  const ss = new Date(date.getFullYear(), date.getMonth(), date.getDate(), h, m, 0);
+  const se = new Date(ss.getTime() + durMin * 60000);
+  return busyPeriods.some(b => ss < b.e && se > b.s);
+}
+
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const fmtKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const fmtDate=d=>d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+const fmtShort=d=>d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});
+const fmtTime=t=>{const[h,m]=t.split(':').map(Number),ap=h>=12?'下午':'上午',h12=h===0?12:h>12?h-12:h;return`${ap} ${h12}:${pad(m)}`;};
+const gcalFmt=dt=>`${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+function scrollSec(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+
+/* ===== PRICE LOGIC ===== */
+function getPrice(svc,ctype){
+  const orig=svc.priceLabel||'$'+svc.price;
+  if(ctype==='new') return{label:'$'+svc.newPrice,orig,tag:'新客半价 🎉'};
+  if(ctype==='returning'){
+    const p=Math.round(svc.price*0.8);
+    return{label:svc.priceLabel?'$'+p+'+':'$'+p,orig,tag:'老客8折 💛'};
+  }
+  return{label:orig,orig:'',tag:''};
+}
+
+/* ===== CLIENT TYPE ===== */
+function setType(v){
+  S.ctype=v;S.svc=null;$('btn1').disabled=true;
+  ['to-new','to-ret'].forEach(id=>$(id).classList.remove('sel'));
+  $(v==='new'?'to-new':'to-ret').classList.add('sel');
+  renderBookingStyles();
+}
+
+/* ===== BOOKING STYLE CARDS (dynamic prices) ===== */
+function renderBookingStyles(){
+  const el=$('sp-grid');el.innerHTML='';
+  STYLES.forEach(s=>{
+    const p=getPrice(s,S.ctype);
+    const d=document.createElement('div');
+    d.className='book-card';d.id='bp'+s.id;
+    d.onclick=()=>pickSvc(s);
+    const priceHtml=p.orig
+      ?`<div style="margin-top:6px"><span style="color:var(--hint);text-decoration:line-through;font-size:12px">${p.orig}</span> <span style="font-size:20px;color:var(--bronze)">${p.label}</span></div><div style="font-size:11px;color:var(--bronze);margin-top:2px">${p.tag}</div>`
+      :`<div class="sc-price" style="margin-top:6px">${p.label}</div>`;
+    d.innerHTML=`<div class="sc-emoji">${s.emoji}</div><div class="sc-cn">${s.cn}</div><div class="sc-en">${s.en}</div><div class="sc-sub">${s.sub}</div>${priceHtml}<div class="sc-dur">🕒 ${s.dur}</div>`;
+    el.appendChild(d);
+  });
+}
+
+function pickSvc(s){
+  if(!S.ctype){alert('请先选择您是新客还是老客 / Please select New or Returning first');return;}
+  S.svc=s;
+  document.querySelectorAll('#sp-grid .book-card').forEach(c=>c.classList.remove('sel'));
+  $('bp'+s.id).classList.add('sel');
+  $('btn1').disabled=false;
+}
+
+/* ===== DATES / TIMES ===== */
+function renderDates(){
+  const dg=$('date-grid'),today=new Date();today.setHours(0,0,0,0);
+  const DOW=['日','一','二','三','四','五','六'];
+  dg.innerHTML='';let n=0;
+  for(let i=1;i<=42&&n<28;i++){
+    const d=new Date(today);d.setDate(today.getDate()+i);
+    const slots = CFG.schedule[d.getDay()]||[];
+    const dur = S.svc ? parseInt(S.svc.dur) : 120;
+    const avail = slots.filter(t =>
+      !(BOOKED[fmtKey(d)] || []).includes(t) && !calConflict(d, t, dur)
+    );
+    if(!avail.length)continue;n++;
+    const sel=S.date&&fmtKey(S.date)===fmtKey(d);
+    const b=document.createElement('div');b.className='date-btn'+(sel?' sel':'');
+    b.innerHTML=`<span class="dc">周${DOW[d.getDay()]}</span><span class="dn">${d.getDate()}</span><span class="ds">${avail.length}位</span>`;
+    b.onclick=()=>pickDate(fmtKey(d));dg.appendChild(b);
+  }
+  if(!dg.children.length)dg.innerHTML='<p style="font-size:13px;color:var(--hint)">暂无可预约时间，请联系我们</p>';
+}
+
+function pickDate(key){const[y,m,d]=key.split('-').map(Number);S.date=new Date(y,m-1,d);S.time=null;$('btn2').disabled=true;renderDates();renderTimes();}
+function renderTimes(){
+  const key = fmtKey(S.date), slots = CFG.schedule[S.date.getDay()]||[];
+  const dur = S.svc ? parseInt(S.svc.dur) : 120;
+  const avail = slots.filter(t =>
+    !(BOOKED[key] || []).includes(t) && !calConflict(S.date, t, dur)
+  );
+  $('t-label').textContent=fmtShort(S.date);
+  $('time-grid').innerHTML=avail.map(t=>`<button class="time-btn${S.time===t?' sel':''}" onclick="pickTime('${t}')">${fmtTime(t)}</button>`).join('');
+  $('time-sec').style.display='block';
+}
+function pickTime(t){S.time=t;renderTimes();$('btn2').disabled=false;}
+function chk3(){$('btn3').disabled=!$('f-name').value.trim();}
+
+/* ===== STEP NAV ===== */
+function renderProg(){
+  const steps=[['款式','Style'],['时间','Date'],['信息','Info'],['确认','Review']];
+  $('prog-bar').innerHTML=steps.map(([cn,en],i)=>{
+    const n=i+1,done=n<S.step,act=n===S.step;
+    return`${i?`<div class="p-line${done?' done':''}"></div>`:''}
+    <div class="prog-step"><div class="pd${done?' done':act?' act':''}">${done?'✓':n}</div><div class="pl${act?' act':''}">${cn}<br><span style="font-size:9px;font-family:Georgia,serif;opacity:.7">${en}</span></div></div>`;
+  }).join('');
+}
+
+function go(n){
+  if(S.step===3){
+    S.name=$('f-name').value.trim();
+    S.email=$('f-email').value.trim();
+    S.phone=$('f-phone').value.trim();
+    S.notes=$('f-notes').value.trim();
+  }
+  if(n===2)renderDates();
+  if(n===4){
+    const sv=S.svc,p=getPrice(sv,S.ctype);
+    const priceCell=p.orig
+      ?`<span style="color:var(--hint);text-decoration:line-through;font-size:12px;margin-right:5px">${p.orig}</span><strong style="color:var(--bronze)">${p.label}</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">${p.tag}</span>`
+      :`<strong style="color:var(--bronze)">${p.label}</strong>`;
+    $('review-card').innerHTML=`<table class="rtbl">${[
+      ['款式',`<strong>${sv.cn} / ${sv.en}</strong>`],
+      ['客户类型',S.ctype==='new'?'新客 First Visit 🎉':'老客 Returning 💛'],
+      ['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],['时长',sv.dur],
+      ['价格',priceCell],['姓名',S.name],
+      ['电话',S.phone||'未填'],['邮箱',S.email||'未填'],
+      ['备注',S.notes||'无']
+    ].map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table>`;
+  }
+  document.getElementById('step'+S.step).classList.remove('active');
+  S.step=n;
+  document.getElementById('step'+n).classList.add('active');
+  renderProg();scrollSec('book-sec');
+}
+
+/* ===== CONFIRM ===== */
+async function doConfirm(){
+  const key=fmtKey(S.date);
+  if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);
+  try{await window.storage.set('bunny-v7',JSON.stringify(BOOKED),true);}catch(e){}
+
+  // ✅ 自动创建 Google Calendar 预约
+  if (GCAL_URL && GCAL_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+    try {
+      const params = new URLSearchParams({
+        action:'book', name:S.name, phone:S.phone||'',
+        email:S.email||'', style:`${sv.cn} / ${sv.en}`,
+        price:p.label+(p.tag?` (${p.tag})`:' (原价)'),
+        ctype:S.ctype, notes:S.notes||'',
+        start:st.toISOString(), end:en.toISOString()
+      });
+      fetch(`${GCAL_URL}?${params}`).catch(()=>{});
+    } catch(ex) {}
+  }
+
+  const sv=S.svc,p=getPrice(sv,S.ctype);
+  const[y,m,d]=key.split('-').map(Number);
+  const[h,mi]=S.time.split(':').map(Number);
+  const st=new Date(y,m-1,d,h,mi,0),en=new Date(st.getTime()+parseInt(sv.dur)*60000);
+  const desc=`客户: ${S.name}\n电话: ${S.phone||'未填'}\nEmail: ${S.email||'未填'}\n款式: ${sv.cn} / ${sv.en}\n客户类型: ${S.ctype==='new'?'新客':'老客'}\n价格: ${p.label} (${p.tag||'原价'})\n时长: ${sv.dur}\n备注: ${S.notes||'无'}\n\nChannel: Bunny Beauty Studio — Online Booking 在线预约`;
+  const gcal=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('BB Studio — '+sv.cn+' · '+S.name)}&dates=${gcalFmt(st)}/${gcalFmt(en)}&details=${encodeURIComponent(desc)}&location=${encodeURIComponent(CFG.address)}`;
+  $('gcal-link').href=gcal;
+
+  const priceCell=p.orig
+    ?`<span style="color:var(--hint);text-decoration:line-through;font-size:12px;margin-right:5px">${p.orig}</span><strong style="color:var(--bronze)">${p.label}</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">${p.tag}</span>`
+    :`<strong style="color:var(--bronze)">${p.label}</strong>`;
+  $('conf-sum').innerHTML=`<table class="rtbl">${[
+    ['款式',`<strong>${sv.cn} / ${sv.en}</strong>`],
+    ['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],
+    ['价格',priceCell],['姓名',S.name],
+    ['电话',S.phone||'未填'],['邮箱',S.email||'未填']
+  ].map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table>`;
+
+  const lc=$('loc-conf');
+  lc.innerHTML=`<div class="info-row"><span style="font-size:14px">📌</span><div><span class="ival">${CFG.address}</span></div></div>`;
+  PARKING.forEach(p=>{lc.innerHTML+=`<div class="info-row"><span style="font-size:14px">${p.i}</span><div><span class="ilbl">${p.label}</span><span class="ival">${p.val}</span></div></div>`;});
+  lc.innerHTML+=`<div style="margin-top:12px"><a href="${CFG.maps}" target="_blank" class="btn btn-outline btn-sm">Google Maps ↗</a></div>`;
+
+  $('ac-mini').innerHTML=AC.slice(0,4).map(a=>`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bdr);font-size:13px">${a.i} <strong style="color:var(--obsidian)">${a.cn}</strong></div>`).join('');
+
+  document.getElementById('step4').classList.remove('active');S.step=5;
+  document.getElementById('step5').classList.add('active');
+  $('prog-bar').style.display='none';scrollSec('book-sec');
+}
+
+/* ===== INIT ===== */
+async function init(){
+  try{const r=await window.storage.get('bunny-v7',true);if(r)BOOKED=JSON.parse(r.value);}catch(e){}
+  await fetchCalendarBusy(); // 从 Google Calendar 读取忙碌时段
+
+  // Services section — always original prices, no onclick
+  const sgs=$('sg-styles');
+  STYLES.forEach(s=>{
+    const d=document.createElement('div');
+    d.className='svc-card';
+    d.innerHTML=`<div class="sc-emoji">${s.emoji}</div><div class="sc-cn">${s.cn}</div><div class="sc-en">${s.en}</div><div class="sc-sub">${s.sub}</div><div class="sc-price">${s.priceLabel||'$'+s.price}</div><div class="sc-dur">🕒 ${s.dur}</div>`;
+    sgs.appendChild(d);
+  });
+
+  // Booking picker — dynamic (initially no ctype set, so shows original prices)
+  renderBookingStyles();
+
+  // Refill pricing only
+  const rf=$('sg-refill');
+  (PRICES.find(c=>c.cat.includes('Refill'))||{items:[]}).items.forEach(i=>{
+    const d=document.createElement('div');d.className='price-card';
+    d.innerHTML=`<div style="font-size:13px;font-weight:500;margin-bottom:2px">${i.cn}</div><div style="font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:8px">${i.en}</div><div style="font-size:18px;color:var(--bronze)">${i.price}</div><div style="font-size:11px;color:var(--hint)">🕒 ${i.dur}</div>`;
+    rf.appendChild(d);
+  });
+
+  // Address & hours
+  $('addr-block').innerHTML=`<div class="info-row"><span style="font-size:14px;flex-shrink:0">📌</span><div><span class="ilbl">${CFG.name}</span><span class="ival">${CFG.address}</span></div></div><div class="info-row"><span style="font-size:14px;flex-shrink:0">📞</span><div><a href="tel:+12369967087" style="color:var(--bronze);font-size:13px">${CFG.phone}</a></div></div>`;
+  const ht=$('hours-tbl');
+  CFG.hours.forEach(([d,h])=>{const cl=h.includes('Closed')||h.includes('休息');ht.innerHTML+=`<tr><td style="padding:5px 12px 5px 0;font-size:12px;color:var(--obsidian)">${d}</td><td style="font-size:13px;color:${cl?'var(--sand-d)':'var(--muted)'}">${h}</td></tr>`;});
+
+  // Parking
+  const pb=$('park-block');
+  PARKING.forEach(p=>{pb.innerHTML+=`<div class="info-row"><span style="font-size:14px;flex-shrink:0">${p.i}</span><div><span class="ilbl">${p.label}</span><span class="ival">${p.val}</span></div></div>`;});
+  pb.innerHTML+=`
+    <div style="margin-top:16px;background:var(--sand-l);border-radius:var(--r8);padding:14px;border:1px solid var(--bdr)">
+      <div style="font-size:12px;font-weight:500;color:var(--bronze);margin-bottom:12px">📸 到店指引图 / Photo Guide</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px">
+
+        <!-- Photo 1: Entrance from street -->
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--bdr)">
+          <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+            <rect width="120" height="140" fill="#d6e8d0"/>
+            <rect width="120" height="60" fill="#c8dfe0" y="0"/>
+            <!-- Road -->
+            <rect y="105" width="120" height="35" fill="#9a9a9a"/>
+            <rect y="118" x="50" width="20" height="4" fill="#e0e0e0" opacity=".5"/>
+            <!-- Left trees -->
+            <rect x="0" y="30" width="18" height="90" fill="#5a7a4a"/>
+            <ellipse cx="9" cy="30" rx="13" ry="22" fill="#4a6a3a"/>
+            <rect x="18" y="40" width="16" height="80" fill="#6a8a5a"/>
+            <ellipse cx="26" cy="38" rx="11" ry="20" fill="#5a7a4a"/>
+            <!-- Right trees -->
+            <rect x="88" y="28" width="18" height="92" fill="#5a7a4a"/>
+            <ellipse cx="97" cy="28" rx="14" ry="24" fill="#4a6a3a"/>
+            <rect x="104" y="38" width="16" height="82" fill="#6a8a5a"/>
+            <ellipse cx="112" cy="36" rx="10" ry="20" fill="#5a7a4a"/>
+            <!-- Left gate pillar -->
+            <rect x="32" y="65" width="16" height="45" fill="#8a8078"/>
+            <rect x="30" y="63" width="20" height="6" fill="#7a7068"/>
+            <!-- Right gate pillar -->
+            <rect x="72" y="65" width="16" height="45" fill="#8a8078"/>
+            <rect x="70" y="63" width="20" height="6" fill="#7a7068"/>
+            <!-- Gate opening / driveway -->
+            <rect x="48" y="70" width="24" height="40" fill="#b0a898" opacity=".6"/>
+            <!-- 7151 number on left pillar -->
+            <rect x="33" y="72" width="14" height="10" fill="#fff" opacity=".8" rx="1"/>
+            <text x="40" y="80" font-size="5" fill="#3a3028" text-anchor="middle" font-family="Georgia,serif" font-weight="bold">7151</text>
+            <!-- Label -->
+            <rect y="128" width="120" height="12" fill="rgba(0,0,0,0.45)"/>
+            <text x="60" y="137" font-size="6.5" fill="#fff" text-anchor="middle" font-family="sans-serif">① 入口大门 Entrance</text>
+          </svg>
+        </div>
+
+        <!-- Photo 2: Parking lot inside -->
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--bdr)">
+          <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+            <rect width="120" height="140" fill="#87CEEB"/>
+            <!-- Ground / driveway -->
+            <rect y="70" width="120" height="70" fill="#b0a8a0"/>
+            <!-- Perspective lines -->
+            <polygon points="0,70 120,70 90,105 30,105" fill="#a09890"/>
+            <!-- Trees left -->
+            <rect x="0" y="20" width="14" height="70" fill="#4a6a3a"/>
+            <ellipse cx="7" cy="20" rx="12" ry="18" fill="#3a5a2a"/>
+            <rect x="14" y="30" width="12" height="60" fill="#5a7a4a"/>
+            <ellipse cx="20" cy="28" rx="10" ry="16" fill="#4a6a3a"/>
+            <!-- Trees right -->
+            <rect x="94" y="15" width="14" height="75" fill="#4a6a3a"/>
+            <ellipse cx="101" cy="15" rx="12" ry="20" fill="#3a5a2a"/>
+            <rect x="106" y="25" width="14" height="65" fill="#5a7a4a"/>
+            <ellipse cx="113" cy="23" rx="11" ry="18" fill="#4a6a3a"/>
+            <!-- Car (yellow sports car on left) -->
+            <rect x="12" y="88" width="28" height="12" fill="#e8c020" rx="2"/>
+            <rect x="16" y="83" width="18" height="8" fill="#f0d040" rx="2"/>
+            <circle cx="18" cy="102" r="4" fill="#333"/>
+            <circle cx="34" cy="102" r="4" fill="#333"/>
+            <!-- Gate on right -->
+            <rect x="88" y="68" width="6" height="30" fill="#4a3828"/>
+            <rect x="94" y="68" width="22" height="30" fill="#3a2818" opacity=".8"/>
+            <!-- Right wall/pillar -->
+            <rect x="90" y="55" width="14" height="45" fill="#8a8078"/>
+            <!-- Arrow showing parking direction -->
+            <text x="60" y="85" font-size="18" fill="rgba(255,255,255,0.85)" text-anchor="middle">→</text>
+            <!-- Label -->
+            <rect y="128" width="120" height="12" fill="rgba(0,0,0,0.45)"/>
+            <text x="60" y="137" font-size="6.5" fill="#fff" text-anchor="middle" font-family="sans-serif">② 停车场 Parking Area</text>
+          </svg>
+        </div>
+
+        <!-- Photo 3: House / courtyard -->
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--bdr)">
+          <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+            <rect width="120" height="140" fill="#b8c8d0"/>
+            <!-- Sky -->
+            <rect width="120" height="75" fill="#9ab0be"/>
+            <!-- House main body -->
+            <rect x="20" y="55" width="80" height="60" fill="#7a3030"/>
+            <!-- Roof -->
+            <polygon points="15,55 60,20 105,55" fill="#2a2a2a"/>
+            <polygon points="35,55 60,30 85,55" fill="#1a1a1a"/>
+            <!-- Windows top -->
+            <rect x="30" y="60" width="22" height="18" fill="#c8d8e0" rx="1"/>
+            <rect x="30" y="60" width="22" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.5" rx="1"/>
+            <rect x="40.5" y="60" width="1" height="18" fill="#1a1a1a"/>
+            <rect x="30" y="69" width="22" height="1" fill="#1a1a1a"/>
+            <rect x="58" y="60" width="32" height="18" fill="#c8d8e0" rx="1"/>
+            <rect x="58" y="60" width="32" height="18" fill="none" stroke="#1a1a1a" stroke-width="1.5" rx="1"/>
+            <!-- Windows bottom -->
+            <rect x="25" y="82" width="16" height="14" fill="#c8d8e0" rx="1"/>
+            <rect x="25" y="82" width="16" height="14" fill="none" stroke="#1a1a1a" stroke-width="1" rx="1"/>
+            <rect x="50" y="85" width="14" height="30" fill="#6a2828"/>
+            <!-- Front door -->
+            <rect x="52" y="90" width="10" height="25" fill="#5a2020" rx="1"/>
+            <rect x="74" y="82" width="22" height="14" fill="#c8d8e0" rx="1"/>
+            <!-- Garden hedge row -->
+            <ellipse cx="5" cy="118" rx="8" ry="7" fill="#5a8a3a"/>
+            <ellipse cx="20" cy="118" rx="8" ry="7" fill="#4a7a2a"/>
+            <ellipse cx="35" cy="118" rx="8" ry="7" fill="#5a8a3a"/>
+            <ellipse cx="50" cy="118" rx="8" ry="7" fill="#4a7a2a"/>
+            <ellipse cx="65" cy="118" rx="8" ry="7" fill="#5a8a3a"/>
+            <ellipse cx="80" cy="118" rx="8" ry="7" fill="#4a7a2a"/>
+            <ellipse cx="95" cy="118" rx="8" ry="7" fill="#5a8a3a"/>
+            <ellipse cx="110" cy="118" rx="8" ry="7" fill="#4a7a2a"/>
+            <!-- Lawn -->
+            <rect x="0" y="118" width="120" height="10" fill="#6a9a4a" opacity=".4"/>
+            <!-- Label -->
+            <rect y="128" width="120" height="12" fill="rgba(0,0,0,0.45)"/>
+            <text x="60" y="137" font-size="6.5" fill="#fff" text-anchor="middle" font-family="sans-serif">③ 内院 / 工作室 Studio</text>
+          </svg>
+        </div>
+
+      </div>
+      <div style="font-size:11px;color:var(--bronze);background:#fff;border-radius:6px;padding:8px 10px;line-height:1.7">
+        ⚠️ <strong>入口隐秘请减速</strong>，留意左侧石柱 <strong>7151</strong> 门牌 · 进门右侧停车 · 步行至内院我在一楼迎接
+      </div>
+    </div>
+    <div style="margin-top:10px"><a href="${CFG.maps}" target="_blank" class="btn btn-outline btn-sm">在地图中打开 / Google Maps ↗</a></div>`;
+
+  // Aftercare
+  $('ac-full').innerHTML=AC.map(a=>`<div class="ac-row"><div class="ac-ic">${a.i}</div><div><div style="font-size:13px;font-weight:500;margin-bottom:3px">${a.cn} <span style="font-size:11px;font-weight:400;color:var(--hint);font-family:Georgia,serif">/ ${a.en}</span></div><p style="font-size:13px;color:var(--muted)">${a.d}</p></div></div>`).join('');
+
+  renderProg();
+}
+
+init();
+</script>
