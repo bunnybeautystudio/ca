@@ -433,7 +433,7 @@ let S={step:1,svc:null,ctype:'',date:null,time:null,name:'',email:'',phone:'',no
 let BOOKED={};
 
 // 👇 部署 Apps Script 后把网址粘贴到这里
-const GCAL_URL = 'https://script.google.com/macros/s/AKfycbzazPexBNNe4okk7-D3XS-UYqqU5jcjB6DenTvqJn2JEQk_AkhuiMndRybowWWV9-Ls/exec';
+const GCAL_URL = 'https://script.google.com/macros/s/AKfycbxYH-DOOHzmZunTkeAPKsgfLfNg67OW1uUCpy61gF_nFHHfY3ZMjxNaq_OTJyguSO4I/exec';
 
 let busyPeriods = []; // 从 Google Calendar 读取的忙碌时段
 
@@ -588,17 +588,24 @@ async function doConfirm(){
   if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);
   try{await window.storage.set('bunny-v7',JSON.stringify(BOOKED),true);}catch(e){}
 
-  // ✅ 自动创建 Google Calendar 预约（用 Image 方式绕过 CORS）
+  // ✅ 自动创建 Google Calendar 预约
   if (GCAL_URL && GCAL_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
     try {
-      const params = new URLSearchParams({
+      const body = {
         action:'book', name:S.name, phone:S.phone||'',
         email:S.email||'', style:`${sv.cn} / ${sv.en}`,
         price:p.label+(p.tag?` (${p.tag})`:' (原价)'),
         ctype:S.ctype, notes:S.notes||'',
         start:st.toISOString(), end:en.toISOString()
-      });
-      new Image().src = `${GCAL_URL}?${params}`;
+      };
+      // 同时用两种方式确保成功
+      fetch(GCAL_URL, {
+        method:'POST',
+        mode:'no-cors',
+        body: JSON.stringify(body)
+      }).catch(()=>{});
+      // 备用 GET 方式
+      new Image().src = `${GCAL_URL}?${new URLSearchParams(body)}`;
     } catch(ex) {}
   }
 
