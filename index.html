@@ -450,6 +450,9 @@ footer a{color:var(--sand)}
       <input type="hidden" id="gcal-link-url">
     </div>
 
+    <!-- 预约编号 -->
+    <div class="info-card" style="margin-bottom:14px;border-color:var(--sand)" id="booking-ref-card"></div>
+
     <div class="review-card" id="conf-sum"></div>
 
     <div class="info-card" style="margin-top:14px;border-color:var(--sand)">
@@ -547,6 +550,27 @@ footer a{color:var(--sand)}
 </div>
 </div>
 
+<!-- 自助取消/修改预约 -->
+<div id="manage-sec" style="border-top:1px solid var(--bdr);background:var(--w)">
+<div class="sec">
+  <div class="sec-tag">Manage · 管理预约</div>
+  <h2 style="margin-bottom:6px">取消 / 修改预约</h2>
+  <p style="margin-bottom:20px;font-size:14px">提前 <strong style="color:var(--bronze)">3天以上</strong> 可自助取消。3天内请直接联系我们。</p>
+
+  <div id="manage-lookup">
+    <div class="form-box">
+      <div class="field">
+        <span class="flbl">输入预约编号 Booking Reference</span>
+        <input type="text" id="manage-ref" placeholder="例如：BB-A3K7" style="text-transform:uppercase;letter-spacing:.08em;font-size:18px;text-align:center">
+      </div>
+    </div>
+    <button class="btn-main" onclick="lookupBooking()">查询我的预约 →</button>
+  </div>
+
+  <div id="manage-result" style="display:none;margin-top:16px"></div>
+</div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="f-logo">✿ BUNNYBEAUTY STUDIO</div>
@@ -565,11 +589,11 @@ footer a{color:var(--sand)}
   <button class="bn-item" onclick="scrollSec('svc-sec');setActive(this)">
     <span class="bn-icon">✿</span>服务
   </button>
+  <button class="bn-item" onclick="scrollSec('manage-sec');setActive(this)">
+    <span class="bn-icon">🔄</span>管理
+  </button>
   <button class="bn-item" onclick="scrollSec('loc-sec');setActive(this)">
     <span class="bn-icon">📍</span>位置
-  </button>
-  <button class="bn-item" onclick="scrollSec('aftercare-sec');setActive(this)">
-    <span class="bn-icon">💧</span>护理
   </button>
 </div>
 
@@ -634,7 +658,7 @@ const PARKING=[
 
 let S={step:1,svc:null,ctype:'',date:null,time:null,name:'',email:'',phone:'',notes:''};
 let BOOKED={};
-const GCAL_URL='https://script.google.com/macros/s/AKfycbyBIyBZrH3-SDmWEBsaWOJ31WT6rjYlpsjRZG9cpe7L5NSUhReL4grs4gx1V9qYti-d/exec';
+const GCAL_URL='https://script.google.com/macros/s/AKfycbziU_xBRz_prBj8xCviPx1S2YK5ZFcbbgcoFBnzQqEhPAC93X95zLKyR0mb_YkKikLl/exec';
 let busyPeriods=[];
 
 const $=id=>document.getElementById(id);
@@ -644,7 +668,13 @@ const fmtDate=d=>d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'
 const fmtShort=d=>d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});
 const fmtTime=t=>{const[h,m]=t.split(':').map(Number),ap=h>=12?'PM':'AM',h12=h===0?12:h>12?h-12:h;return`${h12}:${pad(m)} ${ap}`;};
 const gcalFmt=dt=>`${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
-function scrollSec(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+// 滚动函数 — 修正 sticky nav 遮挡
+function scrollSec(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const y=el.getBoundingClientRect().top+window.pageYOffset-60;
+  window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+}
 function setActive(el){document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
 
 function isBiweeklyWedMeeting(date){
@@ -669,7 +699,26 @@ function getSlots(date){
   return(CFG.schedule[date.getDay()]||[]).filter(t=>!(isBiweeklyWedMeeting(date)&&t==='12:00'));
 }
 
-// ✅ 用 JSONP 绕过 CORS 读取 Google Calendar 忙碌时段
+// 生成唯一预约编号
+function genBookingId(){
+  return 'BB-'+(Date.now().toString(36).toUpperCase().slice(-4))+(Math.random().toString(36).toUpperCase().slice(-2));
+}
+
+// JSONP 通用请求
+function gcalRequest(params){
+  return new Promise((resolve)=>{
+    try{
+      const cb='bb_cb_'+Date.now();let script;
+      window[cb]=(data)=>{delete window[cb];if(script&&script.parentNode)script.parentNode.removeChild(script);resolve(data);};
+      script=document.createElement('script');
+      script.onerror=()=>{delete window[cb];resolve({});};
+      params.callback=cb;
+      script.src=`${GCAL_URL}?${new URLSearchParams(params)}`;
+      document.head.appendChild(script);
+      setTimeout(()=>{if(window[cb]){delete window[cb];resolve({});}},8000);
+    }catch(ex){resolve({});}
+  });
+}
 async function fetchBusy(){
   return new Promise((resolve)=>{
     try{
@@ -850,7 +899,66 @@ async function doConfirm(){
   $('prog-bar').style.display='none';scrollSec('book-sec');
 }
 
-async function init(){
+// ===== 自助取消逻辑 =====
+async function lookupBooking(){
+  const ref=$('manage-ref').value.trim().toUpperCase();
+  if(!ref){alert('请输入预约编号');return;}
+  const res=$('manage-result');
+  res.style.display='block';
+  res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">查询中...</div>';
+  try{
+    const r=await window.storage.get('bk:'+ref,true);
+    if(!r){
+      res.innerHTML='<div class="notice" style="text-align:center">❌ 未找到编号 <strong>'+ref+'</strong><br><span style="font-size:13px">请检查编号是否正确</span></div>';
+      return;
+    }
+    const bk=JSON.parse(r.value);
+    if(bk.status==='cancelled'){
+      res.innerHTML='<div class="notice" style="text-align:center">此预约已取消 ✓</div>';
+      return;
+    }
+    const apptDate=new Date(bk.dateKey+'T'+bk.time);
+    const daysLeft=Math.floor((apptDate-new Date())/86400000);
+    const canSelfCancel=daysLeft>=3;
+    let html='<div class="info-card">';
+    [['款式',bk.style],['日期',bk.dateKey],['时间',fmtTime(bk.time)],['姓名',bk.name],['价格',bk.price]]
+      .forEach(function(row){html+='<div class="review-row"><span class="rk">'+row[0]+'</span><span class="rv">'+row[1]+'</span></div>';});
+    html+='</div><div style="margin-top:14px">';
+    if(canSelfCancel){
+      html+='<div class="notice" style="margin-bottom:12px">距预约还有 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，可以自助取消 ✓</div>';
+      html+='<button class="btn-main" style="background:#c0392b" id="cancel-btn">确认取消此预约</button>';
+    } else {
+      html+='<div class="notice" style="margin-bottom:12px;border-color:var(--sand)">距预约仅剩 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，请直接联系取消</div>';
+      html+='<a href="tel:+12369967087" class="btn-main" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none">📱 致电 (236) 996-7087</a>';
+      html+='<div style="text-align:center;margin-top:10px;font-size:14px;color:var(--hint)">或微信 WeChat: <strong>LanLovesLife</strong></div>';
+    }
+    html+='</div>';
+    res.innerHTML=html;
+    if(canSelfCancel){
+      $('cancel-btn').onclick=function(){cancelBooking(ref,bk.eventId||'',bk.dateKey,bk.time);};
+    }
+  }catch(e){res.innerHTML='<div class="notice">查询失败，请重试</div>';}
+}
+
+async function cancelBooking(ref,eventId,dateKey,time){
+  if(!confirm('确认取消这个预约吗？'))return;
+  const res=$('manage-result');
+  res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">取消中...</div>';
+  try{
+    if(BOOKED[dateKey]){
+      BOOKED[dateKey]=BOOKED[dateKey].filter(function(t){return t!==time;});
+      await window.storage.set('bunny-v8',JSON.stringify(BOOKED),true);
+    }
+    const r=await window.storage.get('bk:'+ref,true);
+    if(r){
+      const bk=JSON.parse(r.value);
+      bk.status='cancelled';
+      await window.storage.set('bk:'+ref,JSON.stringify(bk),true);
+    }
+    if(eventId&&GCAL_URL){await gcalRequest({action:'cancel',eventId:eventId});}
+    res.innerHTML='<div class="info-card" style="text-align:center;padding:24px"><div style="font-size:30px;margin-bottom:10px">✓</div><div style="font-size:18px;font-weight:600;color:var(--bronze);margin-bottom:6px">预约已取消</div><div style="font-size:14px;color:var(--hint)">Booking '+ref+' has been cancelled</div></div>';
+  }catch(e){res.innerHTML='<div class="notice">取消失败，请联系我们</div>';}
+}
   try{const r=await window.storage.get('bunny-v8',true);if(r)BOOKED=JSON.parse(r.value);}catch(e){}
   await fetchBusy(); // 等待 Google Calendar 忙碌时段加载完成
 
