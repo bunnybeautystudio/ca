@@ -438,7 +438,7 @@ const GCAL_URL = 'https://script.google.com/macros/s/AKfycbz6UwCJAWTjQixfuHuH7Mo
 let busyPeriods = []; // 从 Google Calendar 读取的忙碌时段
 
 async function fetchCalendarBusy() {
-  if (!GCAL_URL || GCAL_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  if (!GCAL_URL || GCAL_URL === 'https://script.google.com/macros/s/AKfycbzGMMKkkpcb7WKnT8f2kwqy6mT8uSOAmGJ8x1EoAw6_NDBo5e9tPOufrAGaQZEa2IdP/exec') return;
   try {
     const s = new Date(), e = new Date();
     e.setDate(s.getDate() + 50);
@@ -589,7 +589,7 @@ async function doConfirm(){
   try{await window.storage.set('bunny-v7',JSON.stringify(BOOKED),true);}catch(e){}
 
   // ✅ 自动创建 Google Calendar 预约
-  if (GCAL_URL && GCAL_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+  if (GCAL_URL && GCAL_URL !== 'https://script.google.com/macros/s/AKfycbzGMMKkkpcb7WKnT8f2kwqy6mT8uSOAmGJ8x1EoAw6_NDBo5e9tPOufrAGaQZEa2IdP/exec') {
     try {
       const params = new URLSearchParams({
         action:'book', name:S.name, phone:S.phone||'',
