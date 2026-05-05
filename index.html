@@ -214,7 +214,7 @@ footer a{color:var(--sand)}
     <!-- Client type selector -->
     <div class="type-box">
       <h3 style="font-size:14px;margin-bottom:2px">您是新客还是老客？<span style="font-size:11px;color:var(--hint);font-weight:400;font-family:Georgia,serif;margin-left:6px">New or Returning?</span></h3>
-      <p style="font-size:12px;color:var(--hint);margin-bottom:10px">新客享半价优惠 · 老客享8折优惠</p>
+      <p style="font-size:12px;color:var(--hint);margin-bottom:10px">新客享半价 · 老客享8折 · 补睫享5折</p>
       <div class="type-opts">
         <div class="type-opt" id="to-new" onclick="setType('new')">
           <div class="to-cn">新客 🎉</div>
@@ -225,6 +225,11 @@ footer a{color:var(--sand)}
           <div class="to-cn">老客 💛</div>
           <div class="to-en">Returning</div>
           <div class="to-badge">8折优惠</div>
+        </div>
+        <div class="type-opt" id="to-refill" onclick="setType('refill')">
+          <div class="to-cn">补睫 ✿</div>
+          <div class="to-en">Refill</div>
+          <div class="to-badge">$30 – $50</div>
         </div>
       </div>
     </div>
@@ -367,26 +372,34 @@ const CFG={
   address:'7151 No. 5 Rd, Richmond, BC',
   phone:'(236) 996-7087',
   maps:'https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC',
+  // 时间段设置 — 每个预约2h + 30min buffer = 2.5h
   schedule:{
-    0:[],
-    1:['08:30','11:00','13:30','16:00','18:30'],
-    2:['08:30','11:00','13:30','16:00','18:30'],
-    3:['08:30','11:00','13:30','16:00','18:30'],
-    4:['08:30','11:00','13:30','16:00','18:30'],
-    5:['08:30','11:00','13:30','16:00','18:30'],
-    6:['08:30','11:00','13:30','16:00','18:30'],
+    0: [],                                                          // 周日 closed
+    1: ['12:00','13:00','14:00','16:00','17:00','18:00'],          // 周一 上午不约
+    2: ['12:00','13:00','14:00','16:00','17:00','18:00'],          // 周二 上午不约
+    3: ['09:00','13:00','14:00','16:00','17:00','18:00'],          // 周三 12pm biweekly blocked (handled below)
+    4: ['10:00','13:00','14:00','16:00','17:00','18:00'],          // 周四 只有10am和下午1pm后
+    5: ['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],  // 周五 全天
+    6: ['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],  // 周六 全天
   },
-  hours:[['周一 – 周六 Mon–Sat','08:30 – 21:00'],['周日 Sunday','休息 Closed']]
+  hours:[
+    ['周一 Mon','下午 12:00 – 晚上 21:00'],
+    ['周二 Tue','下午 12:00 – 晚上 21:00'],
+    ['周三 Wed','上午 09:00 – 晚上 21:00 (隔周12pm团队会议)'],
+    ['周四 Thu','10:00 / 下午 1:00 – 晚上 21:00'],
+    ['周五 – 周六 Fri–Sat','上午 09:00 – 晚上 21:00'],
+    ['周日 Sun','休息 Closed'],
+  ]
 };
 
 /* ===== STYLES — original prices always shown in services section ===== */
 const STYLES=[
-  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub:'清爽日常，上班学生首选',price:60,newPrice:40,dur:'90 min'},
-  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub:'轻薄灵动，减龄精致',price:80,newPrice:40,dur:'120 min'},
-  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub:'有神有灵气，自然放大眼',price:80,newPrice:40,dur:'120 min'},
-  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub:'妩媚有神，深邃电眼',price:100,newPrice:50,dur:'120 min'},
-  {id:5,emoji:'🦊',cn:'狐系飞扬浓密款',en:'Fox Wispy Dense',sub:'上扬飞扬，浓密时髦',price:100,newPrice:50,dur:'120 min'},
-  {id:6,emoji:'🤍',cn:'其他款式 / 暂未确定',en:'Other / Undecided',sub:'可预约后再沟通款式细节',price:60,priceLabel:'$60+',newPrice:40,dur:'90 min'},
+  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub:'清爽日常，上班学生首选',price:60,newPrice:40,refillPrice:30,dur:'120 min'},
+  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub:'轻薄灵动，减龄精致',price:80,newPrice:40,refillPrice:40,dur:'120 min'},
+  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub:'有神有灵气，自然放大眼',price:80,newPrice:40,refillPrice:40,dur:'120 min'},
+  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub:'妩媚有神，深邃电眼',price:100,newPrice:50,refillPrice:50,dur:'120 min'},
+  {id:5,emoji:'🦊',cn:'泰式/狐系浓密款',en:'Thai / Fox Dense',sub:'上扬飞扬，浓密时髦',price:100,newPrice:50,refillPrice:50,dur:'120 min'},
+  {id:6,emoji:'🤍',cn:'其他款式 / 暂未确定',en:'Other / Undecided',sub:'可预约后再沟通款式细节',price:60,priceLabel:'$60+',newPrice:40,refillPrice:30,dur:'120 min'},
 ];
 
 const PRICES=[
@@ -395,7 +408,7 @@ const PRICES=[
     {cn:'仙子款',en:'Fairy Style',price:80,dur:'120 min'},
     {cn:'大/小漫画款',en:'Manga Style',price:80,dur:'120 min'},
     {cn:'小恶魔款',en:'Little Devil',price:100,dur:'120 min'},
-    {cn:'狐系飞扬浓密款',en:'Fox Wispy Dense',price:100,dur:'120 min'},
+    {cn:'泰式/狐系浓密款',en:'Thai / Fox Dense',price:100,dur:'120 min'},
     {cn:'其他/暂未确定',en:'Other/Undecided',price:'60+',dur:'90 min'},
   ]},
   {cat:'补睫 Refill (保留50%+)',items:[
@@ -480,29 +493,32 @@ function getPrice(svc,ctype){
 /* ===== CLIENT TYPE ===== */
 function setType(v){
   S.ctype=v;S.svc=null;$('btn1').disabled=true;
-  ['to-new','to-ret'].forEach(id=>$(id).classList.remove('sel'));
-  $(v==='new'?'to-new':'to-ret').classList.add('sel');
+  ['to-new','to-ret','to-refill'].forEach(id=>{const el=$(id);if(el)el.classList.remove('sel');});
+  const map={'new':'to-new','returning':'to-ret','refill':'to-refill'};
+  $(map[v]).classList.add('sel');
   renderBookingStyles();
 }
 
 /* ===== BOOKING STYLE CARDS (dynamic prices) ===== */
 function renderBookingStyles(){
   const el=$('sp-grid');el.innerHTML='';
+  const isRefill=S.ctype==='refill';
   STYLES.forEach(s=>{
-    const p=getPrice(s,S.ctype);
+    const p=getPrice(s,S.ctype,isRefill);
     const d=document.createElement('div');
     d.className='book-card';d.id='bp'+s.id;
     d.onclick=()=>pickSvc(s);
     const priceHtml=p.orig
       ?`<div style="margin-top:6px"><span style="color:var(--hint);text-decoration:line-through;font-size:12px">${p.orig}</span> <span style="font-size:20px;color:var(--bronze)">${p.label}</span></div><div style="font-size:11px;color:var(--bronze);margin-top:2px">${p.tag}</div>`
       :`<div class="sc-price" style="margin-top:6px">${p.label}</div>`;
-    d.innerHTML=`<div class="sc-emoji">${s.emoji}</div><div class="sc-cn">${s.cn}</div><div class="sc-en">${s.en}</div><div class="sc-sub">${s.sub}</div>${priceHtml}<div class="sc-dur">🕒 ${s.dur}</div>`;
+    const durLabel=isRefill?'60–75 min':s.dur;
+    d.innerHTML=`<div class="sc-emoji">${s.emoji}</div><div class="sc-cn">${isRefill?s.cn+'补睫':s.cn}</div><div class="sc-en">${s.en}${isRefill?' Refill':''}</div><div class="sc-sub">${s.sub}</div>${priceHtml}<div class="sc-dur">🕒 ${durLabel}</div>`;
     el.appendChild(d);
   });
 }
 
 function pickSvc(s){
-  if(!S.ctype){alert('请先选择您是新客还是老客 / Please select New or Returning first');return;}
+  if(!S.ctype){alert('请先选择您是新客/老客/补睫 / Please select type first');return;}
   S.svc=s;
   document.querySelectorAll('#sp-grid .book-card').forEach(c=>c.classList.remove('sel'));
   $('bp'+s.id).classList.add('sel');
@@ -516,11 +532,9 @@ function renderDates(){
   dg.innerHTML='';let n=0;
   for(let i=1;i<=42&&n<28;i++){
     const d=new Date(today);d.setDate(today.getDate()+i);
-    const slots = CFG.schedule[d.getDay()]||[];
-    const dur = S.svc ? parseInt(S.svc.dur) : 120;
-    const avail = slots.filter(t =>
-      !(BOOKED[fmtKey(d)] || []).includes(t) && !calConflict(d, t, dur)
-    );
+    const slots=getSlots(d);
+    const dur=S.svc?parseInt(S.svc.dur):120;
+    const avail=slots.filter(t=>!localConflict(d,t,dur+30)&&!calConflict(d,t,dur+30));
     if(!avail.length)continue;n++;
     const sel=S.date&&fmtKey(S.date)===fmtKey(d);
     const b=document.createElement('div');b.className='date-btn'+(sel?' sel':'');
@@ -532,11 +546,9 @@ function renderDates(){
 
 function pickDate(key){const[y,m,d]=key.split('-').map(Number);S.date=new Date(y,m-1,d);S.time=null;$('btn2').disabled=true;renderDates();renderTimes();}
 function renderTimes(){
-  const key = fmtKey(S.date), slots = CFG.schedule[S.date.getDay()]||[];
-  const dur = S.svc ? parseInt(S.svc.dur) : 120;
-  const avail = slots.filter(t =>
-    !(BOOKED[key] || []).includes(t) && !calConflict(S.date, t, dur)
-  );
+  const key=fmtKey(S.date),slots=getSlots(S.date);
+  const dur=S.svc?parseInt(S.svc.dur):120;
+  const avail=slots.filter(t=>!localConflict(S.date,t,dur+30)&&!calConflict(S.date,t,dur+30));
   $('t-label').textContent=fmtShort(S.date);
   $('time-grid').innerHTML=avail.map(t=>`<button class="time-btn${S.time===t?' sel':''}" onclick="pickTime('${t}')">${fmtTime(t)}</button>`).join('');
   $('time-sec').style.display='block';
@@ -563,14 +575,18 @@ function go(n){
   }
   if(n===2)renderDates();
   if(n===4){
-    const sv=S.svc,p=getPrice(sv,S.ctype);
+    const sv=S.svc,p=getPrice(sv,S.ctype,S.ctype==='refill');
+    const isRefill=S.ctype==='refill';
+    const styleLabel=isRefill?sv.cn+'补睫':sv.cn+' / '+sv.en;
+    const ctypeLabel=S.ctype==='new'?'新客 First Visit 🎉':S.ctype==='refill'?'补睫 Refill ✿':'老客 Returning 💛';
     const priceCell=p.orig
       ?`<span style="color:var(--hint);text-decoration:line-through;font-size:12px;margin-right:5px">${p.orig}</span><strong style="color:var(--bronze)">${p.label}</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">${p.tag}</span>`
       :`<strong style="color:var(--bronze)">${p.label}</strong>`;
     $('review-card').innerHTML=`<table class="rtbl">${[
-      ['款式',`<strong>${sv.cn} / ${sv.en}</strong>`],
-      ['客户类型',S.ctype==='new'?'新客 First Visit 🎉':'老客 Returning 💛'],
-      ['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],['时长',sv.dur],
+      ['款式',`<strong>${styleLabel}</strong>`],
+      ['类型',ctypeLabel],
+      ['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],
+      ['时长',isRefill?'60–75 min':sv.dur],
       ['价格',priceCell],['姓名',S.name],
       ['电话',S.phone||'未填'],['邮箱',S.email||'未填'],
       ['备注',S.notes||'无']
@@ -618,13 +634,13 @@ async function doConfirm(){
   const gcal=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Bunny Beauty — '+sv.cn)}&dates=${gcalFmt(st)}/${gcalFmt(en)}&details=${encodeURIComponent(gcalClientDesc)}&location=${encodeURIComponent(CFG.address)}`;
   $('gcal-link').href=gcal;
 
-  const priceCell=p.orig
+  const priceCell2=p.orig
     ?`<span style="color:var(--hint);text-decoration:line-through;font-size:12px;margin-right:5px">${p.orig}</span><strong style="color:var(--bronze)">${p.label}</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">${p.tag}</span>`
     :`<strong style="color:var(--bronze)">${p.label}</strong>`;
   $('conf-sum').innerHTML=`<table class="rtbl">${[
-    ['款式',`<strong>${sv.cn} / ${sv.en}</strong>`],
+    ['款式',`<strong>${styleLabel}</strong>`],
     ['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],
-    ['价格',priceCell],['姓名',S.name],
+    ['价格',priceCell2],['姓名',S.name],
     ['电话',S.phone||'未填'],['邮箱',S.email||'未填']
   ].map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table>`;
 
