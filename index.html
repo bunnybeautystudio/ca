@@ -211,7 +211,7 @@ footer a{color:var(--sand)}
   <div class="strip-in">
     <div class="si"><div class="si-icon">🌿</div><div class="si-cn">私人工作室</div><div class="si-en">Private Studio</div></div>
     <div class="si"><div class="si-icon">✿</div><div class="si-cn">定制眼型</div><div class="si-en">Custom Lash Map</div></div>
-    <div class="si"><div class="si-icon">💎</div><div class="si-cn">顶级材料</div><div class="si-en">Premium Quality</div></div>
+    <div class="si"><div class="si-icon">💎</div><div class="si-cn">优质山茶花毛</div><div class="si-en">Premium Camellia</div></div>
     <div class="si"><div class="si-icon">📅</div><div class="si-cn">在线预约</div><div class="si-en">Easy Booking</div></div>
   </div>
 </div>
@@ -751,13 +751,23 @@ function confirm(){
   var record={bookingId:bookingId,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:durMin,created:Date.now()};
   storeSet('bk:'+bookingId,record);
 
-  // Sync to Google Calendar
-  gcalReq({action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,start:st.toISOString(),end:en.toISOString()}).then(function(res){
+  // 双重方式同步到店主 Google Calendar
+  var bookParams={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',
+    style:label,price:p.label+(p.tag?' ('+p.tag+')':''),
+    ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,
+    start:st.toISOString(),end:en.toISOString()};
+  // 方式1：JSONP（可拿到 eventId）
+  gcalReq(bookParams).then(function(res){
     if(res&&res.eventId){
       var bk=storeGet('bk:'+bookingId);
       if(bk){bk.eventId=res.eventId;storeSet('bk:'+bookingId,bk);}
     }
   });
+  // 方式2：Image 请求备份（确保日历事件一定被创建）
+  try{
+    var qs2=Object.keys(bookParams).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(bookParams[k]);}).join('&');
+    var img=new Image();img.src=GCAL_URL+'?'+qs2;
+  }catch(e){}
 }
 
 /* ============ MANAGE ============ */
@@ -862,7 +872,14 @@ function init(){
   el('to-ret').addEventListener('click',function(){setType('returning');});
   el('to-ref').addEventListener('click',function(){setType('refill');});
 
-  el('btn1').addEventListener('click',function(){goStep(2);});
+  el('btn1').addEventListener('click',function(){
+    // 如果还在加载日历，等一下再跳
+    if(busyPeriods.length===0){
+      fetchBusy().then(function(){goStep(2);});
+    }else{
+      goStep(2);
+    }
+  });
   el('btn2').addEventListener('click',function(){goStep(3);});
   el('btn3').addEventListener('click',function(){goStep(4);});
   el('back1').addEventListener('click',function(){goStep(1);});
