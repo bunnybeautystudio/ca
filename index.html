@@ -369,14 +369,14 @@ const CFG={
   maps:'https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC',
   schedule:{
     0:[],
-    1:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
-    2:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
-    3:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
-    4:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
-    5:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
-    6:['09:00','10:30','12:00','13:30','15:00','16:30','18:00','19:30'],
+    1:['08:30','11:00','13:30','16:00','18:30'],
+    2:['08:30','11:00','13:30','16:00','18:30'],
+    3:['08:30','11:00','13:30','16:00','18:30'],
+    4:['08:30','11:00','13:30','16:00','18:30'],
+    5:['08:30','11:00','13:30','16:00','18:30'],
+    6:['08:30','11:00','13:30','16:00','18:30'],
   },
-  hours:[['周一 – 周六 Mon–Sat','09:00 – 21:00'],['周日 Sunday','休息 Closed']]
+  hours:[['周一 – 周六 Mon–Sat','08:30 – 21:00'],['周日 Sunday','休息 Closed']]
 };
 
 /* ===== STYLES — original prices always shown in services section ===== */
@@ -433,12 +433,12 @@ let S={step:1,svc:null,ctype:'',date:null,time:null,name:'',email:'',phone:'',no
 let BOOKED={};
 
 // 👇 部署 Apps Script 后把网址粘贴到这里
-const GCAL_URL = 'https://script.google.com/macros/s/AKfycbz6UwCJAWTjQixfuHuH7MoKJMc7s1UFpUiG99AjqVCcCEd_yF2B9abkX-3zeLJu73yC/exec';
+const GCAL_URL = 'https://script.google.com/macros/s/AKfycbzazPexBNNe4okk7-D3XS-UYqqU5jcjB6DenTvqJn2JEQk_AkhuiMndRybowWWV9-Ls/exec';
 
 let busyPeriods = []; // 从 Google Calendar 读取的忙碌时段
 
 async function fetchCalendarBusy() {
-  if (!GCAL_URL || GCAL_URL === 'https://script.google.com/macros/s/AKfycbzazPexBNNe4okk7-D3XS-UYqqU5jcjB6DenTvqJn2JEQk_AkhuiMndRybowWWV9-Ls/exec') return;
+  if (!GCAL_URL || GCAL_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
   try {
     const s = new Date(), e = new Date();
     e.setDate(s.getDate() + 50);
@@ -588,8 +588,8 @@ async function doConfirm(){
   if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);
   try{await window.storage.set('bunny-v7',JSON.stringify(BOOKED),true);}catch(e){}
 
-  // ✅ 自动创建 Google Calendar 预约
-  if (GCAL_URL && GCAL_URL !== 'https://script.google.com/macros/s/AKfycbzazPexBNNe4okk7-D3XS-UYqqU5jcjB6DenTvqJn2JEQk_AkhuiMndRybowWWV9-Ls/exec') {
+  // ✅ 自动创建 Google Calendar 预约（用 Image 方式绕过 CORS）
+  if (GCAL_URL && GCAL_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
     try {
       const params = new URLSearchParams({
         action:'book', name:S.name, phone:S.phone||'',
@@ -598,7 +598,7 @@ async function doConfirm(){
         ctype:S.ctype, notes:S.notes||'',
         start:st.toISOString(), end:en.toISOString()
       });
-      fetch(`${GCAL_URL}?${params}`).catch(()=>{});
+      new Image().src = `${GCAL_URL}?${params}`;
     } catch(ex) {}
   }
 
@@ -607,7 +607,8 @@ async function doConfirm(){
   const[h,mi]=S.time.split(':').map(Number);
   const st=new Date(y,m-1,d,h,mi,0),en=new Date(st.getTime()+parseInt(sv.dur)*60000);
   const desc=`客户: ${S.name}\n电话: ${S.phone||'未填'}\nEmail: ${S.email||'未填'}\n款式: ${sv.cn} / ${sv.en}\n客户类型: ${S.ctype==='new'?'新客':'老客'}\n价格: ${p.label} (${p.tag||'原价'})\n时长: ${sv.dur}\n备注: ${S.notes||'无'}\n\nChannel: Bunny Beauty Studio — Online Booking 在线预约`;
-  const gcal=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('BB Studio — '+sv.cn+' · '+S.name)}&dates=${gcalFmt(st)}/${gcalFmt(en)}&details=${encodeURIComponent(desc)}&location=${encodeURIComponent(CFG.address)}`;
+  const gcalClientDesc = `📍 Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n📞 236-996-7087\n💬 WeChat: LanLovesLife\n\n款式 Style: ${sv.cn}\n时间 Time: ${fmtDate(S.date)} ${fmtTime(S.time)}\n时长 Duration: ${sv.dur}\n价格 Price: ${p.label}${p.tag?' ('+p.tag+')':''}\n\n⚠️ 入口较隐秘：沿No.5 Rd留意茂密大树夹道入口，门牌7151在左侧石柱，进门右侧停车。`;
+  const gcal=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Bunny Beauty — '+sv.cn)}&dates=${gcalFmt(st)}/${gcalFmt(en)}&details=${encodeURIComponent(gcalClientDesc)}&location=${encodeURIComponent(CFG.address)}`;
   $('gcal-link').href=gcal;
 
   const priceCell=p.orig
