@@ -429,7 +429,7 @@ footer a{color:var(--sand)}
     <button class="btn-back" onclick="go(3)">← 修改</button>
     <h3 style="margin-bottom:14px">确认预约信息</h3>
     <div class="review-card" id="review-card"></div>
-    <div class="notice">⚠️ 请提前24小时取消或改期，否则可能收取取消费用。<br><span style="font-size:13px;font-family:Georgia,serif;color:var(--hint)">Please cancel at least 24 hours in advance.</span></div>
+    <div class="notice">⚠️ 如需取消或改期，请提前 <strong>4天</strong> 联系我们，否则可能收取取消费用。<br><span style="font-size:13px;font-family:Georgia,serif;color:var(--hint)">Please cancel at least 4 days in advance.</span></div>
     <button class="btn-main" onclick="doConfirm()">确认预约 ✓ Confirm</button>
   </div>
 
@@ -451,6 +451,23 @@ footer a{color:var(--sand)}
     </div>
 
     <div class="review-card" id="conf-sum"></div>
+
+    <div class="info-card" style="margin-top:14px;border-color:var(--sand)">
+      <div style="padding:14px 16px;background:var(--sand-l);border-bottom:1px solid var(--bdr)">
+        <h3 style="font-size:15px;color:var(--bronze)">🔄 需要取消或改期？</h3>
+        <p style="font-size:13px;margin-top:4px">请提前 <strong>4天</strong> 联系我们，超时可能收取费用</p>
+      </div>
+      <div class="contact-row">
+        <span class="c-icon">📱</span>
+        <div><div class="c-label">短信取消</div>
+        <a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div>
+      </div>
+      <div class="contact-row">
+        <span class="c-icon">💬</span>
+        <div><div class="c-label">微信取消 WeChat</div>
+        <div class="c-val">LanLovesLife</div></div>
+      </div>
+    </div>
 
     <div class="contact-card" style="margin-top:14px">
       <div class="contact-row">
@@ -564,19 +581,19 @@ const CFG={
   maps:'https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC',
   schedule:{
     0:[],
-    1:['12:00','13:00','14:00','16:00','17:00','18:00'],
-    2:['12:00','13:00','14:00','16:00','17:00','18:00'],
-    3:['09:00','13:00','14:00','16:00','17:00','18:00'],
+    1:['12:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
+    2:['12:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
+    3:['09:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
     4:['10:00','13:00','14:00','16:00','17:00','18:00'],
     5:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
     6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
   },
   hours:[
-    ['周一 Mon','12:00 – 21:00'],
-    ['周二 Tue','12:00 – 21:00'],
-    ['周三 Wed','09:00 – 21:00'],
-    ['周四 Thu','10:00 / 13:00 – 21:00'],
-    ['周五 – 周六 Fri–Sat','09:00 – 21:00'],
+    ['周一 Mon','12:00 PM – 9:00 PM'],
+    ['周二 Tue','12:00 PM – 9:00 PM'],
+    ['周三 Wed','9:00 AM – 9:00 PM'],
+    ['周四 Thu','10:00 AM / 1:00 PM – 9:00 PM'],
+    ['周五 – 周六 Fri–Sat','9:00 AM – 9:00 PM'],
     ['周日 Sun','休息 Closed'],
   ]
 };
@@ -617,7 +634,7 @@ const PARKING=[
 
 let S={step:1,svc:null,ctype:'',date:null,time:null,name:'',email:'',phone:'',notes:''};
 let BOOKED={};
-const GCAL_URL='https://script.google.com/macros/s/AKfycbwNWtseh386kDxIu5mhL907UrhrMV4tIxB8Tbs3v7mK1FmWl6gtJRWMMQIYo-MCNIg8/exec';
+const GCAL_URL='https://script.google.com/macros/s/AKfycbyBIyBZrH3-SDmWEBsaWOJ31WT6rjYlpsjRZG9cpe7L5NSUhReL4grs4gx1V9qYti-d/exec';
 let busyPeriods=[];
 
 const $=id=>document.getElementById(id);
@@ -625,7 +642,7 @@ const pad=n=>String(n).padStart(2,'0');
 const fmtKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 const fmtDate=d=>d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
 const fmtShort=d=>d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});
-const fmtTime=t=>{const[h,m]=t.split(':').map(Number),ap=h>=12?'下午':'上午',h12=h===0?12:h>12?h-12:h;return`${ap} ${h12}:${pad(m)}`;};
+const fmtTime=t=>{const[h,m]=t.split(':').map(Number),ap=h>=12?'PM':'AM',h12=h===0?12:h>12?h-12:h;return`${h12}:${pad(m)} ${ap}`;};
 const gcalFmt=dt=>`${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
 function scrollSec(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
 function setActive(el){document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
@@ -652,13 +669,34 @@ function getSlots(date){
   return(CFG.schedule[date.getDay()]||[]).filter(t=>!(isBiweeklyWedMeeting(date)&&t==='12:00'));
 }
 
+// ✅ 用 JSONP 绕过 CORS 读取 Google Calendar 忙碌时段
 async function fetchBusy(){
-  try{
-    const s=new Date(),e=new Date();e.setDate(s.getDate()+50);
-    const url=`${GCAL_URL}?action=busy&start=${s.toISOString()}&end=${e.toISOString()}`;
-    const res=await fetch(url);const data=await res.json();
-    if(data.busy)busyPeriods=data.busy.map(b=>({s:new Date(b.start),e:new Date(b.end)}));
-  }catch(ex){}
+  return new Promise((resolve)=>{
+    try{
+      const s=new Date(),e=new Date();
+      e.setDate(s.getDate()+50);
+      const cb='bb_busy_'+Date.now();
+      let script;
+      window[cb]=(data)=>{
+        if(data.busy) busyPeriods=data.busy.map(b=>({s:new Date(b.start),e:new Date(b.end)}));
+        delete window[cb];
+        if(script&&script.parentNode)script.parentNode.removeChild(script);
+        resolve();
+      };
+      script=document.createElement('script');
+      script.onerror=()=>{delete window[cb];resolve();};
+      const params=new URLSearchParams({
+        action:'busy',
+        start:s.toISOString(),
+        end:e.toISOString(),
+        callback:cb
+      });
+      script.src=`${GCAL_URL}?${params}`;
+      document.head.appendChild(script);
+      // 超时保护 5秒
+      setTimeout(()=>{if(window[cb]){delete window[cb];resolve();}},5000);
+    }catch(ex){resolve();}
+  });
 }
 
 function getPrice(svc,ctype,isRefill){
@@ -814,7 +852,7 @@ async function doConfirm(){
 
 async function init(){
   try{const r=await window.storage.get('bunny-v8',true);if(r)BOOKED=JSON.parse(r.value);}catch(e){}
-  fetchBusy();
+  await fetchBusy(); // 等待 Google Calendar 忙碌时段加载完成
 
   // 款式卡片
   const sg=$('sg-styles');
