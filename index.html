@@ -446,6 +446,10 @@ var PARKING=[
   {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'}
 ];
 
+/* ============ STORAGE (localStorage for GitHub Pages) ============ */
+function storeSet(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
+function storeGet(key){try{var v=localStorage.getItem(key);return v?JSON.parse(v):null;}catch(e){return null;}}
+
 /* ============ STATE ============ */
 var S={step:1,ctype:'',svc:null,date:null,time:null,name:'',phone:'',email:'',notes:''};
 var BOOKED={};
@@ -701,7 +705,7 @@ function confirm(){
   var key=fmtKey(S.date);
   if(!BOOKED[key])BOOKED[key]=[];
   BOOKED[key].push(S.time);
-  try{window.storage.set('bunny-v9',JSON.stringify(BOOKED),true);}catch(e){}
+  storeSet('bunny-v9',BOOKED);
 
   var isRef=S.ctype==='refill',sv=S.svc,p=getPrice(sv,S.ctype);
   var label=isRef?sv.cn+'补睫':sv.cn;
@@ -745,16 +749,13 @@ function confirm(){
 
   // Save booking record
   var record={bookingId:bookingId,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:durMin,created:Date.now()};
-  try{window.storage.set('bk:'+bookingId,JSON.stringify(record),true);}catch(e){}
+  storeSet('bk:'+bookingId,record);
 
   // Sync to Google Calendar
   gcalReq({action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,start:st.toISOString(),end:en.toISOString()}).then(function(res){
     if(res&&res.eventId){
-      try{
-        window.storage.get('bk:'+bookingId,true).then(function(r){
-          if(r){var bk=JSON.parse(r.value);bk.eventId=res.eventId;window.storage.set('bk:'+bookingId,JSON.stringify(bk),true);}
-        });
-      }catch(e){}
+      var bk=storeGet('bk:'+bookingId);
+      if(bk){bk.eventId=res.eventId;storeSet('bk:'+bookingId,bk);}
     }
   });
 }
@@ -812,7 +813,8 @@ function doCancelBooking(ref,bk){
 
 /* ============ INIT ============ */
 function init(){
-  window.storage.get('bunny-v9',true).then(function(r){if(r)BOOKED=JSON.parse(r.value);}).catch(function(){});
+  var saved=storeGet('bunny-v9');
+  if(saved)BOOKED=saved;
   fetchBusy();
 
   // Service cards (info)
