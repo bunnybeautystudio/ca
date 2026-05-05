@@ -5,54 +5,31 @@
 <meta charset="UTF-8">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --sand:#A89880;--sand-d:#8f7f69;--sand-l:#ede8e0;--sand-ll:#faf8f4;
-  --bronze:#615545;--dark:#1D1D1D;--muted:#6a5f58;--hint:#a89e98;
-  --bdr:#e0d8d0;--w:#fff;
-  --r10:10px;--r16:16px;--r24:24px
-}
+:root{--sand:#A89880;--sand-d:#8f7f69;--sand-l:#ede8e0;--sand-ll:#faf8f4;--bronze:#615545;--dark:#1D1D1D;--muted:#6a5f58;--hint:#a89e98;--bdr:#e0d8d0;--w:#fff;--r10:10px;--r16:16px}
 html{font-size:16px}
-body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
-  background:var(--sand-ll);color:var(--dark);line-height:1.6;max-width:480px;margin:0 auto;
-  min-height:100vh;padding-bottom:80px}
+body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;background:var(--sand-ll);color:var(--dark);line-height:1.6;max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:80px}
 h1{font-size:26px;font-weight:500;line-height:1.3}
-h2{font-size:20px;font-weight:500;line-height:1.3}
+h2{font-size:20px;font-weight:500}
 h3{font-size:17px;font-weight:500}
 p{font-size:15px;color:var(--muted);line-height:1.7}
 a{color:var(--sand);text-decoration:none}
 
-/* NAV */
 nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-logo{display:flex;align-items:center;gap:10px}
 .nav-name{font-size:15px;letter-spacing:.06em;color:#fff;font-family:Georgia,serif}
-.nav-links{display:flex;gap:4px}
-.nav-a{color:rgba(255,255,255,.85);font-size:14px;padding:8px 10px;border-radius:8px}
-.nav-book{background:var(--dark);color:#fff;border:none;padding:9px 16px;border-radius:var(--r10);
-  font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+.nav-book{background:var(--dark);color:#fff;border:none;padding:9px 16px;border-radius:var(--r10);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
 
-/* HERO */
 .hero{background:var(--sand);padding:36px 20px 32px;text-align:center}
-.hero-logo{margin-bottom:16px}
-.hero h1{color:#fff;margin-bottom:8px;font-family:Georgia,serif;letter-spacing:.04em}
-.hero-sub{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}
-.hero-tag{color:rgba(255,255,255,.55);font-size:14px;font-style:italic;font-family:Georgia,serif;margin-bottom:24px}
-.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
-.pill{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;
-  font-size:13px;padding:6px 14px;border-radius:20px}
-.hero-btn{background:#fff;color:var(--bronze);border:none;padding:14px 32px;border-radius:var(--r16);
-  font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;max-width:280px}
+.hero h1{color:#fff;margin-bottom:8px;font-family:Georgia,serif}
+.hero-sub{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}
+.hero-slogan{color:rgba(255,255,255,.5);font-size:14px;font-style:italic;font-family:Georgia,serif;margin-bottom:22px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
+.pill{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13px;padding:6px 14px;border-radius:20px}
+.hero-btn{background:#fff;color:var(--bronze);border:none;padding:14px 32px;border-radius:var(--r16);font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;max-width:280px}
 
-/* SECTION */
-.sec{padding:28px 16px}
-.sec-tag{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--sand);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.sec-tag::before{content:'';width:16px;height:1.5px;background:var(--sand);display:block}
-.sec h2{margin-bottom:16px}
-
-/* STRIP */
 .strip{background:var(--w);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
-.strip-in{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0}
+.strip-in{display:grid;grid-template-columns:1fr 1fr;padding:0}
 .si{padding:16px;text-align:center;border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
 .si:nth-child(2n){border-right:none}
 .si:nth-child(3),.si:nth-child(4){border-bottom:none}
@@ -60,228 +37,139 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .si-cn{font-size:14px;font-weight:500;margin-bottom:2px}
 .si-en{font-size:12px;color:var(--hint);font-family:Georgia,serif}
 
-/* STYLE CARDS — info section */
+.sec{padding:28px 16px}
+.sec-tag{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sec-tag::before{content:'';width:16px;height:1.5px;background:var(--sand);display:block}
+
 .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .svc-card{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);padding:16px;text-align:center}
 .sc-emoji{font-size:26px;margin-bottom:8px}
 .sc-cn{font-size:15px;font-weight:500;margin-bottom:3px}
 .sc-en{font-size:12px;color:var(--hint);font-family:Georgia,serif;margin-bottom:4px}
 .sc-sub{font-size:12px;color:var(--hint);margin-bottom:8px}
-.sc-price{font-size:22px;color:var(--bronze);font-weight:400}
+.sc-price{font-size:22px;color:var(--bronze)}
 .sc-dur{font-size:12px;color:var(--hint);margin-top:4px}
 
-/* PRICE CAT */
-.price-cat{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--bronze);margin:20px 0 10px;display:flex;align-items:center;gap:8px;font-family:Georgia,serif}
+.price-cat{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--bronze);margin:20px 0 10px;display:flex;align-items:center;gap:8px;font-family:Georgia,serif}
 .price-cat::after{content:'';flex:1;height:1px;background:var(--bdr)}
-.price-list{display:grid;gap:8px}
-.price-row{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r10);
-  padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-.pr-left{}
+.price-row{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r10);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .pr-cn{font-size:15px;font-weight:500;margin-bottom:2px}
 .pr-en{font-size:12px;color:var(--hint);font-family:Georgia,serif}
-.pr-right{text-align:right}
-.pr-price{font-size:20px;color:var(--bronze)}
-.pr-dur{font-size:12px;color:var(--hint)}
+.pr-price{font-size:20px;color:var(--bronze);text-align:right}
+.pr-dur{font-size:12px;color:var(--hint);text-align:right}
 
-/* BOOKING SECTION */
 .book-wrap{background:var(--sand-l);border-top:1px solid var(--bdr)}
-
-/* PROGRESS BAR */
-.prog{display:flex;align-items:center;padding:0 16px;gap:0;margin-bottom:24px}
+.prog{display:flex;align-items:center;padding:0 4px;gap:0;margin-bottom:24px}
 .prog-step{text-align:center;flex-shrink:0}
-.pd{width:28px;height:28px;border-radius:50%;border:2px solid var(--bdr);
-  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;
-  color:var(--hint);margin:0 auto 4px;transition:all .2s}
+.pd{width:26px;height:26px;border-radius:50%;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--hint);margin:0 auto 4px}
 .pd.done{background:var(--sand);border-color:var(--sand);color:#fff}
 .pd.act{border-color:var(--sand);color:var(--bronze)}
-.pl{font-size:11px;color:var(--hint);line-height:1.2}
+.pl{font-size:11px;color:var(--hint)}
 .pl.act{color:var(--bronze);font-weight:600}
 .p-line{flex:1;height:2px;background:var(--bdr);margin:0 4px;margin-bottom:20px}
 .p-line.done{background:var(--sand)}
 
-/* TYPE SELECTOR */
-.type-box{background:var(--w);border-radius:var(--r16);padding:18px;margin-bottom:16px;
-  border:1px solid var(--bdr)}
-.type-label{font-size:16px;font-weight:500;margin-bottom:4px}
-.type-sub{font-size:13px;color:var(--hint);margin-bottom:14px}
-.type-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.type-opt{border:2px solid var(--bdr);border-radius:var(--r10);padding:12px 8px;
-  cursor:pointer;transition:all .15s;text-align:center;background:var(--sand-ll)}
-.type-opt:active{transform:scale(.97)}
+.type-box{background:var(--w);border-radius:var(--r16);padding:18px;margin-bottom:16px;border:1px solid var(--bdr)}
+.type-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.type-opt{border:2px solid var(--bdr);border-radius:var(--r10);padding:12px 8px;cursor:pointer;text-align:center;background:var(--sand-ll)}
 .type-opt.sel{border-color:var(--sand);background:var(--sand-l)}
 .to-emoji{font-size:22px;margin-bottom:4px}
 .to-cn{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
 .to-en{font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:4px}
 .to-badge{font-size:12px;color:var(--bronze);font-weight:500}
 
-/* BOOK STYLE CARDS */
 .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.book-card{background:var(--w);border:2px solid var(--bdr);border-radius:var(--r16);
-  padding:14px 12px;cursor:pointer;transition:all .15s;position:relative;text-align:center;
-  min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.book-card:active{transform:scale(.97)}
+.book-card{background:var(--w);border:2px solid var(--bdr);border-radius:var(--r16);padding:14px 12px;cursor:pointer;position:relative;text-align:center;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .book-card.sel{border-color:var(--sand);background:var(--sand-l)}
-.book-card.sel::after{content:'✓';position:absolute;top:8px;right:12px;
-  color:var(--bronze);font-size:14px;font-weight:700}
+.book-card.sel::after{content:'✓';position:absolute;top:8px;right:12px;color:var(--bronze);font-size:14px;font-weight:700}
 .bc-emoji{font-size:24px;margin-bottom:6px}
 .bc-cn{font-size:14px;font-weight:600;margin-bottom:2px}
-.bc-en{font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:6px}
+.bc-en{font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:4px}
+.bc-orig{font-size:12px;color:var(--hint);text-decoration:line-through}
 .bc-price{font-size:20px;color:var(--bronze)}
-.bc-orig{font-size:12px;color:var(--hint);text-decoration:line-through;margin-bottom:2px}
-.bc-tag{font-size:11px;color:var(--bronze);background:var(--sand-l);
-  padding:2px 8px;border-radius:10px;margin-top:3px;display:inline-block}
+.bc-tag{font-size:11px;color:var(--bronze);background:var(--sand-l);padding:2px 8px;border-radius:10px;margin-top:3px;display:inline-block}
 .bc-dur{font-size:11px;color:var(--hint);margin-top:4px}
 
-/* DATE GRID */
-.date-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.date-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .date-scroll::-webkit-scrollbar{display:none}
-.date-btn{flex-shrink:0;width:60px;text-align:center;background:var(--w);
-  border:2px solid var(--bdr);border-radius:var(--r10);padding:10px 4px;cursor:pointer;transition:all .15s}
-.date-btn:active{transform:scale(.95)}
+.date-btn{flex-shrink:0;width:60px;text-align:center;background:var(--w);border:2px solid var(--bdr);border-radius:var(--r10);padding:10px 4px;cursor:pointer}
 .date-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
 .date-btn.sel .ds{color:rgba(255,255,255,.8)}
 .dc{font-size:12px;color:var(--muted);display:block;margin-bottom:3px;font-weight:500}
 .dn{font-size:20px;font-weight:600;display:block;margin-bottom:3px}
 .ds{font-size:11px;color:var(--sand);display:block;font-weight:500}
 
-/* TIME GRID */
 .time-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.time-btn{padding:14px;border:2px solid var(--bdr);background:var(--w);
-  border-radius:var(--r10);cursor:pointer;font-size:16px;font-weight:500;
-  font-family:inherit;transition:all .15s;text-align:center}
-.time-btn:active{transform:scale(.97)}
+.time-btn{padding:14px;border:2px solid var(--bdr);background:var(--w);border-radius:var(--r10);cursor:pointer;font-size:16px;font-weight:500;font-family:inherit;text-align:center}
 .time-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
 
-/* FORM */
-.form-box{background:var(--w);border-radius:var(--r16);padding:18px;
-  border:1px solid var(--bdr);margin-bottom:14px}
+.form-box{background:var(--w);border-radius:var(--r16);padding:18px;border:1px solid var(--bdr);margin-bottom:14px}
 .field{margin-bottom:16px}
 .field:last-child{margin-bottom:0}
-.flbl{font-size:13px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px;
-  letter-spacing:.03em}
-input[type=text],input[type=email],input[type=tel],textarea{
-  font-family:inherit;font-size:16px;border:2px solid var(--bdr);border-radius:var(--r10);
-  padding:13px 15px;width:100%;color:var(--dark);background:var(--w);outline:none;
-  resize:none;transition:border .15s;-webkit-appearance:none}
+.flbl{font-size:13px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px}
+input[type=text],input[type=email],input[type=tel],textarea{font-family:inherit;font-size:16px;border:2px solid var(--bdr);border-radius:var(--r10);padding:13px 15px;width:100%;color:var(--dark);background:var(--w);outline:none;resize:none;-webkit-appearance:none}
 input:focus,textarea:focus{border-color:var(--sand)}
-.radio-group{display:flex;gap:10px;margin-top:8px}
-.radio-opt{flex:1;border:2px solid var(--bdr);border-radius:var(--r10);
-  padding:12px;text-align:center;cursor:pointer;transition:all .15s;background:var(--sand-ll)}
-.radio-opt.sel{border-color:var(--sand);background:var(--sand-l)}
-.radio-opt input{display:none}
-.ro-cn{font-size:14px;font-weight:600}
-.ro-en{font-size:11px;color:var(--hint)}
 
-/* REVIEW */
-.review-card{background:var(--w);border-radius:var(--r16);overflow:hidden;
-  border:1px solid var(--bdr);margin-bottom:14px}
-.review-row{display:flex;justify-content:space-between;align-items:center;
-  padding:14px 16px;border-bottom:1px solid var(--bdr);gap:12px}
+.card{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);overflow:hidden}
+.review-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid var(--bdr);gap:12px}
 .review-row:last-child{border-bottom:none}
 .rk{font-size:13px;color:var(--hint);flex-shrink:0}
 .rv{font-size:15px;color:var(--dark);text-align:right;font-weight:500}
 
-/* NOTICE */
-.notice{background:var(--w);border-radius:var(--r10);padding:14px 16px;
-  font-size:14px;color:var(--muted);line-height:1.75;border:1px solid var(--bdr);margin-bottom:16px}
+.notice{background:var(--w);border-radius:var(--r10);padding:14px 16px;font-size:14px;color:var(--muted);line-height:1.75;border:1px solid var(--bdr);margin-bottom:16px}
 
-/* BUTTON */
-.btn-main{width:100%;padding:16px;background:var(--sand);color:#fff;border:none;
-  border-radius:var(--r16);font-size:17px;font-weight:600;cursor:pointer;
-  font-family:inherit;transition:all .15s;letter-spacing:.02em}
-.btn-main:active{transform:scale(.98);background:var(--sand-d)}
+.btn-main{width:100%;padding:16px;background:var(--sand);color:#fff;border:none;border-radius:var(--r16);font-size:17px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:.02em;display:block}
 .btn-main:disabled{opacity:.35;cursor:not-allowed}
-.btn-back{background:var(--sand-l);color:var(--bronze);border:none;padding:12px 20px;
-  border-radius:var(--r10);font-size:15px;font-weight:500;cursor:pointer;
-  font-family:inherit;margin-bottom:16px;display:inline-flex;align-items:center;gap:6px}
+.btn-back{background:var(--sand-l);color:var(--bronze);border:none;padding:12px 20px;border-radius:var(--r10);font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;margin-bottom:16px;display:inline-block}
 
-/* GCAL BANNER */
 .gcal-bar{background:var(--sand);border-radius:var(--r16);padding:18px;margin-bottom:14px}
-.gcal-bar-title{color:#fff;font-size:16px;font-weight:600;margin-bottom:4px}
-.gcal-bar-sub{color:rgba(255,255,255,.75);font-size:13px;margin-bottom:14px;line-height:1.6}
-.gcal-btn{background:#fff;color:var(--bronze);border:none;padding:13px;border-radius:var(--r10);
-  font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;
-  display:flex;align-items:center;justify-content:center;gap:8px}
+.gcal-btn{background:#fff;color:var(--bronze);border:none;padding:13px;border-radius:var(--r10);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
 
-/* CONFIRM */
-.conf-top{text-align:center;padding:24px 16px 20px}
-.conf-icon{width:72px;height:72px;border-radius:50%;background:var(--sand-l);
-  display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px}
-.conf-title{font-size:24px;color:var(--bronze);margin-bottom:6px;font-weight:500}
-.conf-sub{font-size:15px;color:var(--hint);font-family:Georgia,serif}
+.ref-card{background:var(--sand-l);border:1.5px solid var(--sand);border-radius:var(--r16);padding:20px;text-align:center;margin-bottom:14px}
+.ref-num{font-size:30px;font-weight:700;color:var(--bronze);letter-spacing:.12em;font-family:Georgia,serif}
 
-/* CONTACT CARD */
-.contact-card{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-bottom:14px}
 .contact-row{display:flex;align-items:center;gap:14px;padding:16px;border-bottom:1px solid var(--bdr)}
 .contact-row:last-child{border-bottom:none}
 .c-icon{font-size:22px;flex-shrink:0}
 .c-label{font-size:12px;color:var(--hint);margin-bottom:2px}
 .c-val{font-size:16px;font-weight:600;color:var(--bronze)}
 
-/* INFO / PARKING */
-.info-card{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-bottom:14px}
 .info-row{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-bottom:1px solid var(--bdr)}
 .info-row:last-child{border-bottom:none}
 .i-icon{font-size:18px;flex-shrink:0;margin-top:2px}
 .i-label{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
 .i-val{font-size:13px;color:var(--muted);line-height:1.6}
 
-/* PARKING PHOTO GUIDE */
-.photo-guide{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0}
-.photo-card{background:var(--sand);border-radius:var(--r10);overflow:hidden;aspect-ratio:.75}
-
-/* AFTERCARE */
-.ac-card{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden}
 .ac-row{display:flex;gap:14px;padding:16px;border-bottom:1px solid var(--bdr);align-items:flex-start}
 .ac-row:last-child{border-bottom:none}
-.ac-ic{width:40px;height:40px;border-radius:50%;background:var(--sand-l);
-  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ac-ic{width:40px;height:40px;border-radius:50%;background:var(--sand-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .ac-title{font-size:15px;font-weight:600;margin-bottom:3px}
 .ac-text{font-size:13px;color:var(--muted);line-height:1.6}
 
-/* HOURS TABLE */
-.hours-card{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-top:14px}
-.hours-row{display:flex;justify-content:space-between;align-items:center;
-  padding:13px 16px;border-bottom:1px solid var(--bdr);font-size:14px}
+.hours-row{display:flex;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--bdr);font-size:14px}
 .hours-row:last-child{border-bottom:none}
-.hours-day{color:var(--dark);font-weight:500}
-.hours-time{color:var(--muted)}
 .hours-closed{color:var(--sand)}
 
-/* MAPS BTN */
-.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--sand-l);border:1.5px solid var(--bdr);border-radius:var(--r10);
-  padding:13px;color:var(--bronze);font-size:15px;font-weight:500;
-  text-decoration:none;margin-top:12px}
+.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--sand-l);border:1.5px solid var(--bdr);border-radius:var(--r10);padding:13px;color:var(--bronze);font-size:15px;font-weight:500;text-decoration:none;margin-top:12px}
 
-/* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:480px;background:var(--w);border-top:1px solid var(--bdr);
-  display:flex;z-index:300;padding:0}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:10px 4px;cursor:pointer;color:var(--hint);
-  font-size:11px;gap:3px;border:none;background:none;font-family:inherit}
-.bn-item.active{color:var(--sand)}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--w);border-top:1px solid var(--bdr);display:flex;z-index:300;padding:0}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;cursor:pointer;color:var(--hint);font-size:11px;gap:3px;border:none;background:none;font-family:inherit}
+.bn-item.active,.bn-item:hover{color:var(--sand)}
 .bn-icon{font-size:20px}
 
-/* FOOTER */
-footer{background:var(--dark);padding:24px 20px;text-align:center;margin-bottom:0}
-footer .f-logo{color:var(--sand);font-size:15px;font-family:Georgia,serif;
-  letter-spacing:.1em;margin-bottom:6px}
+footer{background:var(--dark);padding:24px 20px;text-align:center}
+footer .f-logo{color:var(--sand);font-size:15px;font-family:Georgia,serif;letter-spacing:.1em;margin-bottom:6px}
 footer .f-info{color:rgba(255,255,255,.4);font-size:12px;line-height:1.9}
 footer a{color:var(--sand)}
 
-/* STEP */
 .step{display:none}.step.active{display:block}
+.hidden{display:none}
 </style>
 
-<!-- NAV -->
 <nav>
   <div class="nav-in">
     <div class="nav-logo">
-      <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+      <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
         <rect width="100" height="100" rx="10" fill="rgba(255,255,255,0.15)"/>
         <rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
         <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
@@ -292,39 +180,33 @@ footer a{color:var(--sand)}
       </svg>
       <span class="nav-name">BUNNYBEAUTY</span>
     </div>
-    <div class="nav-links">
-      <button class="nav-book" onclick="scrollSec('book-sec')">预约 Book</button>
-    </div>
+    <button class="nav-book" id="nav-book-btn">预约 Book</button>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-logo">
-    <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
-      <rect width="100" height="100" rx="14" fill="rgba(255,255,255,0.12)"/>
-      <rect x="5" y="5" width="90" height="90" rx="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-      <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
-      <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
-      <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="white" text-anchor="middle" letter-spacing="-2">BB</text>
-      <path d="M22 74 Q28 80 34 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-      <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-      <text x="50" y="92" font-size="7.5" font-family="Georgia,serif" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="3">BUNNYBEAUTY STUDIO</text>
-    </svg>
-  </div>
+  <svg width="80" height="80" viewBox="0 0 100 100" fill="none" style="margin-bottom:16px">
+    <rect width="100" height="100" rx="14" fill="rgba(255,255,255,0.12)"/>
+    <rect x="5" y="5" width="90" height="90" rx="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
+    <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
+    <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="white" text-anchor="middle" letter-spacing="-2">BB</text>
+    <path d="M22 74 Q28 80 34 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <text x="50" y="92" font-size="7.5" font-family="Georgia,serif" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="3">BUNNYBEAUTY STUDIO</text>
+  </svg>
   <h1>新中式美睫</h1>
   <div class="hero-sub">Private Lash Studio · Richmond BC</div>
-  <div class="hero-tag">Timeless Beauty. Artfully Crafted.</div>
+  <div class="hero-slogan">Timeless Beauty. Artfully Crafted.</div>
   <div class="hero-pills">
     <span class="pill">✔ 轻薄透气</span>
     <span class="pill">✔ 贴合眼型</span>
     <span class="pill">✔ 精致不夸张</span>
     <span class="pill">🕒 2h 左右</span>
   </div>
-  <button class="hero-btn" onclick="scrollSec('book-sec')">立即预约 Book Now →</button>
+  <button class="hero-btn" id="hero-book-btn">立即预约 Book Now →</button>
 </div>
 
-<!-- STRIP -->
 <div class="strip">
   <div class="strip-in">
     <div class="si"><div class="si-icon">🌿</div><div class="si-cn">私人工作室</div><div class="si-en">Private Studio</div></div>
@@ -338,13 +220,11 @@ footer a{color:var(--sand)}
 <div id="svc-sec">
 <div class="sec">
   <div class="sec-tag">Services · 美睫款式</div>
-  <h2>可选款式</h2>
+  <h2 style="margin-bottom:16px">可选款式</h2>
   <div class="svc-grid" id="sg-styles"></div>
   <div class="price-cat">补睫 Refill (保留50%+)</div>
-  <div class="price-list" id="sg-refill"></div>
-  <div style="margin-top:20px">
-    <button class="btn-main" onclick="scrollSec('book-sec')">立即预约 →</button>
-  </div>
+  <div id="sg-refill"></div>
+  <div style="margin-top:20px"><button class="btn-main" id="svc-book-btn">立即预约 →</button></div>
 </div>
 </div>
 
@@ -358,148 +238,105 @@ footer a{color:var(--sand)}
   <!-- Step 1 -->
   <div id="step1" class="step active">
     <div class="type-box">
-      <div class="type-label">你是新客还是老客？</div>
-      <div class="type-sub">新客半价 · 老客8折 · 补睫享5折</div>
+      <h3 style="font-size:16px;margin-bottom:4px">你是新客还是老客？</h3>
+      <p style="font-size:13px;color:var(--hint)">新客半价 · 老客8折 · 补睫5折</p>
       <div class="type-opts">
-        <div class="type-opt" id="to-new" onclick="setType('new')">
-          <div class="to-emoji">🎉</div>
-          <div class="to-cn">新客</div>
-          <div class="to-en">First Visit</div>
-          <div class="to-badge">半价</div>
-        </div>
-        <div class="type-opt" id="to-ret" onclick="setType('returning')">
-          <div class="to-emoji">💛</div>
-          <div class="to-cn">老客</div>
-          <div class="to-en">Returning</div>
-          <div class="to-badge">8折</div>
-        </div>
-        <div class="type-opt" id="to-refill" onclick="setType('refill')">
-          <div class="to-emoji">✿</div>
-          <div class="to-cn">补睫</div>
-          <div class="to-en">Refill</div>
-          <div class="to-badge">$30–50</div>
-        </div>
+        <div class="type-opt" id="to-new"><div class="to-emoji">🎉</div><div class="to-cn">新客</div><div class="to-en">First Visit</div><div class="to-badge">半价</div></div>
+        <div class="type-opt" id="to-ret"><div class="to-emoji">💛</div><div class="to-cn">老客</div><div class="to-en">Returning</div><div class="to-badge">8折</div></div>
+        <div class="type-opt" id="to-ref"><div class="to-emoji">✿</div><div class="to-cn">补睫</div><div class="to-en">Refill</div><div class="to-badge">$30–50</div></div>
       </div>
     </div>
     <h3 style="margin-bottom:12px">选择款式</h3>
     <div class="book-grid" id="sp-grid"></div>
-    <button class="btn-main" id="btn1" onclick="go(2)" disabled>下一步：选择时间 →</button>
+    <button class="btn-main" id="btn1" disabled>下一步：选择时间 →</button>
   </div>
 
   <!-- Step 2 -->
   <div id="step2" class="step">
-    <button class="btn-back" onclick="go(1)">← 返回</button>
+    <button class="btn-back" id="back1">← 返回</button>
     <h3 style="margin-bottom:6px">选择日期</h3>
-    <p style="font-size:13px;margin-bottom:14px">数字为剩余位数 · 左右滑动查看更多</p>
+    <p style="font-size:13px;color:var(--hint);margin-bottom:14px">左右滑动查看更多日期</p>
     <div class="date-scroll" id="date-grid"></div>
-    <div id="time-sec" style="display:none">
+    <div id="time-sec" class="hidden">
       <h3 style="margin-bottom:12px">选择时间 — <span id="t-label" style="color:var(--bronze)"></span></h3>
       <div class="time-grid" id="time-grid"></div>
     </div>
-    <button class="btn-main" id="btn2" onclick="go(3)" disabled>下一步：填写信息 →</button>
+    <button class="btn-main" id="btn2" disabled>下一步：填写信息 →</button>
   </div>
 
   <!-- Step 3 -->
   <div id="step3" class="step">
-    <button class="btn-back" onclick="go(2)">← 返回</button>
+    <button class="btn-back" id="back2">← 返回</button>
     <h3 style="margin-bottom:14px">填写信息</h3>
     <div class="form-box">
-      <div class="field">
-        <span class="flbl">姓名 Full Name *</span>
-        <input type="text" id="f-name" placeholder="您的姓名" oninput="chk3()">
-      </div>
-      <div class="field">
-        <span class="flbl">电话 Phone <span style="font-weight:400;color:var(--hint)">(选填)</span></span>
-        <input type="tel" id="f-phone" placeholder="(604) 000-0000">
-      </div>
-      <div class="field">
-        <span class="flbl">邮箱 Email <span style="font-weight:400;color:var(--hint)">(选填)</span></span>
-        <input type="email" id="f-email" placeholder="your@email.com">
-      </div>
-      <div class="field">
-        <span class="flbl">备注 Notes <span style="font-weight:400;color:var(--hint)">(选填)</span></span>
-        <textarea id="f-notes" rows="3" placeholder="过敏史 / 目前眼睫情况 / 期望效果..."></textarea>
-      </div>
+      <div class="field"><span class="flbl">姓名 Full Name *</span><input type="text" id="f-name" placeholder="您的姓名"></div>
+      <div class="field"><span class="flbl">电话 <span style="font-weight:400;color:var(--hint)">(选填)</span></span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
+      <div class="field"><span class="flbl">邮箱 <span style="font-weight:400;color:var(--hint)">(选填)</span></span><input type="email" id="f-email" placeholder="your@email.com"></div>
+      <div class="field" style="margin-bottom:0"><span class="flbl">备注 <span style="font-weight:400;color:var(--hint)">(选填)</span></span><textarea id="f-notes" rows="3" placeholder="过敏史 / 目前眼睫情况 / 期望效果..."></textarea></div>
     </div>
-    <button class="btn-main" id="btn3" onclick="go(4)" disabled>查看预约详情 →</button>
+    <button class="btn-main" id="btn3" disabled>查看预约详情 →</button>
   </div>
 
   <!-- Step 4 -->
   <div id="step4" class="step">
-    <button class="btn-back" onclick="go(3)">← 修改</button>
+    <button class="btn-back" id="back3">← 修改</button>
     <h3 style="margin-bottom:14px">确认预约信息</h3>
-    <div class="review-card" id="review-card"></div>
-    <div class="notice">⚠️ 如需取消或改期，请提前 <strong>4天</strong> 联系我们，否则可能收取取消费用。<br><span style="font-size:13px;font-family:Georgia,serif;color:var(--hint)">Please cancel at least 4 days in advance.</span></div>
-    <button class="btn-main" onclick="doConfirm()">确认预约 ✓ Confirm</button>
+    <div class="card" style="margin-bottom:14px" id="review-card"></div>
+    <div class="notice">⚠️ 请提前 <strong>3天</strong> 取消或改期，3天内请直接联系我们。<br><span style="font-size:13px;font-family:Georgia,serif;color:var(--hint)">Please cancel at least 3 days in advance.</span></div>
+    <button class="btn-main" id="btn-confirm">确认预约 ✓ Confirm</button>
   </div>
 
   <!-- Step 5 -->
   <div id="step5" class="step">
-    <div class="conf-top">
-      <div class="conf-icon">✿</div>
-      <div class="conf-title">预约成功！🎉</div>
-      <div class="conf-sub">Booking confirmed · See you soon</div>
+    <div style="text-align:center;padding:24px 0 20px">
+      <div style="width:72px;height:72px;border-radius:50%;background:var(--sand-l);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px">✿</div>
+      <div style="font-size:24px;color:var(--bronze);margin-bottom:6px;font-weight:500">预约成功！🎉</div>
+      <div style="font-size:14px;color:var(--hint);font-family:Georgia,serif">Booking confirmed · See you soon</div>
     </div>
-
+    <div class="ref-card">
+      <div style="font-size:12px;color:var(--hint);margin-bottom:6px;letter-spacing:.06em">预约编号 Booking Reference</div>
+      <div class="ref-num" id="ref-display"></div>
+      <div style="font-size:12px;color:var(--hint);margin-top:6px">请保存此编号，取消/修改时需要</div>
+    </div>
     <div class="gcal-bar">
-      <div class="gcal-bar-title">📅 添加到你的日历</div>
-      <div class="gcal-bar-sub">预约地点、我的电话、停车指引都已自动填入</div>
-      <button class="gcal-btn" onclick="window.open(document.getElementById('gcal-link-url').value,'_blank')">
-        📅 Add to Google Calendar
-      </button>
-      <input type="hidden" id="gcal-link-url">
+      <div style="color:#fff;font-size:16px;font-weight:600;margin-bottom:4px">📅 添加到你的日历</div>
+      <div style="color:rgba(255,255,255,.75);font-size:13px">地址、电话、停车指引已自动填入</div>
+      <button class="gcal-btn" id="gcal-btn">📅 Add to Google Calendar</button>
+      <input type="hidden" id="gcal-url">
     </div>
-
-    <!-- 预约编号 -->
-    <div class="info-card" style="margin-bottom:14px;border-color:var(--sand)" id="booking-ref-card"></div>
-
-    <div class="review-card" id="conf-sum"></div>
-
-    <div class="info-card" style="margin-top:14px;border-color:var(--sand)">
-      <div style="padding:14px 16px;background:var(--sand-l);border-bottom:1px solid var(--bdr)">
-        <h3 style="font-size:15px;color:var(--bronze)">🔄 需要取消或改期？</h3>
-        <p style="font-size:13px;margin-top:4px">请提前 <strong>4天</strong> 联系我们，超时可能收取费用</p>
-      </div>
-      <div class="contact-row">
-        <span class="c-icon">📱</span>
-        <div><div class="c-label">短信取消</div>
-        <a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div>
-      </div>
-      <div class="contact-row">
-        <span class="c-icon">💬</span>
-        <div><div class="c-label">微信取消 WeChat</div>
-        <div class="c-val">LanLovesLife</div></div>
-      </div>
+    <div class="card" style="margin-bottom:14px" id="conf-sum"></div>
+    <div class="card" style="margin-bottom:14px">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px">📞 联系我们</h3></div>
+      <div class="contact-row"><span class="c-icon">📱</span><div><div class="c-label">电话 / 短信</div><a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div></div>
+      <div class="contact-row"><span class="c-icon">💬</span><div><div class="c-label">微信 WeChat</div><div class="c-val">LanLovesLife</div></div></div>
     </div>
-
-    <div class="contact-card" style="margin-top:14px">
-      <div class="contact-row">
-        <span class="c-icon">📱</span>
-        <div><div class="c-label">电话 / 短信</div><a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div>
-      </div>
-      <div class="contact-row">
-        <span class="c-icon">💬</span>
-        <div><div class="c-label">微信 WeChat</div><div class="c-val">LanLovesLife</div></div>
-      </div>
-    </div>
-
-    <div class="info-card" style="margin-top:14px">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)">
-        <h3 style="font-size:16px">📍 到店指引</h3>
-      </div>
+    <div class="card" style="margin-bottom:14px">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px">📍 到店指引</h3></div>
       <div id="loc-conf"></div>
     </div>
-
-    <div class="ac-card" style="margin-top:14px">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)">
-        <h3 style="font-size:16px">💧 护理提醒</h3>
-      </div>
+    <div class="card">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px">💧 护理提醒</h3></div>
       <div id="ac-mini"></div>
-      <div style="padding:14px 16px">
-        <a onclick="scrollSec('aftercare-sec')" style="color:var(--sand);font-size:14px;cursor:pointer">查看完整护理指南 →</a>
-      </div>
+      <div style="padding:14px 16px"><a id="ac-link" style="color:var(--sand);font-size:14px;cursor:pointer">查看完整护理指南 →</a></div>
     </div>
   </div>
+</div>
+</div>
+
+<!-- MANAGE -->
+<div id="manage-sec" style="border-top:1px solid var(--bdr);background:var(--w)">
+<div class="sec">
+  <div class="sec-tag">Manage · 管理预约</div>
+  <h2 style="margin-bottom:6px">取消 / 修改预约</h2>
+  <p style="margin-bottom:20px;font-size:14px">提前 <strong style="color:var(--bronze)">3天以上</strong> 可自助取消，3天内请直接联系。</p>
+  <div class="form-box" style="margin-bottom:14px">
+    <div class="field" style="margin-bottom:0">
+      <span class="flbl">输入预约编号 Booking Reference</span>
+      <input type="text" id="manage-ref" placeholder="例如：BB-A3K7" style="text-transform:uppercase;letter-spacing:.08em;font-size:20px;text-align:center">
+    </div>
+  </div>
+  <button class="btn-main" id="lookup-btn">查询我的预约 →</button>
+  <div id="manage-result" class="hidden" style="margin-top:16px"></div>
 </div>
 </div>
 
@@ -507,36 +344,24 @@ footer a{color:var(--sand)}
 <div id="loc-sec" style="background:var(--w);border-top:1px solid var(--bdr)">
 <div class="sec">
   <div class="sec-tag">Location · 位置</div>
-  <h2>工作室地址</h2>
-  <div class="info-card" style="margin-top:14px">
-    <div class="info-row">
-      <span class="i-icon">📌</span>
-      <div><div class="i-label">Bunny Beauty Studio</div><div class="i-val">7151 No. 5 Rd, Richmond, BC</div></div>
-    </div>
-    <div class="info-row">
-      <span class="i-icon">📞</span>
-      <div><div class="i-label">电话 / 短信</div><a href="tel:+12369967087" class="i-val" style="color:var(--sand)">(236) 996-7087</a></div>
-    </div>
-    <div class="info-row">
-      <span class="i-icon">💬</span>
-      <div><div class="i-label">微信 WeChat</div><div class="i-val">LanLovesLife</div></div>
-    </div>
+  <h2 style="margin-bottom:16px">工作室地址</h2>
+  <div class="card">
+    <div class="info-row"><span class="i-icon">📌</span><div><div class="i-label">Bunny Beauty Studio</div><div class="i-val">7151 No. 5 Rd, Richmond, BC</div></div></div>
+    <div class="info-row"><span class="i-icon">📞</span><div><div class="i-label">电话 / 短信</div><a href="tel:+12369967087" style="color:var(--sand);font-size:14px">(236) 996-7087</a></div></div>
+    <div class="info-row"><span class="i-icon">💬</span><div><div class="i-label">微信 WeChat</div><div class="i-val">LanLovesLife</div></div></div>
   </div>
-  <a href="https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC" target="_blank" class="maps-btn">
-    🗺 在 Google Maps 中打开
-  </a>
-  <div class="hours-card" id="hours-card"></div>
-
-  <div style="margin-top:24px">
-    <h3 style="margin-bottom:14px">🅿️ 停车 & 到达指引</h3>
-    <div class="info-card" id="park-block"></div>
-    <div style="background:var(--sand-l);border-radius:var(--r16);padding:16px;margin-top:12px;border:1px solid var(--bdr)">
-      <div style="font-size:13px;font-weight:600;color:var(--bronze);margin-bottom:12px">📸 入口参考图</div>
-      <div class="photo-guide" id="photo-guide"></div>
-      <div style="background:var(--w);border-radius:var(--r10);padding:12px;font-size:13px;color:var(--bronze);line-height:1.7">
-        ⚠️ <strong>入口隐秘请减速</strong>，留意左侧石柱 <strong>7151</strong> 门牌<br>进门右侧停车 → 步行至内院 → 一楼迎接 → 上二楼
-      </div>
+  <a href="https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC" target="_blank" class="maps-btn">🗺 在 Google Maps 中打开</a>
+  <div class="card" style="margin-top:14px" id="hours-card"></div>
+  <h3 style="margin:24px 0 14px">🅿️ 停车 & 到达</h3>
+  <div class="card" id="park-card"></div>
+  <div style="background:var(--sand-l);border-radius:var(--r16);padding:16px;margin-top:12px;border:1px solid var(--bdr)">
+    <div style="font-size:13px;font-weight:600;color:var(--bronze);margin-bottom:10px">📸 入口参考图</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
+      <div style="background:#6a8a5a;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">🌳</div><div style="font-size:10px;color:#fff;font-weight:600">① 入口大门</div><div style="font-size:9px;color:rgba(255,255,255,.8)">7151石柱</div></div>
+      <div style="background:#8a9a7a;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">🅿️</div><div style="font-size:10px;color:#fff;font-weight:600">② 停车场</div><div style="font-size:9px;color:rgba(255,255,255,.8)">进门右侧</div></div>
+      <div style="background:#7a8a9a;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">🏠</div><div style="font-size:10px;color:#fff;font-weight:600">③ 内院</div><div style="font-size:9px;color:rgba(255,255,255,.8)">一楼迎接</div></div>
     </div>
+    <div style="background:var(--w);border-radius:10px;padding:12px;font-size:13px;color:var(--bronze);line-height:1.7">⚠️ <strong>入口隐秘请减速</strong>，留意左侧石柱 <strong>7151</strong> 门牌<br>进门右侧停车 → 步行至内院 → 一楼迎接 → 上二楼</div>
   </div>
 </div>
 </div>
@@ -546,63 +371,28 @@ footer a{color:var(--sand)}
 <div class="sec">
   <div class="sec-tag">Aftercare · 护理</div>
   <h2 style="margin-bottom:16px">爱护你的美睫</h2>
-  <div class="ac-card" id="ac-full"></div>
+  <div class="card" id="ac-full"></div>
 </div>
 </div>
 
-<!-- 自助取消/修改预约 -->
-<div id="manage-sec" style="border-top:1px solid var(--bdr);background:var(--w)">
-<div class="sec">
-  <div class="sec-tag">Manage · 管理预约</div>
-  <h2 style="margin-bottom:6px">取消 / 修改预约</h2>
-  <p style="margin-bottom:20px;font-size:14px">提前 <strong style="color:var(--bronze)">3天以上</strong> 可自助取消。3天内请直接联系我们。</p>
-
-  <div id="manage-lookup">
-    <div class="form-box">
-      <div class="field">
-        <span class="flbl">输入预约编号 Booking Reference</span>
-        <input type="text" id="manage-ref" placeholder="例如：BB-A3K7" style="text-transform:uppercase;letter-spacing:.08em;font-size:18px;text-align:center">
-      </div>
-    </div>
-    <button class="btn-main" onclick="lookupBooking()">查询我的预约 →</button>
-  </div>
-
-  <div id="manage-result" style="display:none;margin-top:16px"></div>
-</div>
-</div>
-
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">✿ BUNNYBEAUTY STUDIO</div>
-  <div class="f-info">
-    7151 No. 5 Rd, Richmond, BC<br>
-    <a href="tel:+12369967087">(236) 996-7087</a> · WeChat: LanLovesLife<br>
-    <span style="font-style:italic">Timeless Beauty. Artfully Crafted.</span>
-  </div>
+  <div class="f-info">7151 No. 5 Rd, Richmond, BC<br><a href="tel:+12369967087">(236) 996-7087</a> · WeChat: LanLovesLife<br><span style="font-style:italic">Timeless Beauty. Artfully Crafted.</span></div>
 </footer>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <button class="bn-item active" onclick="scrollSec('book-sec');setActive(this)">
-    <span class="bn-icon">📅</span>预约
-  </button>
-  <button class="bn-item" onclick="scrollSec('svc-sec');setActive(this)">
-    <span class="bn-icon">✿</span>服务
-  </button>
-  <button class="bn-item" onclick="scrollSec('manage-sec');setActive(this)">
-    <span class="bn-icon">🔄</span>管理
-  </button>
-  <button class="bn-item" onclick="scrollSec('loc-sec');setActive(this)">
-    <span class="bn-icon">📍</span>位置
-  </button>
+  <button class="bn-item active" id="bn-book"><span class="bn-icon">📅</span>预约</button>
+  <button class="bn-item" id="bn-svc"><span class="bn-icon">✿</span>服务</button>
+  <button class="bn-item" id="bn-manage"><span class="bn-icon">🔄</span>管理</button>
+  <button class="bn-item" id="bn-loc"><span class="bn-icon">📍</span>位置</button>
 </div>
 
 <script>
-const CFG={
-  name:'Bunny Beauty Studio',
+/* ============ CONFIG ============ */
+var GCAL_URL='https://script.google.com/macros/s/AKfycbziU_xBRz_prBj8xCviPx1S2YK5ZFcbbgcoFBnzQqEhPAC93X95zLKyR0mb_YkKikLl/exec';
+
+var CFG={
   address:'7151 No. 5 Rd, Richmond, BC',
-  phone:'(236) 996-7087',
-  maps:'https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC',
   schedule:{
     0:[],
     1:['12:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
@@ -610,34 +400,34 @@ const CFG={
     3:['09:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
     4:['10:00','13:00','14:00','16:00','17:00','18:00'],
     5:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
-    6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
+    6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00']
   },
   hours:[
     ['周一 Mon','12:00 PM – 9:00 PM'],
     ['周二 Tue','12:00 PM – 9:00 PM'],
     ['周三 Wed','9:00 AM – 9:00 PM'],
     ['周四 Thu','10:00 AM / 1:00 PM – 9:00 PM'],
-    ['周五 – 周六 Fri–Sat','9:00 AM – 9:00 PM'],
-    ['周日 Sun','休息 Closed'],
+    ['周五–周六 Fri–Sat','9:00 AM – 9:00 PM'],
+    ['周日 Sun','休息 Closed']
   ]
 };
 
-const STYLES=[
-  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub:'清爽日常',price:60,newPrice:40,refillPrice:30,dur:'120 min'},
-  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub:'轻薄灵动',price:80,newPrice:40,refillPrice:40,dur:'120 min'},
-  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub:'自然放大眼',price:80,newPrice:40,refillPrice:40,dur:'120 min'},
-  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub:'妩媚有神',price:100,newPrice:50,refillPrice:50,dur:'120 min'},
-  {id:5,emoji:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',sub:'上扬飞扬',price:100,newPrice:50,refillPrice:50,dur:'120 min'},
-  {id:6,emoji:'🤍',cn:'其他/暂未确定',en:'Other/Undecided',sub:'预约后沟通',price:60,priceLabel:'$60+',newPrice:40,refillPrice:30,dur:'120 min'},
+var STYLES=[
+  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub:'清爽日常',price:60,newP:40,retP:48,refP:30,dur:120},
+  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub:'轻薄灵动',price:80,newP:40,retP:64,refP:40,dur:120},
+  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub:'自然放大眼',price:80,newP:40,retP:64,refP:40,dur:120},
+  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub:'妩媚有神',price:100,newP:50,retP:80,refP:50,dur:120},
+  {id:5,emoji:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',sub:'上扬飞扬',price:100,newP:50,retP:80,refP:50,dur:120},
+  {id:6,emoji:'🤍',cn:'其他/暂未确定',en:'Other/Undecided',sub:'预约后沟通',price:60,priceLabel:'$60+',newP:40,retP:48,refP:30,dur:120}
 ];
 
-const PRICES_REFILL=[
+var REFILLS=[
   {cn:'自然款补睫',en:'Natural Refill',price:30,dur:'60 min'},
   {cn:'仙子/漫画补睫',en:'Fairy/Manga Refill',price:40,dur:'60 min'},
-  {cn:'小恶魔/狐系补睫',en:'Devil/Fox Refill',price:50,dur:'75 min'},
+  {cn:'小恶魔/狐系补睫',en:'Devil/Fox Refill',price:50,dur:'75 min'}
 ];
 
-const AC=[
+var AC=[
   {i:'💧',cn:'8小时内避水避蒸汽',en:'Stay dry 8 hours',d:'避开水、蒸汽、桑拿，让胶水充分固化。8小时后可正常洗脸，避免大量水冲眼部。'},
   {i:'🚫',cn:'避免油性产品',en:'Go oil-free',d:'油脂溶解胶水，更换无油洁面及卸妆产品，检查所有护肤品标签。'},
   {i:'🤲',cn:'不要揉眼睛',en:'No rubbing',d:'揉眼造成过早脱落，如有不适请联系我们。'},
@@ -645,371 +435,456 @@ const AC=[
   {i:'✿',cn:'每天梳理睫毛',en:'Brush daily',d:'每天早晨用螺旋刷从根部轻轻梳理，保持蓬松感。'},
   {i:'💄',cn:'不需要刷睫毛膏',en:'Skip mascara',d:'接睫后无需睫毛膏，使用会使睫毛结块影响效果。'},
   {i:'🧴',cn:'每周清洁两次',en:'Cleanse 2x/week',d:'用专用泡沫清洁睫毛，清洁度决定持久度。'},
-  {i:'📅',cn:'2–3周来补睫',en:'Fill at 2–3 weeks',d:'自然睫毛周期脱落，定期补睫保持饱满效果。'},
+  {i:'📅',cn:'2–3周来补睫',en:'Fill at 2–3 weeks',d:'自然睫毛周期脱落，定期补睫保持饱满效果。'}
 ];
 
-const PARKING=[
+var PARKING=[
   {i:'🔍',label:'⚠️ 入口隐秘请注意',val:'沿No.5 Rd行驶，留意两侧茂密大树夹道入口，门牌 7151 在左侧石柱，容易错过请减速'},
   {i:'🅿️',label:'停车位置',val:'进入大门后靠右手边停车，有足够空间'},
   {i:'🚶',label:'步行指引',val:'停车后往内院走，我在一楼迎接，带您上二楼工作室'},
   {i:'🚇',label:'Bridgeport 地铁站',val:'步行约10分钟 · Canada Line'},
-  {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'},
+  {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'}
 ];
 
-let S={step:1,svc:null,ctype:'',date:null,time:null,name:'',email:'',phone:'',notes:''};
-let BOOKED={};
-const GCAL_URL='https://script.google.com/macros/s/AKfycbziU_xBRz_prBj8xCviPx1S2YK5ZFcbbgcoFBnzQqEhPAC93X95zLKyR0mb_YkKikLl/exec';
-let busyPeriods=[];
+/* ============ STATE ============ */
+var S={step:1,ctype:'',svc:null,date:null,time:null,name:'',phone:'',email:'',notes:''};
+var BOOKED={};
+var busyPeriods=[];
+var gcalUrlStr='';
 
-const $=id=>document.getElementById(id);
-const pad=n=>String(n).padStart(2,'0');
-const fmtKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-const fmtDate=d=>d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
-const fmtShort=d=>d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});
-const fmtTime=t=>{const[h,m]=t.split(':').map(Number),ap=h>=12?'PM':'AM',h12=h===0?12:h>12?h-12:h;return`${h12}:${pad(m)} ${ap}`;};
-const gcalFmt=dt=>`${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
-// 滚动函数 — 修正 sticky nav 遮挡
+/* ============ HELPERS ============ */
+function el(id){return document.getElementById(id);}
+function pad(n){return String(n).padStart(2,'0');}
+function fmtKey(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmtDate(d){return d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});}
+function fmtShort(d){return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});}
+function fmtTime(t){
+  var parts=t.split(':');
+  var h=parseInt(parts[0]);
+  var m=parts[1];
+  var ap=h>=12?'PM':'AM';
+  var h12=h===0?12:h>12?h-12:h;
+  return h12+':'+m+' '+ap;
+}
+function gcalFmt(dt){
+  return dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';
+}
 function scrollSec(id){
-  const el=document.getElementById(id);
-  if(!el)return;
-  const y=el.getBoundingClientRect().top+window.pageYOffset-60;
+  var e=document.getElementById(id);
+  if(!e)return;
+  var y=e.getBoundingClientRect().top+window.pageYOffset-60;
   window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
 }
-function setActive(el){document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
-
-function isBiweeklyWedMeeting(date){
-  if(date.getDay()!==3)return false;
-  const ref=new Date(2026,4,13);
-  const diff=Math.round((date-ref)/86400000);
-  return diff>=0&&diff%14===0;
-}
-function localConflict(date,t,durMin){
-  const key=fmtKey(date),booked=BOOKED[key]||[];
-  const[h,m]=t.split(':').map(Number),reqS=h*60+m,reqE=reqS+durMin;
-  return booked.some(bt=>{const[bh,bm]=bt.split(':').map(Number),bS=bh*60+bm,bE=bS+150;return reqS<bE&&reqE>bS;});
-}
-function calConflict(date,t,durMin){
-  if(!busyPeriods.length)return false;
-  const[h,m]=t.split(':').map(Number);
-  const ss=new Date(date.getFullYear(),date.getMonth(),date.getDate(),h,m,0);
-  const se=new Date(ss.getTime()+durMin*60000);
-  return busyPeriods.some(b=>ss<b.e&&se>b.s);
-}
-function getSlots(date){
-  return(CFG.schedule[date.getDay()]||[]).filter(t=>!(isBiweeklyWedMeeting(date)&&t==='12:00'));
-}
-
-// 生成唯一预约编号
-function genBookingId(){
+function genId(){
   return 'BB-'+(Date.now().toString(36).toUpperCase().slice(-4))+(Math.random().toString(36).toUpperCase().slice(-2));
 }
+function getPrice(svc,ctype){
+  var orig=svc.priceLabel||'$'+svc.price;
+  if(ctype==='new')return{label:'$'+svc.newP,orig:orig,tag:'新客半价'};
+  if(ctype==='returning')return{label:'$'+svc.retP,orig:orig,tag:'老客8折'};
+  if(ctype==='refill')return{label:'$'+svc.refP,orig:orig,tag:'补睫价'};
+  return{label:orig,orig:'',tag:''};
+}
+function isBiWed(date){
+  if(date.getDay()!==3)return false;
+  var ref=new Date(2026,4,13);
+  var diff=Math.round((date-ref)/86400000);
+  return diff>=0&&diff%14===0;
+}
+function getSlots(date){
+  var slots=CFG.schedule[date.getDay()]||[];
+  return slots.filter(function(t){return !(isBiWed(date)&&t==='12:00');});
+}
+function localConflict(date,t){
+  var key=fmtKey(date);
+  var booked=BOOKED[key]||[];
+  var h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]);
+  var reqS=h*60+m,reqE=reqS+150;
+  return booked.some(function(bt){
+    var bh=parseInt(bt.split(':')[0]),bm=parseInt(bt.split(':')[1]);
+    var bS=bh*60+bm,bE=bS+150;
+    return reqS<bE&&reqE>bS;
+  });
+}
+function calConflict(date,t){
+  if(!busyPeriods.length)return false;
+  var h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]);
+  var ss=new Date(date.getFullYear(),date.getMonth(),date.getDate(),h,m,0);
+  var se=new Date(ss.getTime()+150*60000);
+  return busyPeriods.some(function(b){return ss<b.e&&se>b.s;});
+}
 
-// JSONP 通用请求
-function gcalRequest(params){
-  return new Promise((resolve)=>{
+/* ============ GCAL / JSONP ============ */
+function gcalReq(params){
+  return new Promise(function(resolve){
     try{
-      const cb='bb_cb_'+Date.now();let script;
-      window[cb]=(data)=>{delete window[cb];if(script&&script.parentNode)script.parentNode.removeChild(script);resolve(data);};
+      var cb='bb_'+Date.now();
+      var script;
+      window[cb]=function(data){
+        delete window[cb];
+        if(script&&script.parentNode)script.parentNode.removeChild(script);
+        resolve(data);
+      };
       script=document.createElement('script');
-      script.onerror=()=>{delete window[cb];resolve({});};
+      script.onerror=function(){delete window[cb];resolve({});};
       params.callback=cb;
-      script.src=`${GCAL_URL}?${new URLSearchParams(params)}`;
+      var qs=Object.keys(params).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(params[k]);}).join('&');
+      script.src=GCAL_URL+'?'+qs;
       document.head.appendChild(script);
-      setTimeout(()=>{if(window[cb]){delete window[cb];resolve({});}},8000);
+      setTimeout(function(){if(window[cb]){delete window[cb];resolve({});}},8000);
     }catch(ex){resolve({});}
   });
 }
-async function fetchBusy(){
-  return new Promise((resolve)=>{
+
+function fetchBusy(){
+  return new Promise(function(resolve){
     try{
-      const s=new Date(),e=new Date();
+      var s=new Date(),e=new Date();
       e.setDate(s.getDate()+50);
-      const cb='bb_busy_'+Date.now();
-      let script;
-      window[cb]=(data)=>{
-        if(data.busy) busyPeriods=data.busy.map(b=>({s:new Date(b.start),e:new Date(b.end)}));
+      var cb='bb_busy_'+Date.now();
+      var script;
+      window[cb]=function(data){
+        if(data.busy){
+          busyPeriods=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
+        }
         delete window[cb];
         if(script&&script.parentNode)script.parentNode.removeChild(script);
         resolve();
       };
       script=document.createElement('script');
-      script.onerror=()=>{delete window[cb];resolve();};
-      const params=new URLSearchParams({
-        action:'busy',
-        start:s.toISOString(),
-        end:e.toISOString(),
-        callback:cb
-      });
-      script.src=`${GCAL_URL}?${params}`;
+      script.onerror=function(){delete window[cb];resolve();};
+      script.src=GCAL_URL+'?action=busy&start='+encodeURIComponent(s.toISOString())+'&end='+encodeURIComponent(e.toISOString())+'&callback='+cb;
       document.head.appendChild(script);
-      // 超时保护 5秒
-      setTimeout(()=>{if(window[cb]){delete window[cb];resolve();}},5000);
+      setTimeout(function(){if(window[cb]){delete window[cb];resolve();}},5000);
     }catch(ex){resolve();}
   });
 }
 
-function getPrice(svc,ctype,isRefill){
-  const orig=svc.priceLabel||'$'+svc.price;
-  if(isRefill)return{val:svc.refillPrice,label:'$'+svc.refillPrice,tag:'补睫价',orig};
-  if(ctype==='new')return{val:svc.newPrice,label:'$'+svc.newPrice,tag:'新客半价',orig};
-  if(ctype==='returning'){const p=Math.round(svc.price*0.8);return{val:p,label:'$'+p,tag:'老客8折',orig};}
-  return{val:svc.price,label:orig,orig:'',tag:''};
-}
-
-function setType(v){
-  S.ctype=v;S.svc=null;$('btn1').disabled=true;
-  ['to-new','to-ret','to-refill'].forEach(id=>{const el=$(id);if(el)el.classList.remove('sel');});
-  $({new:'to-new',returning:'to-ret',refill:'to-refill'}[v]).classList.add('sel');
-  renderBookingStyles();
-}
-
-function renderBookingStyles(){
-  const el=$('sp-grid');el.innerHTML='';
-  const isRefill=S.ctype==='refill';
-  STYLES.forEach(s=>{
-    const p=getPrice(s,S.ctype,isRefill);
-    const d=document.createElement('div');d.className='book-card';d.id='bp'+s.id;d.onclick=()=>pickSvc(s);
-    d.innerHTML=`<div class="bc-emoji">${s.emoji}</div>
-      <div class="bc-cn">${isRefill?s.cn+'补睫':s.cn}</div>
-      <div class="bc-en">${s.en}${isRefill?' Refill':''}</div>
-      ${p.orig?`<div class="bc-orig">${p.orig}</div><div class="bc-price">${p.label}</div><span class="bc-tag">${p.tag}</span>`:
-      `<div class="bc-price">${p.label}</div>`}
-      <div class="bc-dur">🕒 ${isRefill?'60–75min':s.dur}</div>`;
-    el.appendChild(d);
+/* ============ RENDER ============ */
+function renderProg(){
+  var steps=[['款式','Style'],['时间','Date'],['信息','Info'],['确认','Confirm']];
+  var html='';
+  steps.forEach(function(s,i){
+    var n=i+1,done=n<S.step,act=n===S.step;
+    if(i>0)html+='<div class="p-line'+(done?' done':'')+'"></div>';
+    html+='<div class="prog-step">';
+    html+='<div class="pd'+(done?' done':act?' act':'')+'">'+( done?'✓':n)+'</div>';
+    html+='<div class="pl'+(act?' act':'')+'">'+s[0]+'</div>';
+    html+='</div>';
   });
+  el('prog-bar').innerHTML=html;
+}
+
+function renderBookCards(){
+  var container=el('sp-grid');
+  container.innerHTML='';
+  STYLES.forEach(function(s){
+    var p=getPrice(s,S.ctype);
+    var div=document.createElement('div');
+    div.className='book-card';
+    div.id='bc'+s.id;
+    var html='<div class="bc-emoji">'+s.emoji+'</div>';
+    html+='<div class="bc-cn">'+(S.ctype==='refill'?s.cn+'补睫':s.cn)+'</div>';
+    html+='<div class="bc-en">'+s.en+(S.ctype==='refill'?' Refill':'')+'</div>';
+    if(p.orig){
+      html+='<div class="bc-orig">'+p.orig+'</div>';
+      html+='<div class="bc-price">'+p.label+'</div>';
+      html+='<span class="bc-tag">'+p.tag+'</span>';
+    }else{
+      html+='<div class="bc-price">'+p.label+'</div>';
+    }
+    html+='<div class="bc-dur">🕒 '+(S.ctype==='refill'?'60–75min':'120 min')+'</div>';
+    div.innerHTML=html;
+    div.addEventListener('click',function(){pickSvc(s);});
+    container.appendChild(div);
+  });
+}
+
+function renderDates(){
+  var dg=el('date-grid');
+  dg.innerHTML='';
+  var today=new Date();today.setHours(0,0,0,0);
+  var DOW=['日','一','二','三','四','五','六'];
+  var shown=0;
+  for(var i=1;i<=42&&shown<28;i++){
+    var d=new Date(today);
+    d.setDate(today.getDate()+i);
+    var slots=getSlots(d);
+    var avail=slots.filter(function(t){return !localConflict(d,t)&&!calConflict(d,t);});
+    if(!avail.length)continue;
+    shown++;
+    (function(date,count){
+      var btn=document.createElement('div');
+      btn.className='date-btn'+(S.date&&fmtKey(S.date)===fmtKey(date)?' sel':'');
+      btn.innerHTML='<span class="dc">周'+DOW[date.getDay()]+'</span><span class="dn">'+date.getDate()+'</span><span class="ds">'+count+'位</span>';
+      btn.addEventListener('click',function(){pickDate(date);});
+      dg.appendChild(btn);
+    })(d,avail.length);
+  }
+  if(!dg.children.length)dg.innerHTML='<p style="font-size:13px;color:var(--hint)">暂无可预约时间，请联系我们</p>';
+}
+
+function renderTimes(){
+  var slots=getSlots(S.date);
+  var avail=slots.filter(function(t){return !localConflict(S.date,t)&&!calConflict(S.date,t);});
+  el('t-label').textContent=fmtShort(S.date);
+  var tg=el('time-grid');
+  tg.innerHTML='';
+  avail.forEach(function(t){
+    var btn=document.createElement('button');
+    btn.className='time-btn'+(S.time===t?' sel':'');
+    btn.textContent=fmtTime(t);
+    btn.addEventListener('click',function(){pickTime(t);});
+    tg.appendChild(btn);
+  });
+  el('time-sec').classList.remove('hidden');
+}
+
+/* ============ ACTIONS ============ */
+function setType(v){
+  S.ctype=v;S.svc=null;el('btn1').disabled=true;
+  ['to-new','to-ret','to-ref'].forEach(function(id){el(id).classList.remove('sel');});
+  el({new:'to-new',returning:'to-ret',refill:'to-ref'}[v]).classList.add('sel');
+  renderBookCards();
 }
 
 function pickSvc(s){
   if(!S.ctype){alert('请先选择新客/老客/补睫');return;}
-  S.svc=s;document.querySelectorAll('#sp-grid .book-card').forEach(c=>c.classList.remove('sel'));
-  $('bp'+s.id).classList.add('sel');$('btn1').disabled=false;
+  S.svc=s;
+  document.querySelectorAll('.book-card').forEach(function(c){c.classList.remove('sel');});
+  el('bc'+s.id).classList.add('sel');
+  el('btn1').disabled=false;
 }
 
-function renderDates(){
-  const dg=$('date-grid'),today=new Date();today.setHours(0,0,0,0);
-  const DOW=['日','一','二','三','四','五','六'];
-  dg.innerHTML='';let n=0;
-  for(let i=1;i<=42&&n<28;i++){
-    const d=new Date(today);d.setDate(today.getDate()+i);
-    const slots=getSlots(d);
-    const avail=slots.filter(t=>!localConflict(d,t,150)&&!calConflict(d,t,150));
-    if(!avail.length)continue;n++;
-    const sel=S.date&&fmtKey(S.date)===fmtKey(d);
-    const b=document.createElement('div');b.className='date-btn'+(sel?' sel':'');
-    b.innerHTML=`<span class="dc">周${DOW[d.getDay()]}</span><span class="dn">${d.getDate()}</span><span class="ds">${avail.length}位</span>`;
-    b.onclick=()=>pickDate(fmtKey(d));dg.appendChild(b);
+function pickDate(date){
+  S.date=date;S.time=null;
+  el('btn2').disabled=true;
+  renderDates();renderTimes();
+}
+
+function pickTime(t){
+  S.time=t;renderTimes();
+  el('btn2').disabled=false;
+}
+
+function goStep(n){
+  if(n===3){
+    S.name=el('f-name').value.trim();
+    S.phone=el('f-phone').value.trim();
+    S.email=el('f-email').value.trim();
+    S.notes=el('f-notes').value.trim();
   }
+  if(n===2)renderDates();
+  if(n===4)renderReview();
+  el('step'+S.step).classList.remove('active');
+  S.step=n;
+  el('step'+n).classList.add('active');
+  renderProg();
+  scrollSec('book-sec');
 }
 
-function pickDate(key){
-  const[y,m,d]=key.split('-').map(Number);S.date=new Date(y,m-1,d);S.time=null;
-  $('btn2').disabled=true;renderDates();renderTimes();
-}
-function renderTimes(){
-  const key=fmtKey(S.date),slots=getSlots(S.date);
-  const avail=slots.filter(t=>!localConflict(S.date,t,150)&&!calConflict(S.date,t,150));
-  $('t-label').textContent=fmtShort(S.date);
-  $('time-grid').innerHTML=avail.map(t=>`<button class="time-btn${S.time===t?' sel':''}" onclick="pickTime('${t}')">${fmtTime(t)}</button>`).join('');
-  $('time-sec').style.display='block';
-}
-function pickTime(t){S.time=t;renderTimes();$('btn2').disabled=false;}
-function chk3(){$('btn3').disabled=!$('f-name').value.trim();}
-
-function renderProg(){
-  const steps=[['款式','Style'],['时间','Date'],['信息','Info'],['确认','Confirm']];
-  $('prog-bar').innerHTML=steps.map(([cn,en],i)=>{
-    const n=i+1,done=n<S.step,act=n===S.step;
-    return`${i?`<div class="p-line${done?' done':''}"></div>`:''}
-    <div class="prog-step"><div class="pd${done?' done':act?' act':''}">${done?'✓':n}</div>
-    <div class="pl${act?' act':''}">${cn}</div></div>`;
-  }).join('');
+function renderReview(){
+  var sv=S.svc,p=getPrice(sv,S.ctype);
+  var isRef=S.ctype==='refill';
+  var label=isRef?sv.cn+'补睫':sv.cn+' / '+sv.en;
+  var ctLabel=S.ctype==='new'?'新客 🎉':S.ctype==='refill'?'补睫 ✿':'老客 💛';
+  var prHtml=p.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p.orig+'</span> <strong style="color:var(--bronze)">'+p.label+'</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">'+p.tag+'</span>':'<strong style="color:var(--bronze)">'+p.label+'</strong>';
+  var rows=[['款式','<strong>'+label+'</strong>'],['类型',ctLabel],['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],['时长',isRef?'60–75 min':'120 min'],['价格',prHtml],['姓名',S.name],['电话',S.phone||'未填'],['邮箱',S.email||'未填'],['备注',S.notes||'无']];
+  var html='';
+  rows.forEach(function(r){html+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
+  el('review-card').innerHTML=html;
 }
 
-function go(n){
-  try{
-    if(S.step===3){S.name=$('f-name').value.trim();S.email=$('f-email').value.trim();S.phone=$('f-phone').value.trim();S.notes=$('f-notes').value.trim();}
-    if(n===2)renderDates();
-    if(n===4){
-      const sv=S.svc,isRefill=S.ctype==='refill',p=getPrice(sv,S.ctype,isRefill);
-      const styleLabel=isRefill?sv.cn+'补睫':sv.cn;
-      const ctypeLabel=S.ctype==='new'?'新客 🎉':S.ctype==='refill'?'补睫 ✿':'老客 💛';
-      const priceHTML=p.orig?`<span style="text-decoration:line-through;color:var(--hint);font-size:13px">${p.orig}</span> <strong style="color:var(--bronze)">${p.label}</strong> <span style="font-size:12px;background:var(--sand-l);color:var(--bronze);padding:2px 8px;border-radius:10px">${p.tag}</span>`:`<strong style="color:var(--bronze)">${p.label}</strong>`;
-      $('review-card').innerHTML=[
-        ['款式',`<strong>${styleLabel}</strong>`],
-        ['类型',ctypeLabel],['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],
-        ['时长',isRefill?'60–75 min':sv.dur],['价格',priceHTML],
-        ['姓名',S.name],['电话',S.phone||'未填'],['邮箱',S.email||'未填'],['备注',S.notes||'无'],
-      ].map(([k,v])=>`<div class="review-row"><span class="rk">${k}</span><span class="rv">${v}</span></div>`).join('');
+function confirm(){
+  el('btn-confirm').disabled=true;
+  el('btn-confirm').textContent='处理中...';
+  var key=fmtKey(S.date);
+  if(!BOOKED[key])BOOKED[key]=[];
+  BOOKED[key].push(S.time);
+  try{window.storage.set('bunny-v9',JSON.stringify(BOOKED),true);}catch(e){}
+
+  var isRef=S.ctype==='refill',sv=S.svc,p=getPrice(sv,S.ctype);
+  var label=isRef?sv.cn+'补睫':sv.cn;
+  var parts=key.split('-');
+  var h=parseInt(S.time.split(':')[0]),mi=parseInt(S.time.split(':')[1]);
+  var st=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]),h,mi,0);
+  var durMin=isRef?75:120;
+  var en=new Date(st.getTime()+durMin*60000);
+  var bookingId=genId();
+
+  // Build client calendar URL
+  var clientDesc='📍 Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n📞 236-996-7087\n💬 WeChat: LanLovesLife\n\n款式: '+label+'\n价格: '+p.label+(p.tag?' ('+p.tag+')':'')+'\n预约编号: '+bookingId+'\n\n取消/修改请提前3天联系\n⚠️ 入口指引：沿No.5 Rd，留意茂密大树夹道入口，门牌7151在左侧石柱，进门右侧停车。';
+  var gcalUrl='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Bunny Beauty — '+label+' · '+S.name)+'&dates='+gcalFmt(st)+'/'+gcalFmt(en)+'&details='+encodeURIComponent(clientDesc)+'&location='+encodeURIComponent(CFG.address);
+  gcalUrlStr=gcalUrl;
+  el('gcal-url').value=gcalUrl;
+  el('ref-display').textContent=bookingId;
+
+  // Confirmation summary
+  var sumP=p.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p.orig+'</span> <strong style="color:var(--bronze)">'+p.label+'</strong>':'<strong style="color:var(--bronze)">'+p.label+'</strong>';
+  var sumRows=[['款式','<strong>'+label+'</strong>'],['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],['价格',sumP],['姓名',S.name]];
+  var sumHtml='';
+  sumRows.forEach(function(r){sumHtml+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
+  el('conf-sum').innerHTML=sumHtml;
+
+  // Parking
+  var lcHtml='';
+  PARKING.forEach(function(pk){lcHtml+='<div class="info-row"><span class="i-icon">'+pk.i+'</span><div><div class="i-label">'+pk.label+'</div><div class="i-val">'+pk.val+'</div></div></div>';});
+  el('loc-conf').innerHTML=lcHtml;
+
+  // Aftercare mini
+  var acHtml='';
+  AC.slice(0,4).forEach(function(a){acHtml+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.cn+'</div><div class="ac-text">'+a.d.substring(0,50)+'...</div></div></div>';});
+  el('ac-mini').innerHTML=acHtml;
+
+  // Switch to step 5
+  el('step4').classList.remove('active');
+  S.step=5;
+  el('step5').classList.add('active');
+  el('prog-bar').style.display='none';
+  scrollSec('book-sec');
+
+  // Save booking record
+  var record={bookingId:bookingId,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:durMin,created:Date.now()};
+  try{window.storage.set('bk:'+bookingId,JSON.stringify(record),true);}catch(e){}
+
+  // Sync to Google Calendar
+  gcalReq({action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,start:st.toISOString(),end:en.toISOString()}).then(function(res){
+    if(res&&res.eventId){
+      try{
+        window.storage.get('bk:'+bookingId,true).then(function(r){
+          if(r){var bk=JSON.parse(r.value);bk.eventId=res.eventId;window.storage.set('bk:'+bookingId,JSON.stringify(bk),true);}
+        });
+      }catch(e){}
     }
-    document.getElementById('step'+S.step).classList.remove('active');
-    S.step=n;
-    document.getElementById('step'+n).classList.add('active');
-    renderProg();
-    scrollSec('book-sec');
-  }catch(err){console.error('go error:',err);}
+  });
 }
 
-async function doConfirm(){
-  const key=fmtKey(S.date);
-  if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);
-  try{await window.storage.set('bunny-v8',JSON.stringify(BOOKED),true);}catch(e){}
-
-  const isRefill=S.ctype==='refill',sv=S.svc,p=getPrice(sv,S.ctype,isRefill);
-  const styleLabel=isRefill?sv.cn+'补睫':sv.cn;
-  const[y,m,d]=key.split('-').map(Number);
-  const[h,mi]=S.time.split(':').map(Number);
-  const durMin=isRefill?75:120;
-  const st=new Date(y,m-1,d,h,mi,0),en=new Date(st.getTime()+durMin*60000);
-
-  // 客人日历链接
-  const clientDesc=`📍 Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n📞 236-996-7087\n💬 WeChat: LanLovesLife\n\n款式: ${styleLabel}\n价格: ${p.label}${p.tag?' ('+p.tag+')':''}\n\n⚠️ 入口指引：沿No.5 Rd，留意茂密大树夹道入口，门牌7151在左侧石柱，进门右侧停车，步行至内院一楼迎接。`;
-  const gcalUrl=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Bunny Beauty — '+styleLabel+' · '+S.name)}&dates=${gcalFmt(st)}/${gcalFmt(en)}&details=${encodeURIComponent(clientDesc)}&location=${encodeURIComponent(CFG.address)}`;
-  $('gcal-link-url').value=gcalUrl;
-
-  // 确认摘要
-  $('conf-sum').innerHTML=[
-    ['款式',`<strong>${styleLabel}</strong>`],
-    ['日期',fmtDate(S.date)],
-    ['时间',fmtTime(S.time)],
-    ['价格',p.orig?`<span style="text-decoration:line-through;color:var(--hint);font-size:13px">${p.orig}</span> <strong style="color:var(--bronze)">${p.label}</strong>`:
-      `<strong style="color:var(--bronze)">${p.label}</strong>`],
-    ['姓名',S.name],
-  ].map(([k,v])=>`<div class="review-row"><span class="rk">${k}</span><span class="rv">${v}</span></div>`).join('');
-
-  // 到店指引
-  const lc=$('loc-conf');lc.innerHTML='';
-  PARKING.forEach(p=>{lc.innerHTML+=`<div class="info-row"><span class="i-icon">${p.i}</span><div><div class="i-label">${p.label}</div><div class="i-val">${p.val}</div></div></div>`;});
-
-  // 护理提醒
-  $('ac-mini').innerHTML=AC.slice(0,4).map(a=>`<div class="ac-row"><div class="ac-ic">${a.i}</div><div><div class="ac-title">${a.cn}</div><div class="ac-text">${a.d.substring(0,40)}...</div></div></div>`).join('');
-
-  // 同步店主日历
-  if(GCAL_URL){
-    try{
-      const body={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',
-        style:styleLabel,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,
-        notes:S.notes||'',start:st.toISOString(),end:en.toISOString()};
-      fetch(GCAL_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(body)}).catch(()=>{});
-      new Image().src=`${GCAL_URL}?${new URLSearchParams(body)}`;
-    }catch(ex){}
-  }
-
-  document.getElementById('step4').classList.remove('active');S.step=5;
-  document.getElementById('step5').classList.add('active');
-  $('prog-bar').style.display='none';scrollSec('book-sec');
-}
-
-// ===== 自助取消逻辑 =====
-async function lookupBooking(){
-  const ref=$('manage-ref').value.trim().toUpperCase();
+/* ============ MANAGE ============ */
+function lookupBooking(){
+  var ref=el('manage-ref').value.trim().toUpperCase();
   if(!ref){alert('请输入预约编号');return;}
-  const res=$('manage-result');
-  res.style.display='block';
+  var res=el('manage-result');
+  res.classList.remove('hidden');
   res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">查询中...</div>';
-  try{
-    const r=await window.storage.get('bk:'+ref,true);
-    if(!r){
-      res.innerHTML='<div class="notice" style="text-align:center">❌ 未找到编号 <strong>'+ref+'</strong><br><span style="font-size:13px">请检查编号是否正确</span></div>';
-      return;
-    }
-    const bk=JSON.parse(r.value);
-    if(bk.status==='cancelled'){
-      res.innerHTML='<div class="notice" style="text-align:center">此预约已取消 ✓</div>';
-      return;
-    }
-    const apptDate=new Date(bk.dateKey+'T'+bk.time);
-    const daysLeft=Math.floor((apptDate-new Date())/86400000);
-    const canSelfCancel=daysLeft>=3;
-    let html='<div class="info-card">';
-    [['款式',bk.style],['日期',bk.dateKey],['时间',fmtTime(bk.time)],['姓名',bk.name],['价格',bk.price]]
-      .forEach(function(row){html+='<div class="review-row"><span class="rk">'+row[0]+'</span><span class="rv">'+row[1]+'</span></div>';});
-    html+='</div><div style="margin-top:14px">';
-    if(canSelfCancel){
-      html+='<div class="notice" style="margin-bottom:12px">距预约还有 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，可以自助取消 ✓</div>';
-      html+='<button class="btn-main" style="background:#c0392b" id="cancel-btn">确认取消此预约</button>';
-    } else {
-      html+='<div class="notice" style="margin-bottom:12px;border-color:var(--sand)">距预约仅剩 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，请直接联系取消</div>';
+  window.storage.get('bk:'+ref,true).then(function(r){
+    if(!r){res.innerHTML='<div class="notice" style="text-align:center">❌ 未找到编号 <strong>'+ref+'</strong><br><span style="font-size:13px">请检查编号是否正确</span></div>';return;}
+    var bk=JSON.parse(r.value);
+    if(bk.status==='cancelled'){res.innerHTML='<div class="notice" style="text-align:center">此预约已取消 ✓</div>';return;}
+    var apptDate=new Date(bk.dateKey+'T'+bk.time+':00');
+    var daysLeft=Math.floor((apptDate-new Date())/86400000);
+    var canCancel=daysLeft>=3;
+    var html='<div class="card" style="margin-bottom:14px">';
+    [['款式',bk.style],['日期',bk.dateKey],['时间',fmtTime(bk.time)],['姓名',bk.name],['价格',bk.price]].forEach(function(row){
+      html+='<div class="review-row"><span class="rk">'+row[0]+'</span><span class="rv">'+row[1]+'</span></div>';
+    });
+    html+='</div>';
+    if(canCancel){
+      html+='<div class="notice">距预约还有 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，可以自助取消 ✓</div>';
+      html+='<button class="btn-main" style="background:#c0392b" id="do-cancel">确认取消此预约</button>';
+    }else{
+      html+='<div class="notice" style="border-color:var(--sand)">距预约仅剩 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，请直接联系取消</div>';
       html+='<a href="tel:+12369967087" class="btn-main" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none">📱 致电 (236) 996-7087</a>';
       html+='<div style="text-align:center;margin-top:10px;font-size:14px;color:var(--hint)">或微信 WeChat: <strong>LanLovesLife</strong></div>';
     }
-    html+='</div>';
     res.innerHTML=html;
-    if(canSelfCancel){
-      $('cancel-btn').onclick=function(){cancelBooking(ref,bk.eventId||'',bk.dateKey,bk.time);};
+    if(canCancel){
+      el('do-cancel').addEventListener('click',function(){doCancelBooking(ref,bk);});
     }
-  }catch(e){res.innerHTML='<div class="notice">查询失败，请重试</div>';}
+  }).catch(function(){res.innerHTML='<div class="notice">查询失败，请重试</div>';});
 }
 
-async function cancelBooking(ref,eventId,dateKey,time){
+function doCancelBooking(ref,bk){
   if(!confirm('确认取消这个预约吗？'))return;
-  const res=$('manage-result');
+  var res=el('manage-result');
   res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">取消中...</div>';
-  try{
-    if(BOOKED[dateKey]){
-      BOOKED[dateKey]=BOOKED[dateKey].filter(function(t){return t!==time;});
-      await window.storage.set('bunny-v8',JSON.stringify(BOOKED),true);
-    }
-    const r=await window.storage.get('bk:'+ref,true);
-    if(r){
-      const bk=JSON.parse(r.value);
-      bk.status='cancelled';
-      await window.storage.set('bk:'+ref,JSON.stringify(bk),true);
-    }
-    if(eventId&&GCAL_URL){await gcalRequest({action:'cancel',eventId:eventId});}
-    res.innerHTML='<div class="info-card" style="text-align:center;padding:24px"><div style="font-size:30px;margin-bottom:10px">✓</div><div style="font-size:18px;font-weight:600;color:var(--bronze);margin-bottom:6px">预约已取消</div><div style="font-size:14px;color:var(--hint)">Booking '+ref+' has been cancelled</div></div>';
-  }catch(e){res.innerHTML='<div class="notice">取消失败，请联系我们</div>';}
+  // Release slot
+  if(BOOKED[bk.dateKey]){
+    BOOKED[bk.dateKey]=BOOKED[bk.dateKey].filter(function(t){return t!==bk.time;});
+    try{window.storage.set('bunny-v9',JSON.stringify(BOOKED),true);}catch(e){}
+  }
+  // Mark cancelled
+  bk.status='cancelled';
+  try{window.storage.set('bk:'+ref,JSON.stringify(bk),true);}catch(e){}
+  // Delete calendar event
+  if(bk.eventId){gcalReq({action:'cancel',eventId:bk.eventId});}
+  res.innerHTML='<div class="card" style="text-align:center;padding:24px"><div style="font-size:30px;margin-bottom:10px">✓</div><div style="font-size:18px;font-weight:600;color:var(--bronze);margin-bottom:6px">预约已取消</div><div style="font-size:14px;color:var(--hint)">Booking '+ref+' has been cancelled</div></div>';
 }
-  try{const r=await window.storage.get('bunny-v8',true);if(r)BOOKED=JSON.parse(r.value);}catch(e){}
-  await fetchBusy(); // 等待 Google Calendar 忙碌时段加载完成
 
-  // 款式卡片
-  const sg=$('sg-styles');
-  STYLES.forEach(s=>{
-    const d=document.createElement('div');d.className='svc-card';
-    d.innerHTML=`<div class="sc-emoji">${s.emoji}</div><div class="sc-cn">${s.cn}</div><div class="sc-en">${s.en}</div><div class="sc-sub">${s.sub}</div><div class="sc-price">${s.priceLabel||'$'+s.price}</div><div class="sc-dur">🕒 ${s.dur}</div>`;
+/* ============ INIT ============ */
+function init(){
+  window.storage.get('bunny-v9',true).then(function(r){if(r)BOOKED=JSON.parse(r.value);}).catch(function(){});
+  fetchBusy();
+
+  // Service cards (info)
+  var sg=el('sg-styles');
+  STYLES.forEach(function(s){
+    var d=document.createElement('div');d.className='svc-card';
+    d.innerHTML='<div class="sc-emoji">'+s.emoji+'</div><div class="sc-cn">'+s.cn+'</div><div class="sc-en">'+s.en+'</div><div class="sc-sub">'+s.sub+'</div><div class="sc-price">'+(s.priceLabel||'$'+s.price)+'</div><div class="sc-dur">🕒 120 min</div>';
     sg.appendChild(d);
   });
 
-  // 补睫价格列表
-  const rf=$('sg-refill');
-  PRICES_REFILL.forEach(i=>{
-    rf.innerHTML+=`<div class="price-row"><div class="pr-left"><div class="pr-cn">${i.cn}</div><div class="pr-en">${i.en}</div></div><div class="pr-right"><div class="pr-price">$${i.price}</div><div class="pr-dur">🕒 ${i.dur}</div></div></div>`;
+  // Refill prices
+  var rf=el('sg-refill');
+  REFILLS.forEach(function(r){
+    rf.innerHTML+='<div class="price-row"><div><div class="pr-cn">'+r.cn+'</div><div class="pr-en">'+r.en+'</div></div><div><div class="pr-price">$'+r.price+'</div><div class="pr-dur">🕒 '+r.dur+'</div></div></div>';
   });
 
-  // 营业时间
-  const hc=$('hours-card');
-  CFG.hours.forEach(([d,h])=>{
-    const cl=h.includes('Closed')||h.includes('休息');
-    hc.innerHTML+=`<div class="hours-row"><span class="hours-day">${d}</span><span class="hours-time ${cl?'hours-closed':''}">${h}</span></div>`;
+  // Hours
+  var hc=el('hours-card');
+  CFG.hours.forEach(function(row){
+    var closed=row[1].includes('Closed')||row[1].includes('休息');
+    hc.innerHTML+='<div class="hours-row"><span>'+row[0]+'</span><span class="'+(closed?'hours-closed':'')+'">'+row[1]+'</span></div>';
   });
 
-  // 停车信息
-  const pb=$('park-block');
-  PARKING.forEach(p=>{pb.innerHTML+=`<div class="info-row"><span class="i-icon">${p.i}</span><div><div class="i-label">${p.label}</div><div class="i-val">${p.val}</div></div></div>`;});
-
-  // 入口参考图
-  const pg=$('photo-guide');
-  const photos=[
-    {label:'① 入口大门',bg:'#6a8a5a',icon:'🌳',desc:'7151石柱'},
-    {label:'② 停车场',bg:'#8a9a7a',icon:'🅿️',desc:'进门右侧'},
-    {label:'③ 内院工作室',bg:'#7a8a9a',icon:'🏠',desc:'一楼迎接'},
-  ];
-  photos.forEach(p=>{
-    pg.innerHTML+=`<div style="background:${p.bg};border-radius:10px;padding:12px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100px">
-      <div style="font-size:22px;margin-bottom:5px">${p.icon}</div>
-      <div style="font-size:10px;color:#fff;font-weight:600;margin-bottom:2px">${p.label}</div>
-      <div style="font-size:9px;color:rgba(255,255,255,.8)">${p.desc}</div>
-    </div>`;
+  // Parking
+  var pc=el('park-card');
+  PARKING.forEach(function(p){
+    pc.innerHTML+='<div class="info-row"><span class="i-icon">'+p.i+'</span><div><div class="i-label">'+p.label+'</div><div class="i-val">'+p.val+'</div></div></div>';
   });
 
-  // 护理指南
-  const af=$('ac-full');
-  AC.forEach(a=>{
-    af.innerHTML+=`<div class="ac-row"><div class="ac-ic">${a.i}</div><div><div class="ac-title">${a.cn} <span style="font-size:12px;font-weight:400;color:var(--hint);font-family:Georgia,serif">/ ${a.en}</span></div><div class="ac-text">${a.d}</div></div></div>`;
+  // Aftercare full
+  var af=el('ac-full');
+  AC.forEach(function(a){
+    af.innerHTML+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.cn+' <span style="font-size:12px;font-weight:400;color:var(--hint);font-family:Georgia,serif">/ '+a.en+'</span></div><div class="ac-text">'+a.d+'</div></div></div>';
   });
 
-  renderBookingStyles();
+  renderBookCards();
   renderProg();
+
+  /* ---- EVENT LISTENERS ---- */
+  el('nav-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
+  el('hero-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
+  el('svc-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
+
+  el('to-new').addEventListener('click',function(){setType('new');});
+  el('to-ret').addEventListener('click',function(){setType('returning');});
+  el('to-ref').addEventListener('click',function(){setType('refill');});
+
+  el('btn1').addEventListener('click',function(){goStep(2);});
+  el('btn2').addEventListener('click',function(){goStep(3);});
+  el('btn3').addEventListener('click',function(){goStep(4);});
+  el('back1').addEventListener('click',function(){goStep(1);});
+  el('back2').addEventListener('click',function(){goStep(2);});
+  el('back3').addEventListener('click',function(){goStep(3);});
+  el('btn-confirm').addEventListener('click',confirm);
+
+  el('f-name').addEventListener('input',function(){el('btn3').disabled=!el('f-name').value.trim();});
+
+  el('gcal-btn').addEventListener('click',function(){if(gcalUrlStr)window.open(gcalUrlStr,'_blank');});
+  el('ac-link').addEventListener('click',function(){scrollSec('aftercare-sec');});
+
+  el('lookup-btn').addEventListener('click',lookupBooking);
+
+  // Bottom nav
+  el('bn-book').addEventListener('click',function(){scrollSec('book-sec');setActive(el('bn-book'));});
+  el('bn-svc').addEventListener('click',function(){scrollSec('svc-sec');setActive(el('bn-svc'));});
+  el('bn-manage').addEventListener('click',function(){scrollSec('manage-sec');setActive(el('bn-manage'));});
+  el('bn-loc').addEventListener('click',function(){scrollSec('loc-sec');setActive(el('bn-loc'));});
+}
+
+function setActive(btn){
+  document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
 }
 
 init();
