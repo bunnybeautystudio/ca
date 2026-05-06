@@ -217,17 +217,7 @@ footer a{color:var(--sand)}
   </div>
 </div>
 
-<!-- SERVICES -->
-<div id="svc-sec">
-<div class="sec">
-  <div class="sec-tag">Services · 美睫款式</div>
-  <h2 style="margin-bottom:16px">可选款式</h2>
-  <div class="svc-grid" id="sg-styles"></div>
-  <div class="price-cat">补睫 Refill (保留50%+) · $20–50</div>
-  <div id="sg-refill"></div>
-  <div style="margin-top:20px"><button class="btn-main" id="svc-book-btn">立即预约 →</button></div>
-</div>
-</div>
+
 
 <!-- BOOKING -->
 <div class="book-wrap" id="book-sec">
@@ -383,9 +373,9 @@ footer a{color:var(--sand)}
 
 <div class="bottom-nav">
   <button class="bn-item active" id="bn-book"><span class="bn-icon">📅</span>预约</button>
-  <button class="bn-item" id="bn-svc"><span class="bn-icon">✿</span>服务</button>
   <button class="bn-item" id="bn-manage"><span class="bn-icon">🔄</span>管理</button>
   <button class="bn-item" id="bn-loc"><span class="bn-icon">📍</span>位置</button>
+  <button class="bn-item" id="bn-care"><span class="bn-icon">💧</span>护理</button>
 </div>
 
 <script>
@@ -828,19 +818,7 @@ function init(){
   if(saved)BOOKED=saved;
   fetchBusy();
 
-  // Service cards (info)
-  var sg=el('sg-styles');
-  STYLES.forEach(function(s){
-    var d=document.createElement('div');d.className='svc-card';
-    d.innerHTML='<div class="sc-emoji">'+s.emoji+'</div><div class="sc-cn">'+s.cn+'</div><div class="sc-en">'+s.en+'</div><div class="sc-sub">'+s.sub+'</div><div class="sc-price">'+(s.priceLabel||'$'+s.price)+'</div><div class="sc-dur">🕒 120 min</div>';
-    sg.appendChild(d);
-  });
-
-  // Refill prices
-  var rf=el('sg-refill');
-  REFILLS.forEach(function(r){
-    rf.innerHTML+='<div class="price-row"><div><div class="pr-cn">'+r.cn+'</div><div class="pr-en">'+r.en+'</div></div><div><div class="pr-price">$'+r.price+'</div><div class="pr-dur">🕒 '+r.dur+'</div></div></div>';
-  });
+  // Service cards removed - shown in booking flow instead
 
   // Hours
   var hc=el('hours-card');
@@ -867,7 +845,7 @@ function init(){
   /* ---- EVENT LISTENERS ---- */
   el('nav-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
   el('hero-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
-  el('svc-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
+
 
   el('to-new').addEventListener('click',function(){setType('new');});
   el('to-ret').addEventListener('click',function(){setType('returning');});
@@ -897,9 +875,9 @@ function init(){
 
   // Bottom nav
   el('bn-book').addEventListener('click',function(){scrollSec('book-sec');setActive(el('bn-book'));});
-  el('bn-svc').addEventListener('click',function(){scrollSec('svc-sec');setActive(el('bn-svc'));});
   el('bn-manage').addEventListener('click',function(){scrollSec('manage-sec');setActive(el('bn-manage'));});
   el('bn-loc').addEventListener('click',function(){scrollSec('loc-sec');setActive(el('bn-loc'));});
+  el('bn-care').addEventListener('click',function(){scrollSec('aftercare-sec');setActive(el('bn-care'));});
 }
 
 function setActive(btn){
