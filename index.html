@@ -18,7 +18,11 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-logo{display:flex;align-items:center;gap:10px}
 .nav-name{font-size:15px;letter-spacing:.06em;color:#fff;font-family:Georgia,serif}
-.nav-book{background:var(--dark);color:#fff;border:none;padding:9px 16px;border-radius:var(--r10);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+.nav-right{display:flex;align-items:center;gap:8px}
+.lang-switch{display:flex;background:rgba(255,255,255,.15);border-radius:20px;padding:3px;gap:2px}
+.lang-btn{border:none;background:transparent;color:rgba(255,255,255,.7);font-size:12px;font-weight:600;padding:4px 10px;border-radius:16px;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:.15s}
+.lang-btn.active{background:#fff;color:var(--bronze)}
+.nav-book{background:var(--dark);color:#fff;border:none;padding:8px 14px;border-radius:var(--r10);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
 
 .hero{background:var(--sand);padding:36px 20px 32px;text-align:center}
 .hero h1{color:#fff;margin-bottom:8px;font-family:Georgia,serif}
@@ -41,23 +45,6 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .sec-tag{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:8px;display:flex;align-items:center;gap:8px}
 .sec-tag::before{content:'';width:16px;height:1.5px;background:var(--sand);display:block}
 
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.svc-card{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);padding:16px;text-align:center}
-.sc-emoji{font-size:26px;margin-bottom:8px}
-.sc-cn{font-size:15px;font-weight:500;margin-bottom:3px}
-.sc-en{font-size:12px;color:var(--hint);font-family:Georgia,serif;margin-bottom:4px}
-.sc-sub{font-size:12px;color:var(--hint);margin-bottom:8px}
-.sc-price{font-size:22px;color:var(--bronze)}
-.sc-dur{font-size:12px;color:var(--hint);margin-top:4px}
-
-.price-cat{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--bronze);margin:20px 0 10px;display:flex;align-items:center;gap:8px;font-family:Georgia,serif}
-.price-cat::after{content:'';flex:1;height:1px;background:var(--bdr)}
-.price-row{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r10);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.pr-cn{font-size:15px;font-weight:500;margin-bottom:2px}
-.pr-en{font-size:12px;color:var(--hint);font-family:Georgia,serif}
-.pr-price{font-size:20px;color:var(--bronze);text-align:right}
-.pr-dur{font-size:12px;color:var(--hint);text-align:right}
-
 .book-wrap{background:var(--sand-l);border-top:1px solid var(--bdr)}
 .prog{display:flex;align-items:center;padding:0 4px;gap:0;margin-bottom:24px}
 .prog-step{text-align:center;flex-shrink:0}
@@ -75,7 +62,6 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .type-opt.sel{border-color:var(--sand);background:var(--sand-l)}
 .to-emoji{font-size:22px;margin-bottom:4px}
 .to-cn{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
-.to-en{font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:4px}
 .to-badge{font-size:12px;color:var(--bronze);font-weight:500}
 
 .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
@@ -149,7 +135,6 @@ input:focus,textarea:focus{border-color:var(--sand)}
 .hours-row{display:flex;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--bdr);font-size:14px}
 .hours-row:last-child{border-bottom:none}
 .hours-closed{color:var(--sand)}
-
 .maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--sand-l);border:1.5px solid var(--bdr);border-radius:var(--r10);padding:13px;color:var(--bronze);font-size:15px;font-weight:500;text-decoration:none;margin-top:12px}
 
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--w);border-top:1px solid var(--bdr);display:flex;z-index:300;padding:0}
@@ -161,7 +146,6 @@ footer{background:var(--dark);padding:24px 20px;text-align:center}
 footer .f-logo{color:var(--sand);font-size:15px;font-family:Georgia,serif;letter-spacing:.1em;margin-bottom:6px}
 footer .f-info{color:rgba(255,255,255,.4);font-size:12px;line-height:1.9}
 footer a{color:var(--sand)}
-
 .step{display:none}.step.active{display:block}
 .hidden{display:none}
 </style>
@@ -180,7 +164,13 @@ footer a{color:var(--sand)}
       </svg>
       <span class="nav-name">BUNNYBEAUTY</span>
     </div>
-    <button class="nav-book" id="nav-book-btn">预约 Book</button>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" id="btn-cn" onclick="setLang('cn')">中文</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="nav-book" id="nav-book-btn"></button>
+    </div>
   </div>
 </nav>
 
@@ -195,120 +185,102 @@ footer a{color:var(--sand)}
     <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
     <text x="50" y="92" font-size="7.5" font-family="Georgia,serif" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="3">BUNNYBEAUTY STUDIO</text>
   </svg>
-  <h1>新中式美睫</h1>
+  <h1 id="hero-h1"></h1>
   <div class="hero-sub">Private Lash Studio · Richmond BC</div>
   <div class="hero-slogan">Timeless Beauty. Artfully Crafted.</div>
-  <div class="hero-pills">
-    <span class="pill">✔ 款式多样</span>
-    <span class="pill">✔ 贴合眼型</span>
-    <span class="pill">✔ 灵动自然</span>
-    <span class="pill">✔ 精致不夸张</span>
-    <span class="pill">🕒 1.5 – 2h</span>
-  </div>
-  <button class="hero-btn" id="hero-book-btn">立即预约 Book Now →</button>
+  <div class="hero-pills" id="hero-pills"></div>
+  <button class="hero-btn" id="hero-book-btn"></button>
 </div>
 
 <div class="strip">
-  <div class="strip-in">
-    <div class="si"><div class="si-icon">🌿</div><div class="si-cn">私人工作室</div><div class="si-en">Private Studio</div></div>
-    <div class="si"><div class="si-icon">✿</div><div class="si-cn">定制眼型</div><div class="si-en">Custom Lash Map</div></div>
-    <div class="si"><div class="si-icon">💎</div><div class="si-cn">优质山茶花毛</div><div class="si-en">Premium Camellia</div></div>
-    <div class="si"><div class="si-icon">📅</div><div class="si-cn">在线预约</div><div class="si-en">Easy Booking</div></div>
-  </div>
+  <div class="strip-in" id="strip-in"></div>
 </div>
-
-
 
 <!-- BOOKING -->
 <div class="book-wrap" id="book-sec">
 <div class="sec">
-  <div class="sec-tag">Online Booking · 在线预约</div>
-  <h2 style="margin-bottom:20px">预约你的时间</h2>
+  <div class="sec-tag" id="book-tag"></div>
+  <h2 id="book-h2" style="margin-bottom:20px"></h2>
   <div class="prog" id="prog-bar"></div>
 
-  <!-- Step 1 -->
   <div id="step1" class="step active">
     <div class="type-box">
-      <h3 style="font-size:16px;margin-bottom:4px">你是新客还是老客？</h3>
-      <p style="font-size:13px;color:var(--hint)">新客半价 · 老客8折 · 补睫5折</p>
+      <h3 style="font-size:16px;margin-bottom:4px" id="type-title"></h3>
+      <p style="font-size:13px;color:var(--hint)" id="type-sub"></p>
       <div class="type-opts">
-        <div class="type-opt" id="to-new"><div class="to-emoji">🎉</div><div class="to-cn">新客</div><div class="to-en">First Visit</div><div class="to-badge">半价</div></div>
-        <div class="type-opt" id="to-ret"><div class="to-emoji">💛</div><div class="to-cn">老客</div><div class="to-en">Returning</div><div class="to-badge">8折</div></div>
-        <div class="type-opt" id="to-ref"><div class="to-emoji">✿</div><div class="to-cn">补睫</div><div class="to-en">Refill</div><div class="to-badge">$30–50</div></div>
+        <div class="type-opt" id="to-new"><div class="to-emoji">🎉</div><div class="to-cn" id="to-new-label"></div><div class="to-badge" id="to-new-badge"></div></div>
+        <div class="type-opt" id="to-ret"><div class="to-emoji">💛</div><div class="to-cn" id="to-ret-label"></div><div class="to-badge" id="to-ret-badge"></div></div>
+        <div class="type-opt" id="to-ref"><div class="to-emoji">✿</div><div class="to-cn" id="to-ref-label"></div><div class="to-badge">$30–50</div></div>
       </div>
     </div>
-    <h3 style="margin-bottom:12px">选择款式</h3>
+    <h3 style="margin-bottom:12px" id="style-title"></h3>
     <div class="book-grid" id="sp-grid"></div>
-    <button class="btn-main" id="btn1" disabled>下一步：选择时间 →</button>
+    <button class="btn-main" id="btn1" disabled></button>
   </div>
 
-  <!-- Step 2 -->
   <div id="step2" class="step">
-    <button class="btn-back" id="back1">← 返回</button>
-    <h3 style="margin-bottom:6px">选择日期</h3>
-    <p style="font-size:13px;color:var(--hint);margin-bottom:14px">左右滑动查看更多日期</p>
+    <button class="btn-back" id="back1"></button>
+    <h3 style="margin-bottom:6px" id="date-title"></h3>
+    <p style="font-size:13px;color:var(--hint);margin-bottom:14px" id="date-sub"></p>
     <div class="date-scroll" id="date-grid"></div>
     <div id="time-sec" class="hidden">
-      <h3 style="margin-bottom:12px">选择时间 — <span id="t-label" style="color:var(--bronze)"></span></h3>
+      <h3 style="margin-bottom:12px" id="time-title"></h3>
       <div class="time-grid" id="time-grid"></div>
     </div>
-    <button class="btn-main" id="btn2" disabled>下一步：填写信息 →</button>
+    <button class="btn-main" id="btn2" disabled></button>
   </div>
 
-  <!-- Step 3 -->
   <div id="step3" class="step">
-    <button class="btn-back" id="back2">← 返回</button>
-    <h3 style="margin-bottom:14px">填写信息</h3>
+    <button class="btn-back" id="back2"></button>
+    <h3 style="margin-bottom:14px" id="info-title"></h3>
     <div class="form-box">
-      <div class="field"><span class="flbl">姓名 Full Name *</span><input type="text" id="f-name" placeholder="您的姓名"></div>
-      <div class="field"><span class="flbl">电话 <span style="font-weight:400;color:var(--hint)">(选填)</span></span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
-      <div class="field"><span class="flbl">邮箱 <span style="font-weight:400;color:var(--hint)">(选填)</span></span><input type="email" id="f-email" placeholder="your@email.com"></div>
-      <div class="field" style="margin-bottom:0"><span class="flbl">备注 <span style="font-weight:400;color:var(--hint)">(选填)</span></span><textarea id="f-notes" rows="3" placeholder="过敏史 / 目前眼睫情况 / 期望效果..."></textarea></div>
+      <div class="field"><span class="flbl" id="lbl-name"></span><input type="text" id="f-name" placeholder=""></div>
+      <div class="field"><span class="flbl" id="lbl-phone"></span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
+      <div class="field"><span class="flbl" id="lbl-email"></span><input type="email" id="f-email" placeholder="your@email.com"></div>
+      <div class="field" style="margin-bottom:0"><span class="flbl" id="lbl-notes"></span><textarea id="f-notes" rows="3" placeholder=""></textarea></div>
     </div>
-    <button class="btn-main" id="btn3" disabled>查看预约详情 →</button>
+    <button class="btn-main" id="btn3" disabled></button>
   </div>
 
-  <!-- Step 4 -->
   <div id="step4" class="step">
-    <button class="btn-back" id="back3">← 修改</button>
-    <h3 style="margin-bottom:14px">确认预约信息</h3>
+    <button class="btn-back" id="back3"></button>
+    <h3 style="margin-bottom:14px" id="review-title"></h3>
     <div class="card" style="margin-bottom:14px" id="review-card"></div>
-    <div class="notice">⚠️ 请提前 <strong>3天</strong> 取消或改期，3天内请直接联系我们。<br><span style="font-size:13px;font-family:Georgia,serif;color:var(--hint)">Please cancel at least 3 days in advance.</span></div>
-    <button class="btn-main" id="btn-confirm">确认预约 ✓ Confirm</button>
+    <div class="notice" id="cancel-notice"></div>
+    <button class="btn-main" id="btn-confirm"></button>
   </div>
 
-  <!-- Step 5 -->
   <div id="step5" class="step">
     <div style="text-align:center;padding:24px 0 20px">
       <div style="width:72px;height:72px;border-radius:50%;background:var(--sand-l);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px">✿</div>
-      <div style="font-size:24px;color:var(--bronze);margin-bottom:6px;font-weight:500">预约成功！🎉</div>
-      <div style="font-size:14px;color:var(--hint);font-family:Georgia,serif">Booking confirmed · See you soon</div>
+      <div style="font-size:24px;color:var(--bronze);margin-bottom:6px;font-weight:500" id="conf-title"></div>
+      <div style="font-size:14px;color:var(--hint);font-family:Georgia,serif" id="conf-sub"></div>
     </div>
     <div class="ref-card">
-      <div style="font-size:12px;color:var(--hint);margin-bottom:6px;letter-spacing:.06em">预约编号 Booking Reference</div>
+      <div style="font-size:12px;color:var(--hint);margin-bottom:6px;letter-spacing:.06em" id="ref-label"></div>
       <div class="ref-num" id="ref-display"></div>
-      <div style="font-size:12px;color:var(--hint);margin-top:6px">请保存此编号，取消/修改时需要</div>
+      <div style="font-size:12px;color:var(--hint);margin-top:6px" id="ref-sub"></div>
     </div>
     <div class="gcal-bar">
-      <div style="color:#fff;font-size:16px;font-weight:600;margin-bottom:4px">📅 添加到你的日历</div>
-      <div style="color:rgba(255,255,255,.75);font-size:13px">地址、电话、停车指引已自动填入</div>
+      <div style="color:#fff;font-size:16px;font-weight:600;margin-bottom:4px" id="gcal-title"></div>
+      <div style="color:rgba(255,255,255,.75);font-size:13px" id="gcal-sub"></div>
       <button class="gcal-btn" id="gcal-btn">📅 Add to Google Calendar</button>
       <input type="hidden" id="gcal-url">
     </div>
     <div class="card" style="margin-bottom:14px" id="conf-sum"></div>
     <div class="card" style="margin-bottom:14px">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px">📞 联系我们</h3></div>
-      <div class="contact-row"><span class="c-icon">📱</span><div><div class="c-label">电话 / 短信</div><a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div></div>
-      <div class="contact-row"><span class="c-icon">💬</span><div><div class="c-label">微信 WeChat</div><div class="c-val">LanLovesLife</div></div></div>
+      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px" id="contact-title"></h3></div>
+      <div class="contact-row"><span class="c-icon">📱</span><div><div class="c-label" id="phone-label"></div><a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div></div>
+      <div class="contact-row"><span class="c-icon">💬</span><div><div class="c-label" id="wechat-label"></div><div class="c-val">LanLovesLife</div></div></div>
     </div>
     <div class="card" style="margin-bottom:14px">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px">📍 到店指引</h3></div>
+      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px" id="directions-title"></h3></div>
       <div id="loc-conf"></div>
     </div>
     <div class="card">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px">💧 护理提醒</h3></div>
+      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px" id="aftercare-remind-title"></h3></div>
       <div id="ac-mini"></div>
-      <div style="padding:14px 16px"><a id="ac-link" style="color:var(--sand);font-size:14px;cursor:pointer">查看完整护理指南 →</a></div>
+      <div style="padding:14px 16px"><a id="ac-link" style="color:var(--sand);font-size:14px;cursor:pointer"></a></div>
     </div>
   </div>
 </div>
@@ -317,16 +289,16 @@ footer a{color:var(--sand)}
 <!-- MANAGE -->
 <div id="manage-sec" style="border-top:1px solid var(--bdr);background:var(--w)">
 <div class="sec">
-  <div class="sec-tag">Manage · 管理预约</div>
-  <h2 style="margin-bottom:6px">取消 / 修改预约</h2>
-  <p style="margin-bottom:20px;font-size:14px">提前 <strong style="color:var(--bronze)">3天以上</strong> 可自助取消，3天内请直接联系。</p>
+  <div class="sec-tag" id="manage-tag"></div>
+  <h2 style="margin-bottom:6px" id="manage-h2"></h2>
+  <p style="margin-bottom:20px;font-size:14px" id="manage-sub"></p>
   <div class="form-box" style="margin-bottom:14px">
     <div class="field" style="margin-bottom:0">
-      <span class="flbl">输入预约编号 Booking Reference</span>
-      <input type="text" id="manage-ref" placeholder="例如：BB-A3K7" style="text-transform:uppercase;letter-spacing:.08em;font-size:20px;text-align:center">
+      <span class="flbl" id="manage-lbl"></span>
+      <input type="text" id="manage-ref" style="text-transform:uppercase;letter-spacing:.08em;font-size:20px;text-align:center" placeholder="e.g. BB-A3K7">
     </div>
   </div>
-  <button class="btn-main" id="lookup-btn">查询我的预约 →</button>
+  <button class="btn-main" id="lookup-btn"></button>
   <div id="manage-result" class="hidden" style="margin-top:16px"></div>
 </div>
 </div>
@@ -334,25 +306,21 @@ footer a{color:var(--sand)}
 <!-- LOCATION -->
 <div id="loc-sec" style="background:var(--w);border-top:1px solid var(--bdr)">
 <div class="sec">
-  <div class="sec-tag">Location · 位置</div>
-  <h2 style="margin-bottom:16px">工作室地址</h2>
+  <div class="sec-tag" id="loc-tag"></div>
+  <h2 style="margin-bottom:16px" id="loc-h2"></h2>
   <div class="card">
     <div class="info-row"><span class="i-icon">📌</span><div><div class="i-label">Bunny Beauty Studio</div><div class="i-val">7151 No. 5 Rd, Richmond, BC</div></div></div>
-    <div class="info-row"><span class="i-icon">📞</span><div><div class="i-label">电话 / 短信</div><a href="tel:+12369967087" style="color:var(--sand);font-size:14px">(236) 996-7087</a></div></div>
-    <div class="info-row"><span class="i-icon">💬</span><div><div class="i-label">微信 WeChat</div><div class="i-val">LanLovesLife</div></div></div>
+    <div class="info-row"><span class="i-icon">📞</span><div><div class="i-label" id="loc-phone-label"></div><a href="tel:+12369967087" style="color:var(--sand);font-size:14px">(236) 996-7087</a></div></div>
+    <div class="info-row"><span class="i-icon">💬</span><div><div class="i-label" id="loc-wechat-label"></div><div class="i-val">LanLovesLife</div></div></div>
   </div>
-  <a href="https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC" target="_blank" class="maps-btn">🗺 在 Google Maps 中打开</a>
+  <a href="https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC" target="_blank" class="maps-btn" id="maps-btn-text"></a>
   <div class="card" style="margin-top:14px" id="hours-card"></div>
-  <h3 style="margin:24px 0 14px">🅿️ 停车 & 到达</h3>
+  <h3 style="margin:24px 0 14px" id="parking-title"></h3>
   <div class="card" id="park-card"></div>
   <div style="background:var(--sand-l);border-radius:var(--r16);padding:16px;margin-top:12px;border:1px solid var(--bdr)">
-    <div style="font-size:13px;font-weight:600;color:var(--bronze);margin-bottom:10px">📸 入口参考图</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
-      <div style="background:#6a8a5a;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">🌳</div><div style="font-size:10px;color:#fff;font-weight:600">① 入口大门</div><div style="font-size:9px;color:rgba(255,255,255,.8)">7151石柱</div></div>
-      <div style="background:#8a9a7a;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">🅿️</div><div style="font-size:10px;color:#fff;font-weight:600">② 停车场</div><div style="font-size:9px;color:rgba(255,255,255,.8)">进门右侧</div></div>
-      <div style="background:#7a8a9a;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">🏠</div><div style="font-size:10px;color:#fff;font-weight:600">③ 内院</div><div style="font-size:9px;color:rgba(255,255,255,.8)">一楼迎接</div></div>
-    </div>
-    <div style="background:var(--w);border-radius:10px;padding:12px;font-size:13px;color:var(--bronze);line-height:1.7">⚠️ <strong>入口隐秘请减速</strong>，留意左侧石柱 <strong>7151</strong> 门牌<br>进门右侧停车 → 步行至内院 → 一楼迎接 → 上二楼</div>
+    <div style="font-size:13px;font-weight:600;color:var(--bronze);margin-bottom:10px" id="photo-title"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px" id="photo-grid"></div>
+    <div style="background:var(--w);border-radius:10px;padding:12px;font-size:13px;color:var(--bronze);line-height:1.7" id="parking-tip"></div>
   </div>
 </div>
 </div>
@@ -360,8 +328,8 @@ footer a{color:var(--sand)}
 <!-- AFTERCARE -->
 <div id="aftercare-sec" style="border-top:1px solid var(--bdr);background:var(--sand-ll)">
 <div class="sec">
-  <div class="sec-tag">Aftercare · 护理</div>
-  <h2 style="margin-bottom:16px">爱护你的美睫</h2>
+  <div class="sec-tag" id="care-tag"></div>
+  <h2 style="margin-bottom:16px" id="care-h2"></h2>
   <div class="card" id="ac-full"></div>
 </div>
 </div>
@@ -372,15 +340,158 @@ footer a{color:var(--sand)}
 </footer>
 
 <div class="bottom-nav">
-  <button class="bn-item active" id="bn-book"><span class="bn-icon">📅</span>预约</button>
-  <button class="bn-item" id="bn-manage"><span class="bn-icon">🔄</span>管理</button>
-  <button class="bn-item" id="bn-loc"><span class="bn-icon">📍</span>位置</button>
-  <button class="bn-item" id="bn-care"><span class="bn-icon">💧</span>护理</button>
+  <button class="bn-item active" id="bn-book"><span class="bn-icon">📅</span><span id="bn-book-lbl"></span></button>
+  <button class="bn-item" id="bn-manage"><span class="bn-icon">🔄</span><span id="bn-manage-lbl"></span></button>
+  <button class="bn-item" id="bn-loc"><span class="bn-icon">📍</span><span id="bn-loc-lbl"></span></button>
+  <button class="bn-item" id="bn-care"><span class="bn-icon">💧</span><span id="bn-care-lbl"></span></button>
 </div>
 
 <script>
-/* ============ CONFIG ============ */
 var GCAL_URL='https://script.google.com/macros/s/AKfycbzd5WvFEXc9Em38Pafu5sTeJxkUopyZfZI7EjT_hCcA_xmSTOyAjYLOck3pqAtsvkDw/exec';
+
+/* ============ TRANSLATIONS ============ */
+var T={
+  cn:{
+    navBook:'立即预约',
+    heroH1:'新中式美睫',
+    pills:['✔ 款式多样','✔ 贴合眼型','✔ 灵动自然','✔ 精致不夸张','🕒 1.5–2h'],
+    heroBtn:'立即预约 →',
+    strip:[{cn:'私人工作室',en:'Private Studio'},{cn:'定制眼型',en:'Custom Lash Map'},{cn:'优质山茶花毛',en:'Premium Camellia'},{cn:'在线预约',en:'Easy Booking'}],
+    bookTag:'在线预约',bookH2:'预约你的时间',
+    typeTitle:'你是新客还是老客？',typeSub:'新客半价 · 老客8折 · 补睫5折',
+    toNew:'新客',toNewBadge:'半价',toRet:'老客',toRetBadge:'8折',toRef:'补睫',
+    styleTitle:'选择款式',
+    btn1:'下一步：选择时间 →',back1:'← 返回',
+    dateTitle:'选择日期',dateSub:'左右滑动查看更多日期',
+    timeTitle:'选择时间',
+    btn2:'下一步：填写信息 →',
+    infoTitle:'填写信息',back2:'← 返回',
+    lblName:'姓名 *',lblPhone:'电话 (选填)',lblEmail:'邮箱 (选填)',lblNotes:'备注 (选填)',
+    namePH:'您的姓名',notesPH:'过敏史 / 目前眼睫情况 / 期望效果...',
+    btn3:'查看预约详情 →',
+    reviewTitle:'确认预约信息',back3:'← 修改',
+    cancelNotice:'⚠️ 请提前 3天 取消或改期，3天内请直接联系我们。',
+    btnConfirm:'确认预约 ✓ Confirm',
+    confTitle:'预约成功！🎉',confSub:'We\'ll see you soon ✿',
+    refLabel:'预约编号',refSub:'请保存此编号，取消/修改时需要',
+    gcalTitle:'📅 添加到你的日历',gcalSub:'地址、电话、停车指引已自动填入',
+    contactTitle:'联系我们',phoneLabel:'电话 / 短信',wechatLabel:'微信',
+    directionsTitle:'📍 到店指引',aftercareRemind:'💧 护理提醒',acLink:'查看完整护理指南 →',
+    manageTag:'管理预约',manageH2:'取消 / 修改预约',
+    manageSub:'提前 3天以上 可自助取消，3天内请直接联系。',
+    manageLbl:'输入预约编号',lookupBtn:'查询我的预约 →',
+    locTag:'位置',locH2:'工作室地址',locPhoneLabel:'电话 / 短信',locWechatLabel:'微信',
+    mapsBtn:'🗺 在 Google Maps 中打开',parkingTitle:'🅿️ 停车 & 到达',
+    photoTitle:'📸 入口参考图',
+    photos:[{bg:'#6a8a5a',icon:'🌳',label:'① 入口大门',desc:'7151石柱'},{bg:'#8a9a7a',icon:'🅿️',label:'② 停车场',desc:'进门右侧'},{bg:'#7a8a9a',icon:'🏠',label:'③ 内院',desc:'一楼迎接'}],
+    parkingTip:'⚠️ 入口隐秘请减速，留意左侧石柱 7151 门牌\n进门右侧停车 → 步行至内院 → 一楼迎接 → 上二楼',
+    careTag:'护理',careH2:'爱护你的美睫',
+    progSteps:['款式','时间','信息','确认'],
+    bnBook:'预约',bnManage:'管理',bnLoc:'位置',bnCare:'护理',
+    days:['日','一','二','三','四','五','六'],
+    spotsLeft:'位',
+    rk:{style:'款式',type:'类型',date:'日期',time:'时间',duration:'时长',price:'价格',name:'姓名',phone:'电话',email:'邮箱',notes:'备注'},
+    ctypes:{new:'新客 🎉',refill:'补睫 ✿',returning:'老客 💛'},
+    refillDur:'60–75 min',
+    lookupLoading:'查询中...',lookupNotFound:'❌ 未找到编号',lookupCancelled:'此预约已取消 ✓',
+    daysLeft:'距预约还有',daysLeftUnit:'天，可以自助取消 ✓',
+    daysLeftFew:'距预约仅剩',daysLeftFewUnit:'天，请直接联系取消',
+    doCancel:'确认取消此预约',cancelLoading:'取消中...',cancelDone:'预约已取消',
+    hours:['周一 Mon','12:00 PM – 9:00 PM','周二 Tue','12:00 PM – 9:00 PM','周三 Wed','9:00 AM – 9:00 PM','周四 Thu','10:00 AM / 1:00 PM onwards','周五–周六 Fri–Sat','9:00 AM – 9:00 PM','周日 Sun','休息 Closed'],
+    parking:[
+      {i:'🔍',label:'⚠️ 入口隐秘请注意',val:'沿No.5 Rd行驶，留意两侧茂密大树夹道入口，门牌 7151 在左侧石柱，容易错过请减速'},
+      {i:'🅿️',label:'停车位置',val:'进入大门后靠右手边停车，有足够空间'},
+      {i:'🚶',label:'步行指引',val:'停车后往内院走，我在一楼迎接，带您上二楼工作室'},
+      {i:'🚌',label:'405 公交车站',val:'门口即有405路公交车站，非常方便'},
+      {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'}
+    ],
+    ac:[
+      {i:'💧',title:'8小时内避水避蒸汽',text:'避开水、蒸汽、桑拿，让胶水充分固化。8小时后可正常洗脸，避免大量水冲眼部。'},
+      {i:'🚫',title:'避免油性产品',text:'油脂溶解胶水，更换无油洁面及卸妆产品，检查所有护肤品标签。'},
+      {i:'🤲',title:'不要揉眼睛',text:'揉眼造成过早脱落，如有不适请联系我们。'},
+      {i:'🌙',title:'尽量仰睡',text:'侧睡压变睫毛形状，建议使用真丝枕套减少摩擦。'},
+      {i:'✿',title:'每天梳理睫毛',text:'每天早晨用螺旋刷从根部轻轻梳理，保持蓬松感。'},
+      {i:'💄',title:'不需要刷睫毛膏',text:'接睫后无需睫毛膏，使用会使睫毛结块影响效果。'},
+      {i:'🧴',title:'每周清洁两次',text:'用专用泡沫清洁睫毛，清洁度决定持久度。'},
+      {i:'📅',title:'2周内来补睫',text:'建议在2周内回来补睫，保持饱满效果。超过2周可能需要重新接全套。'}
+    ]
+  },
+  en:{
+    navBook:'Book Now',
+    heroH1:'Lash Extensions',
+    pills:['✔ Various styles','✔ Custom fit','✔ Natural look','✔ Subtle glam','🕒 1.5–2 hrs'],
+    heroBtn:'Book an Appointment →',
+    strip:[{cn:'Private Studio',en:'Private Studio'},{cn:'Custom Lash Map',en:'Custom Lash Map'},{cn:'Premium Camellia',en:'Premium Camellia'},{cn:'Easy Booking',en:'Easy Booking'}],
+    bookTag:'Online Booking',bookH2:'Reserve Your Spot',
+    typeTitle:'Are you a new or returning client?',typeSub:'New clients: 50% off · Returning: 20% off · Refill: 50% off',
+    toNew:'New Client',toNewBadge:'50% off',toRet:'Returning',toRetBadge:'20% off',toRef:'Refill',
+    styleTitle:'Choose your style',
+    btn1:'Next: Choose a Time →',back1:'← Back',
+    dateTitle:'Pick a date',dateSub:'Swipe to see more dates',
+    timeTitle:'Available times',
+    btn2:'Next: Your Info →',
+    infoTitle:'Your Information',back2:'← Back',
+    lblName:'Full Name *',lblPhone:'Phone (optional)',lblEmail:'Email (optional)',lblNotes:'Notes (optional)',
+    namePH:'Your name',notesPH:'Allergies / current lashes / desired look...',
+    btn3:'Review Booking →',
+    reviewTitle:'Review & Confirm',back3:'← Edit',
+    cancelNotice:'⚠️ Please cancel or reschedule at least 3 days in advance. Within 3 days, please contact us directly.',
+    btnConfirm:'Confirm Booking ✓',
+    confTitle:'You\'re all booked! 🎉',confSub:'We can\'t wait to see you ✿',
+    refLabel:'Booking Reference',refSub:'Save this — you\'ll need it to cancel or reschedule',
+    gcalTitle:'📅 Add to Your Calendar',gcalSub:'Address, phone & directions are pre-filled',
+    contactTitle:'Contact Us',phoneLabel:'Phone / Text',wechatLabel:'WeChat',
+    directionsTitle:'📍 Getting Here',aftercareRemind:'💧 Aftercare Reminders',acLink:'View full aftercare guide →',
+    manageTag:'Manage Booking',manageH2:'Cancel / Reschedule',
+    manageSub:'Self-cancel up to 3 days before your appointment. Within 3 days, please reach out directly.',
+    manageLbl:'Enter your booking reference',lookupBtn:'Look Up My Booking →',
+    locTag:'Location',locH2:'Studio Address',locPhoneLabel:'Phone / Text',locWechatLabel:'WeChat',
+    mapsBtn:'🗺 Open in Google Maps',parkingTitle:'🅿️ Parking & Arrival',
+    photoTitle:'📸 Entrance Guide',
+    photos:[{bg:'#6a8a5a',icon:'🌳',label:'① Entrance',desc:'7151 pillar'},{bg:'#8a9a7a',icon:'🅿️',label:'② Parking',desc:'Right side inside gate'},{bg:'#7a8a9a',icon:'🏠',label:'③ Courtyard',desc:'Meet you on 1st floor'}],
+    parkingTip:'⚠️ The entrance is easy to miss — slow down and look for the 7151 pillar on your left\nPark on the right → walk to the inner courtyard → I\'ll meet you on the 1st floor → up to 2nd floor studio',
+    careTag:'Aftercare',careH2:'Keep Your Lashes Gorgeous',
+    progSteps:['Style','Time','Info','Review'],
+    bnBook:'Book',bnManage:'Manage',bnLoc:'Location',bnCare:'Aftercare',
+    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    spotsLeft:'',
+    rk:{style:'Style',type:'Client type',date:'Date',time:'Time',duration:'Duration',price:'Price',name:'Name',phone:'Phone',email:'Email',notes:'Notes'},
+    ctypes:{new:'New Client 🎉',refill:'Refill ✿',returning:'Returning 💛'},
+    refillDur:'60–75 min',
+    lookupLoading:'Looking up...',lookupNotFound:'❌ Booking not found',lookupCancelled:'This booking has been cancelled ✓',
+    daysLeft:'Your appointment is in',daysLeftUnit:'days — you can self-cancel ✓',
+    daysLeftFew:'Only',daysLeftFewUnit:'days until your appointment. Please contact us to cancel.',
+    doCancel:'Cancel This Appointment',cancelLoading:'Cancelling...',cancelDone:'Booking Cancelled',
+    hours:['Mon','12:00 PM – 9:00 PM','Tue','12:00 PM – 9:00 PM','Wed','9:00 AM – 9:00 PM','Thu','10:00 AM / 1:00 PM onwards','Fri–Sat','9:00 AM – 9:00 PM','Sun','Closed'],
+    parking:[
+      {i:'🔍',label:'⚠️ Easy-to-miss entrance',val:'Drive along No. 5 Rd and watch for a tree-lined driveway — the 7151 gate pillar is on the left. Slow down, it\'s easy to miss!'},
+      {i:'🅿️',label:'Parking',val:'Park on the right side after entering the gate — plenty of space'},
+      {i:'🚶',label:'Directions',val:'Walk toward the inner courtyard. I\'ll meet you on the 1st floor and take you up to the 2nd floor studio'},
+      {i:'🚌',label:'Bus Stop — Route 405',val:'Bus stop right at the front door'},
+      {i:'📲',label:'Text on arrival',val:'(236) 996-7087 — I\'ll come out to meet you'}
+    ],
+    ac:[
+      {i:'💧',title:'Stay dry for 8 hours',text:'Avoid water, steam, saunas, and heavy sweating. After 8 hours you can wash your face normally, but avoid direct water pressure on your lashes.'},
+      {i:'🚫',title:'Go oil-free',text:'Oil breaks down lash adhesive. Switch to oil-free cleansers and makeup removers, and check all your skincare labels.'},
+      {i:'🤲',title:'No rubbing or picking',text:'Rubbing your eyes causes premature shedding. If anything feels irritating, reach out and we\'ll sort it out.'},
+      {i:'🌙',title:'Sleep on your back',text:'Side sleeping bends and crushes your lashes. A silk pillowcase helps reduce friction if you\'re a side sleeper.'},
+      {i:'✿',title:'Brush daily',text:'Use the spoolie we give you every morning, brushing from mid-shaft to tip to keep your lashes fanned and fluffy.'},
+      {i:'💄',title:'Skip the mascara',text:'You won\'t need it — and mascara clumps fans together and is really hard to remove without pulling lashes off.'},
+      {i:'🧴',title:'Cleanse twice a week',text:'Use a lash-safe foam cleanser to remove oils and buildup. Clean lashes always last longer.'},
+      {i:'📅',title:'Come back within 2 weeks',text:'We recommend returning within 2 weeks for a fill to keep your set looking full. After 2 weeks you may need a new full set.'}
+    ]
+  }
+};
+
+/* ============ DATA ============ */
+var STYLES=[
+  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub_cn:'清爽日常',sub_en:'Clean & effortless',price:60,newP:40,retP:48,refP:30,dur:120},
+  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub_cn:'轻薄灵动',sub_en:'Light & wispy',price:80,newP:40,retP:64,refP:40,dur:120},
+  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub_cn:'自然放大眼',sub_en:'Doe-eyed & defined',price:80,newP:40,retP:64,refP:40,dur:120},
+  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub_cn:'妩媚有神',sub_en:'Sultry & dramatic',price:100,newP:50,retP:80,refP:50,dur:120},
+  {id:5,emoji:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',sub_cn:'上扬飞扬',sub_en:'Lifted & voluminous',price:100,newP:50,retP:80,refP:50,dur:120},
+  {id:6,emoji:'🤍',cn:'其他/暂未确定',en:'Other/Undecided',sub_cn:'预约后沟通',sub_en:'We\'ll figure it out together',price:60,priceLabel:'$60+',newP:40,retP:48,refP:30,dur:120}
+];
 
 var CFG={
   address:'7151 No. 5 Rd, Richmond, BC',
@@ -392,134 +503,67 @@ var CFG={
     4:['10:00','13:00','14:00','16:00','17:00','18:00'],
     5:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
     6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00']
-  },
-  hours:[
-    ['周一 Mon','12:00 PM – 9:00 PM'],
-    ['周二 Tue','12:00 PM – 9:00 PM'],
-    ['周三 Wed','9:00 AM – 9:00 PM'],
-    ['周四 Thu','10:00 AM / 1:00 PM – 9:00 PM'],
-    ['周五–周六 Fri–Sat','9:00 AM – 9:00 PM'],
-    ['周日 Sun','休息 Closed']
-  ]
+  }
 };
 
-var STYLES=[
-  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub:'清爽日常',price:60,newP:40,retP:48,refP:30,dur:120},
-  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub:'轻薄灵动',price:80,newP:40,retP:64,refP:40,dur:120},
-  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub:'自然放大眼',price:80,newP:40,retP:64,refP:40,dur:120},
-  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub:'妩媚有神',price:100,newP:50,retP:80,refP:50,dur:120},
-  {id:5,emoji:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',sub:'上扬飞扬',price:100,newP:50,retP:80,refP:50,dur:120},
-  {id:6,emoji:'🤍',cn:'其他/暂未确定',en:'Other/Undecided',sub:'预约后沟通',price:60,priceLabel:'$60+',newP:40,retP:48,refP:30,dur:120}
-];
-
-var REFILLS=[
-  {cn:'自然款补睫',en:'Natural Refill',price:30,dur:'60 min'},
-  {cn:'仙子/漫画补睫',en:'Fairy/Manga Refill',price:40,dur:'60 min'},
-  {cn:'小恶魔/狐系补睫',en:'Devil/Fox Refill',price:50,dur:'75 min'}
-];
-
-var AC=[
-  {i:'💧',cn:'8小时内避水避蒸汽',en:'Stay dry 8 hours',d:'避开水、蒸汽、桑拿，让胶水充分固化。8小时后可正常洗脸，避免大量水冲眼部。'},
-  {i:'🚫',cn:'避免油性产品',en:'Go oil-free',d:'油脂溶解胶水，更换无油洁面及卸妆产品，检查所有护肤品标签。'},
-  {i:'🤲',cn:'不要揉眼睛',en:'No rubbing',d:'揉眼造成过早脱落，如有不适请联系我们。'},
-  {i:'🌙',cn:'尽量仰睡',en:'Sleep on back',d:'侧睡压变睫毛形状，建议使用真丝枕套减少摩擦。'},
-  {i:'✿',cn:'每天梳理睫毛',en:'Brush daily',d:'每天早晨用螺旋刷从根部轻轻梳理，保持蓬松感。'},
-  {i:'💄',cn:'不需要刷睫毛膏',en:'Skip mascara',d:'接睫后无需睫毛膏，使用会使睫毛结块影响效果。'},
-  {i:'🧴',cn:'每周清洁两次',en:'Cleanse 2x/week',d:'用专用泡沫清洁睫毛，清洁度决定持久度。'},
-  {i:'📅',cn:'2周内来补睫',en:'Fill within 2 weeks',d:'建议在2周内回来补睫，保持饱满效果。超过2周可能需要重新接全套。'}
-];
-
-var PARKING=[
-  {i:'🔍',label:'⚠️ 入口隐秘请注意',val:'沿No.5 Rd行驶，留意两侧茂密大树夹道入口，门牌 7151 在左侧石柱，容易错过请减速'},
-  {i:'🅿️',label:'停车位置',val:'进入大门后靠右手边停车，有足够空间'},
-  {i:'🚶',label:'步行指引',val:'停车后往内院走，我在一楼迎接，带您上二楼工作室'},
-  {i:'🚌',label:'405 公交车站',val:'门口即有405路公交车站，非常方便'},
-  {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'}
-];
-
-/* ============ STORAGE (localStorage for GitHub Pages) ============ */
-function storeSet(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
-function storeGet(key){try{var v=localStorage.getItem(key);return v?JSON.parse(v):null;}catch(e){return null;}}
-
 /* ============ STATE ============ */
+var lang='cn';
 var S={step:1,ctype:'',svc:null,date:null,time:null,name:'',phone:'',email:'',notes:''};
 var BOOKED={};
 var busyPeriods=[];
+var busyLoaded=false;
 var gcalUrlStr='';
 
 /* ============ HELPERS ============ */
 function el(id){return document.getElementById(id);}
 function pad(n){return String(n).padStart(2,'0');}
+function t(key){return T[lang][key]||T.cn[key]||'';}
 function fmtKey(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-function fmtDate(d){return d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});}
-function fmtShort(d){return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});}
+function fmtDate(d){
+  if(lang==='en')return d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  return d.toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric',weekday:'long'});
+}
+function fmtShort(d){
+  if(lang==='en')return d.toLocaleDateString('en-US',{month:'short',day:'numeric',weekday:'short'});
+  return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});
+}
 function fmtTime(t){
-  var parts=t.split(':');
-  var h=parseInt(parts[0]);
-  var m=parts[1];
-  var ap=h>=12?'PM':'AM';
-  var h12=h===0?12:h>12?h-12:h;
+  var parts=t.split(':'),h=parseInt(parts[0]),m=parts[1],ap=h>=12?'PM':'AM',h12=h===0?12:h>12?h-12:h;
   return h12+':'+m+' '+ap;
 }
-function gcalFmt(dt){
-  return dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';
-}
-function scrollSec(id){
-  var e=document.getElementById(id);
-  if(!e)return;
-  var y=e.getBoundingClientRect().top+window.pageYOffset-60;
-  window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
-}
-function genId(){
-  return 'BB-'+(Date.now().toString(36).toUpperCase().slice(-4))+(Math.random().toString(36).toUpperCase().slice(-2));
-}
+function gcalFmt(dt){return dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';}
+function scrollSec(id){var e=el(id);if(!e)return;var y=e.getBoundingClientRect().top+window.pageYOffset-60;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});}
+function genId(){return 'BB-'+(Date.now().toString(36).toUpperCase().slice(-4))+(Math.random().toString(36).toUpperCase().slice(-2));}
 function getPrice(svc,ctype){
   var orig=svc.priceLabel||'$'+svc.price;
-  if(ctype==='new')return{label:'$'+svc.newP,orig:orig,tag:'新客半价'};
-  if(ctype==='returning')return{label:'$'+svc.retP,orig:orig,tag:'老客8折'};
-  if(ctype==='refill')return{label:'$'+svc.refP,orig:orig,tag:'补睫价'};
+  if(ctype==='new')return{label:'$'+svc.newP,orig:orig,tag:t('toNewBadge')};
+  if(ctype==='returning')return{label:'$'+svc.retP,orig:orig,tag:t('toRetBadge')};
+  if(ctype==='refill')return{label:'$'+svc.refP,orig:orig,tag:lang==='cn'?'补睫价':'Refill rate'};
   return{label:orig,orig:'',tag:''};
 }
-function isBiWed(date){
-  if(date.getDay()!==3)return false;
-  var ref=new Date(2026,4,13);
-  var diff=Math.round((date-ref)/86400000);
-  return diff>=0&&diff%14===0;
+function isBiWed(date){if(date.getDay()!==3)return false;var ref=new Date(2026,4,13),diff=Math.round((date-ref)/86400000);return diff>=0&&diff%14===0;}
+function getSlots(date){return(CFG.schedule[date.getDay()]||[]).filter(function(t){return!(isBiWed(date)&&t==='12:00');});}
+function localConflict(date,t2){
+  var key=fmtKey(date),booked=BOOKED[key]||[];
+  var h=parseInt(t2.split(':')[0]),m=parseInt(t2.split(':')[1]),reqS=h*60+m,reqE=reqS+150;
+  return booked.some(function(bt){var bh=parseInt(bt.split(':')[0]),bm=parseInt(bt.split(':')[1]),bS=bh*60+bm,bE=bS+150;return reqS<bE&&reqE>bS;});
 }
-function getSlots(date){
-  var slots=CFG.schedule[date.getDay()]||[];
-  return slots.filter(function(t){return !(isBiWed(date)&&t==='12:00');});
-}
-function localConflict(date,t){
-  var key=fmtKey(date);
-  var booked=BOOKED[key]||[];
-  var h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]);
-  var reqS=h*60+m,reqE=reqS+150;
-  return booked.some(function(bt){
-    var bh=parseInt(bt.split(':')[0]),bm=parseInt(bt.split(':')[1]);
-    var bS=bh*60+bm,bE=bS+150;
-    return reqS<bE&&reqE>bS;
-  });
-}
-function calConflict(date,t){
+function calConflict(date,t2){
   if(!busyPeriods.length)return false;
-  var h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]);
+  var h=parseInt(t2.split(':')[0]),m=parseInt(t2.split(':')[1]);
   var ss=new Date(date.getFullYear(),date.getMonth(),date.getDate(),h,m,0);
   var se=new Date(ss.getTime()+150*60000);
   return busyPeriods.some(function(b){return ss<b.e&&se>b.s;});
 }
+function storeSet(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
+function storeGet(key){try{var v=localStorage.getItem(key);return v?JSON.parse(v):null;}catch(e){return null;}}
 
-/* ============ GCAL / JSONP ============ */
+/* ============ GCAL ============ */
 function gcalReq(params){
   return new Promise(function(resolve){
     try{
-      var cb='bb_'+Date.now();
-      var script;
-      window[cb]=function(data){
-        delete window[cb];
-        if(script&&script.parentNode)script.parentNode.removeChild(script);
-        resolve(data);
-      };
+      var cb='bb_'+Date.now(),script;
+      window[cb]=function(data){delete window[cb];if(script&&script.parentNode)script.parentNode.removeChild(script);resolve(data);};
       script=document.createElement('script');
       script.onerror=function(){delete window[cb];resolve({});};
       params.callback=cb;
@@ -530,65 +574,137 @@ function gcalReq(params){
     }catch(ex){resolve({});}
   });
 }
-
 function fetchBusy(){
   return new Promise(function(resolve){
     try{
-      var s=new Date(),e=new Date();
-      e.setDate(s.getDate()+50);
-      var cb='bb_busy_'+Date.now();
-      var script;
+      var s=new Date(),e=new Date();e.setDate(s.getDate()+50);
+      var cb='bb_busy_'+Date.now(),script;
       window[cb]=function(data){
-        if(data.busy){
-          busyPeriods=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
-        }
-        delete window[cb];
-        if(script&&script.parentNode)script.parentNode.removeChild(script);
-        resolve();
+        if(data.busy)busyPeriods=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
+        busyLoaded=true;
+        delete window[cb];if(script&&script.parentNode)script.parentNode.removeChild(script);resolve();
       };
       script=document.createElement('script');
-      script.onerror=function(){delete window[cb];resolve();};
+      script.onerror=function(){busyLoaded=true;delete window[cb];resolve();};
       script.src=GCAL_URL+'?action=busy&start='+encodeURIComponent(s.toISOString())+'&end='+encodeURIComponent(e.toISOString())+'&callback='+cb;
       document.head.appendChild(script);
-      setTimeout(function(){if(window[cb]){delete window[cb];resolve();}},5000);
-    }catch(ex){resolve();}
+      setTimeout(function(){if(window[cb]){busyLoaded=true;delete window[cb];resolve();}},5000);
+    }catch(ex){busyLoaded=true;resolve();}
   });
 }
 
-/* ============ RENDER ============ */
+/* ============ LANGUAGE ============ */
+function setLang(l){
+  lang=l;
+  el('btn-cn').classList.toggle('active',l==='cn');
+  el('btn-en').classList.toggle('active',l==='en');
+  document.documentElement.lang=l==='cn'?'zh':'en';
+  applyLang();
+  renderBookCards();
+  renderProg();
+  if(S.date)renderTimes();
+  renderStaticBlocks();
+}
+
+function applyLang(){
+  var L=T[lang];
+  el('nav-book-btn').textContent=L.navBook;
+  el('hero-h1').textContent=L.heroH1;
+  el('hero-pills').innerHTML=L.pills.map(function(p){return'<span class="pill">'+p+'</span>';}).join('');
+  el('hero-book-btn').textContent=L.heroBtn;
+  // Strip
+  el('strip-in').innerHTML=L.strip.map(function(s,i){
+    var icons=['🌿','✿','💎','📅'];
+    return'<div class="si"><div class="si-icon">'+icons[i]+'</div><div class="si-cn">'+s.cn+'</div><div class="si-en">'+s.en+'</div></div>';
+  }).join('');
+  // Booking
+  el('book-tag').textContent=L.bookTag;el('book-h2').textContent=L.bookH2;
+  el('type-title').textContent=L.typeTitle;el('type-sub').textContent=L.typeSub;
+  el('to-new-label').textContent=L.toNew;el('to-new-badge').textContent=L.toNewBadge;
+  el('to-ret-label').textContent=L.toRet;el('to-ret-badge').textContent=L.toRetBadge;
+  el('style-title').textContent=L.styleTitle;
+  el('btn1').textContent=L.btn1;el('back1').textContent=L.back1;
+  el('date-title').textContent=L.dateTitle;el('date-sub').textContent=L.dateSub;
+  el('btn2').textContent=L.btn2;el('back2').textContent=L.back2;
+  el('info-title').textContent=L.infoTitle;
+  el('lbl-name').textContent=L.lblName;el('lbl-phone').textContent=L.lblPhone;
+  el('lbl-email').textContent=L.lblEmail;el('lbl-notes').textContent=L.lblNotes;
+  el('f-name').placeholder=L.namePH;el('f-notes').placeholder=L.notesPH;
+  el('btn3').textContent=L.btn3;el('back3').textContent=L.back3;
+  el('review-title').textContent=L.reviewTitle;
+  el('cancel-notice').textContent=L.cancelNotice;
+  el('btn-confirm').textContent=L.btnConfirm;
+  el('conf-title').textContent=L.confTitle;el('conf-sub').textContent=L.confSub;
+  el('ref-label').textContent=L.refLabel;el('ref-sub').textContent=L.refSub;
+  el('gcal-title').textContent=L.gcalTitle;el('gcal-sub').textContent=L.gcalSub;
+  el('contact-title').textContent=L.contactTitle;
+  el('phone-label').textContent=L.phoneLabel;el('wechat-label').textContent=L.wechatLabel;
+  el('directions-title').textContent=L.directionsTitle;
+  el('aftercare-remind-title').textContent=L.aftercareRemind;
+  el('ac-link').textContent=L.acLink;
+  // Manage
+  el('manage-tag').textContent=L.manageTag;el('manage-h2').textContent=L.manageH2;
+  el('manage-sub').textContent=L.manageSub;
+  el('manage-lbl').textContent=L.manageLbl;el('lookup-btn').textContent=L.lookupBtn;
+  // Location
+  el('loc-tag').textContent=L.locTag;el('loc-h2').textContent=L.locH2;
+  el('loc-phone-label').textContent=L.locPhoneLabel;el('loc-wechat-label').textContent=L.locWechatLabel;
+  el('maps-btn-text').textContent=L.mapsBtn;
+  el('parking-title').textContent=L.parkingTitle;
+  el('photo-title').textContent=L.photoTitle;
+  el('photo-grid').innerHTML=L.photos.map(function(p){return'<div style="background:'+p.bg+';border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">'+p.icon+'</div><div style="font-size:10px;color:#fff;font-weight:600">'+p.label+'</div><div style="font-size:9px;color:rgba(255,255,255,.8)">'+p.desc+'</div></div>';}).join('');
+  el('parking-tip').textContent=L.parkingTip;
+  // Aftercare
+  el('care-tag').textContent=L.careTag;el('care-h2').textContent=L.careH2;
+  // Bottom nav
+  el('bn-book-lbl').textContent=L.bnBook;el('bn-manage-lbl').textContent=L.bnManage;
+  el('bn-loc-lbl').textContent=L.bnLoc;el('bn-care-lbl').textContent=L.bnCare;
+}
+
+function renderStaticBlocks(){
+  var L=T[lang];
+  // Hours
+  var hc=el('hours-card');hc.innerHTML='';
+  for(var i=0;i<L.hours.length;i+=2){
+    var closed=L.hours[i+1]==='Closed'||L.hours[i+1]==='休息 Closed';
+    hc.innerHTML+='<div class="hours-row"><span>'+L.hours[i]+'</span><span class="'+(closed?'hours-closed':'')+'">'+L.hours[i+1]+'</span></div>';
+  }
+  // Parking
+  var pc=el('park-card');pc.innerHTML='';
+  L.parking.forEach(function(p){pc.innerHTML+='<div class="info-row"><span class="i-icon">'+p.i+'</span><div><div class="i-label">'+p.label+'</div><div class="i-val">'+p.val+'</div></div></div>';});
+  // Aftercare full
+  var af=el('ac-full');af.innerHTML='';
+  L.ac.forEach(function(a){af.innerHTML+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.title+'</div><div class="ac-text">'+a.text+'</div></div></div>';});
+}
+
+/* ============ BOOKING RENDER ============ */
 function renderProg(){
-  var steps=[['款式','Style'],['时间','Date'],['信息','Info'],['确认','Confirm']];
+  var steps=T[lang].progSteps;
   var html='';
   steps.forEach(function(s,i){
     var n=i+1,done=n<S.step,act=n===S.step;
     if(i>0)html+='<div class="p-line'+(done?' done':'')+'"></div>';
-    html+='<div class="prog-step">';
-    html+='<div class="pd'+(done?' done':act?' act':'')+'">'+( done?'✓':n)+'</div>';
-    html+='<div class="pl'+(act?' act':'')+'">'+s[0]+'</div>';
-    html+='</div>';
+    html+='<div class="prog-step"><div class="pd'+(done?' done':act?' act':'')+'">'+( done?'✓':n)+'</div><div class="pl'+(act?' act':'')+'">'+s+'</div></div>';
   });
   el('prog-bar').innerHTML=html;
 }
 
 function renderBookCards(){
-  var container=el('sp-grid');
-  container.innerHTML='';
+  var container=el('sp-grid');container.innerHTML='';
+  var isRef=S.ctype==='refill';
   STYLES.forEach(function(s){
     var p=getPrice(s,S.ctype);
+    var name=lang==='cn'?(isRef?s.cn+'补睫':s.cn):(isRef?s.en+' Refill':s.en);
+    var sub=lang==='cn'?s.sub_cn:s.sub_en;
+    var dur=isRef?T[lang].refillDur:'120 min';
     var div=document.createElement('div');
-    div.className='book-card';
-    div.id='bc'+s.id;
+    div.className='book-card';div.id='bc'+s.id;
     var html='<div class="bc-emoji">'+s.emoji+'</div>';
-    html+='<div class="bc-cn">'+(S.ctype==='refill'?s.cn+'补睫':s.cn)+'</div>';
-    html+='<div class="bc-en">'+s.en+(S.ctype==='refill'?' Refill':'')+'</div>';
-    if(p.orig){
-      html+='<div class="bc-orig">'+p.orig+'</div>';
-      html+='<div class="bc-price">'+p.label+'</div>';
-      html+='<span class="bc-tag">'+p.tag+'</span>';
-    }else{
-      html+='<div class="bc-price">'+p.label+'</div>';
-    }
-    html+='<div class="bc-dur">🕒 '+(S.ctype==='refill'?'60–75min':'120 min')+'</div>';
+    html+='<div class="bc-cn">'+name+'</div>';
+    html+='<div class="bc-en">'+sub+'</div>';
+    if(p.orig){html+='<div class="bc-orig">'+p.orig+'</div><div class="bc-price">'+p.label+'</div><span class="bc-tag">'+p.tag+'</span>';}
+    else{html+='<div class="bc-price">'+p.label+'</div>';}
+    html+='<div class="bc-dur">🕒 '+dur+'</div>';
     div.innerHTML=html;
     div.addEventListener('click',function(){pickSvc(s);});
     container.appendChild(div);
@@ -596,40 +712,38 @@ function renderBookCards(){
 }
 
 function renderDates(){
-  var dg=el('date-grid');
-  dg.innerHTML='';
+  var dg=el('date-grid');dg.innerHTML='';
   var today=new Date();today.setHours(0,0,0,0);
-  var DOW=['日','一','二','三','四','五','六'];
+  var DOW=T[lang].days;
   var shown=0;
   for(var i=1;i<=42&&shown<28;i++){
-    var d=new Date(today);
-    d.setDate(today.getDate()+i);
+    var d=new Date(today);d.setDate(today.getDate()+i);
     var slots=getSlots(d);
-    var avail=slots.filter(function(t){return !localConflict(d,t)&&!calConflict(d,t);});
-    if(!avail.length)continue;
-    shown++;
+    var avail=slots.filter(function(t2){return!localConflict(d,t2)&&!calConflict(d,t2);});
+    if(!avail.length)continue;shown++;
     (function(date,count){
       var btn=document.createElement('div');
+      var dayStr=lang==='cn'?'周'+DOW[date.getDay()]:DOW[date.getDay()];
+      var spotsStr=lang==='cn'?count+'位':count;
       btn.className='date-btn'+(S.date&&fmtKey(S.date)===fmtKey(date)?' sel':'');
-      btn.innerHTML='<span class="dc">周'+DOW[date.getDay()]+'</span><span class="dn">'+date.getDate()+'</span><span class="ds">'+count+'位</span>';
+      btn.innerHTML='<span class="dc">'+dayStr+'</span><span class="dn">'+date.getDate()+'</span><span class="ds">'+spotsStr+'</span>';
       btn.addEventListener('click',function(){pickDate(date);});
       dg.appendChild(btn);
     })(d,avail.length);
   }
-  if(!dg.children.length)dg.innerHTML='<p style="font-size:13px;color:var(--hint)">暂无可预约时间，请联系我们</p>';
+  if(!dg.children.length)dg.innerHTML='<p style="font-size:13px;color:var(--hint)">'+(lang==='cn'?'暂无可预约时间，请联系我们':'No available times. Please contact us directly.')+'</p>';
 }
 
 function renderTimes(){
   var slots=getSlots(S.date);
-  var avail=slots.filter(function(t){return !localConflict(S.date,t)&&!calConflict(S.date,t);});
-  el('t-label').textContent=fmtShort(S.date);
-  var tg=el('time-grid');
-  tg.innerHTML='';
-  avail.forEach(function(t){
+  var avail=slots.filter(function(t2){return!localConflict(S.date,t2)&&!calConflict(S.date,t2);});
+  el('time-title').textContent=(lang==='cn'?'选择时间 — ':'Available times — ')+fmtShort(S.date);
+  var tg=el('time-grid');tg.innerHTML='';
+  avail.forEach(function(t2){
     var btn=document.createElement('button');
-    btn.className='time-btn'+(S.time===t?' sel':'');
-    btn.textContent=fmtTime(t);
-    btn.addEventListener('click',function(){pickTime(t);});
+    btn.className='time-btn'+(S.time===t2?' sel':'');
+    btn.textContent=fmtTime(t2);
+    btn.addEventListener('click',function(){pickTime(t2);});
     tg.appendChild(btn);
   });
   el('time-sec').classList.remove('hidden');
@@ -642,248 +756,138 @@ function setType(v){
   el({new:'to-new',returning:'to-ret',refill:'to-ref'}[v]).classList.add('sel');
   renderBookCards();
 }
-
 function pickSvc(s){
-  if(!S.ctype){alert('请先选择新客/老客/补睫');return;}
+  if(!S.ctype){alert(lang==='cn'?'请先选择新客/老客/补睫':'Please select your client type first.');return;}
   S.svc=s;
   document.querySelectorAll('.book-card').forEach(function(c){c.classList.remove('sel');});
-  el('bc'+s.id).classList.add('sel');
-  el('btn1').disabled=false;
+  el('bc'+s.id).classList.add('sel');el('btn1').disabled=false;
 }
-
-function pickDate(date){
-  S.date=date;S.time=null;
-  el('btn2').disabled=true;
-  renderDates();renderTimes();
-}
-
-function pickTime(t){
-  S.time=t;renderTimes();
-  el('btn2').disabled=false;
-}
+function pickDate(date){S.date=date;S.time=null;el('btn2').disabled=true;renderDates();renderTimes();}
+function pickTime(t2){S.time=t2;renderTimes();el('btn2').disabled=false;}
 
 function goStep(n){
-  if(n===3){
-    S.name=el('f-name').value.trim();
-    S.phone=el('f-phone').value.trim();
-    S.email=el('f-email').value.trim();
-    S.notes=el('f-notes').value.trim();
-  }
+  if(n===3){S.name=el('f-name').value.trim();S.phone=el('f-phone').value.trim();S.email=el('f-email').value.trim();S.notes=el('f-notes').value.trim();}
   if(n===2)renderDates();
   if(n===4)renderReview();
-  el('step'+S.step).classList.remove('active');
-  S.step=n;
-  el('step'+n).classList.add('active');
-  renderProg();
-  scrollSec('book-sec');
+  el('step'+S.step).classList.remove('active');S.step=n;el('step'+n).classList.add('active');
+  renderProg();scrollSec('book-sec');
 }
 
 function renderReview(){
-  var sv=S.svc,p=getPrice(sv,S.ctype);
-  var isRef=S.ctype==='refill';
-  var label=isRef?sv.cn+'补睫':sv.cn+' / '+sv.en;
-  var ctLabel=S.ctype==='new'?'新客 🎉':S.ctype==='refill'?'补睫 ✿':'老客 💛';
+  var sv=S.svc,p=getPrice(sv,S.ctype),isRef=S.ctype==='refill';
+  var label=lang==='cn'?(isRef?sv.cn+'补睫':sv.cn):(isRef?sv.en+' Refill':sv.en);
+  var RK=T[lang].rk,CT=T[lang].ctypes;
   var prHtml=p.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p.orig+'</span> <strong style="color:var(--bronze)">'+p.label+'</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">'+p.tag+'</span>':'<strong style="color:var(--bronze)">'+p.label+'</strong>';
-  var rows=[['款式','<strong>'+label+'</strong>'],['类型',ctLabel],['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],['时长',isRef?'60–75 min':'120 min'],['价格',prHtml],['姓名',S.name],['电话',S.phone||'未填'],['邮箱',S.email||'未填'],['备注',S.notes||'无']];
+  var rows=[[RK.style,'<strong>'+label+'</strong>'],[RK.type,CT[S.ctype]],[RK.date,fmtDate(S.date)],[RK.time,fmtTime(S.time)],[RK.duration,isRef?T[lang].refillDur:'120 min'],[RK.price,prHtml],[RK.name,S.name],[RK.phone,S.phone||(lang==='cn'?'未填':'N/A')],[RK.email,S.email||(lang==='cn'?'未填':'N/A')],[RK.notes,S.notes||(lang==='cn'?'无':'None')]];
   var html='';
   rows.forEach(function(r){html+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
   el('review-card').innerHTML=html;
 }
 
-function confirm(){
+function doConfirm(){
   el('btn-confirm').disabled=true;
-  el('btn-confirm').textContent='处理中...';
+  el('btn-confirm').textContent=lang==='cn'?'处理中...':'Processing...';
   var key=fmtKey(S.date);
-  if(!BOOKED[key])BOOKED[key]=[];
-  BOOKED[key].push(S.time);
+  if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);
   storeSet('bunny-v9',BOOKED);
-
   var isRef=S.ctype==='refill',sv=S.svc,p=getPrice(sv,S.ctype);
-  var label=isRef?sv.cn+'补睫':sv.cn;
-  var parts=key.split('-');
-  var h=parseInt(S.time.split(':')[0]),mi=parseInt(S.time.split(':')[1]);
+  var label=lang==='cn'?(isRef?sv.cn+'补睫':sv.cn):(isRef?sv.en+' Refill':sv.en);
+  var parts=key.split('-'),h=parseInt(S.time.split(':')[0]),mi=parseInt(S.time.split(':')[1]);
   var st=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]),h,mi,0);
-  var durMin=isRef?75:120;
-  var en=new Date(st.getTime()+durMin*60000);
+  var durMin=isRef?75:120,en=new Date(st.getTime()+durMin*60000);
   var bookingId=genId();
-
-  // Build client calendar URL
-  var clientDesc='📍 Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n📞 236-996-7087\n💬 WeChat: LanLovesLife\n\n款式: '+label+'\n价格: '+p.label+(p.tag?' ('+p.tag+')':'')+'\n预约编号: '+bookingId+'\n\n取消/修改请提前3天联系\n⚠️ 入口指引：沿No.5 Rd，留意茂密大树夹道入口，门牌7151在左侧石柱，进门右侧停车。';
+  var clientDesc='📍 Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n📞 236-996-7087\n💬 WeChat: LanLovesLife\n\nStyle: '+label+'\nPrice: '+p.label+(p.tag?' ('+p.tag+')':'')+'\nBooking Ref: '+bookingId+'\n\nCancel/reschedule: at least 3 days notice required\n⚠️ Directions: Look for the 7151 gate pillar on your left along No. 5 Rd — easy to miss! Park on the right after entering.';
   var gcalUrl='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Bunny Beauty — '+label+' · '+S.name)+'&dates='+gcalFmt(st)+'/'+gcalFmt(en)+'&details='+encodeURIComponent(clientDesc)+'&location='+encodeURIComponent(CFG.address);
-  gcalUrlStr=gcalUrl;
-  el('gcal-url').value=gcalUrl;
+  gcalUrlStr=gcalUrl;el('gcal-url').value=gcalUrl;
   el('ref-display').textContent=bookingId;
-
-  // Confirmation summary
-  var sumP=p.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p.orig+'</span> <strong style="color:var(--bronze)">'+p.label+'</strong>':'<strong style="color:var(--bronze)">'+p.label+'</strong>';
-  var sumRows=[['款式','<strong>'+label+'</strong>'],['日期',fmtDate(S.date)],['时间',fmtTime(S.time)],['价格',sumP],['姓名',S.name]];
-  var sumHtml='';
-  sumRows.forEach(function(r){sumHtml+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
+  // Confirm summary
+  var p2=getPrice(sv,S.ctype),RK=T[lang].rk;
+  var sumP=p2.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p2.orig+'</span> <strong style="color:var(--bronze)">'+p2.label+'</strong>':'<strong style="color:var(--bronze)">'+p2.label+'</strong>';
+  var sumRows=[[RK.style,'<strong>'+label+'</strong>'],[RK.date,fmtDate(S.date)],[RK.time,fmtTime(S.time)],[RK.price,sumP],[RK.name,S.name]];
+  var sumHtml='';sumRows.forEach(function(r){sumHtml+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
   el('conf-sum').innerHTML=sumHtml;
-
-  // Parking
-  var lcHtml='';
-  PARKING.forEach(function(pk){lcHtml+='<div class="info-row"><span class="i-icon">'+pk.i+'</span><div><div class="i-label">'+pk.label+'</div><div class="i-val">'+pk.val+'</div></div></div>';});
+  // Parking & aftercare in confirmation
+  var lcHtml='';T[lang].parking.forEach(function(pk){lcHtml+='<div class="info-row"><span class="i-icon">'+pk.i+'</span><div><div class="i-label">'+pk.label+'</div><div class="i-val">'+pk.val+'</div></div></div>';});
   el('loc-conf').innerHTML=lcHtml;
-
-  // Aftercare mini
-  var acHtml='';
-  AC.slice(0,4).forEach(function(a){acHtml+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.cn+'</div><div class="ac-text">'+a.d.substring(0,50)+'...</div></div></div>';});
+  var acHtml='';T[lang].ac.slice(0,4).forEach(function(a){acHtml+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.title+'</div><div class="ac-text">'+a.text.substring(0,60)+'...</div></div></div>';});
   el('ac-mini').innerHTML=acHtml;
-
-  // Switch to step 5
-  el('step4').classList.remove('active');
-  S.step=5;
-  el('step5').classList.add('active');
-  el('prog-bar').style.display='none';
-  scrollSec('book-sec');
-
-  // Save booking record
+  el('step4').classList.remove('active');S.step=5;el('step5').classList.add('active');
+  el('prog-bar').style.display='none';scrollSec('book-sec');
   var record={bookingId:bookingId,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:durMin,created:Date.now()};
   storeSet('bk:'+bookingId,record);
-
-  // 双重方式同步到店主 Google Calendar
-  var bookParams={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',
-    style:label,price:p.label+(p.tag?' ('+p.tag+')':''),
-    ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,
-    start:st.toISOString(),end:en.toISOString()};
-  // 方式1：JSONP（可拿到 eventId）
-  gcalReq(bookParams).then(function(res){
-    if(res&&res.eventId){
-      var bk=storeGet('bk:'+bookingId);
-      if(bk){bk.eventId=res.eventId;storeSet('bk:'+bookingId,bk);}
-    }
-  });
-  // 方式2：Image 请求备份（确保日历事件一定被创建）
-  try{
-    var qs2=Object.keys(bookParams).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(bookParams[k]);}).join('&');
-    var img=new Image();img.src=GCAL_URL+'?'+qs2;
-  }catch(e){}
+  var bookParams={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,start:st.toISOString(),end:en.toISOString()};
+  gcalReq(bookParams).then(function(res){if(res&&res.eventId){var bk=storeGet('bk:'+bookingId);if(bk){bk.eventId=res.eventId;storeSet('bk:'+bookingId,bk);}}});
+  try{var qs2=Object.keys(bookParams).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(bookParams[k]);}).join('&');new Image().src=GCAL_URL+'?'+qs2;}catch(e){}
 }
 
 /* ============ MANAGE ============ */
 function lookupBooking(){
   var ref=el('manage-ref').value.trim().toUpperCase();
-  if(!ref){alert('请输入预约编号');return;}
-  var res=el('manage-result');
+  if(!ref){alert(lang==='cn'?'请输入预约编号':'Please enter your booking reference');return;}
+  var res=el('manage-result'),L=T[lang];
   res.classList.remove('hidden');
-  res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">查询中...</div>';
-  window.storage.get('bk:'+ref,true).then(function(r){
-    if(!r){res.innerHTML='<div class="notice" style="text-align:center">❌ 未找到编号 <strong>'+ref+'</strong><br><span style="font-size:13px">请检查编号是否正确</span></div>';return;}
-    var bk=JSON.parse(r.value);
-    if(bk.status==='cancelled'){res.innerHTML='<div class="notice" style="text-align:center">此预约已取消 ✓</div>';return;}
-    var apptDate=new Date(bk.dateKey+'T'+bk.time+':00');
-    var daysLeft=Math.floor((apptDate-new Date())/86400000);
-    var canCancel=daysLeft>=3;
-    var html='<div class="card" style="margin-bottom:14px">';
-    [['款式',bk.style],['日期',bk.dateKey],['时间',fmtTime(bk.time)],['姓名',bk.name],['价格',bk.price]].forEach(function(row){
-      html+='<div class="review-row"><span class="rk">'+row[0]+'</span><span class="rv">'+row[1]+'</span></div>';
-    });
-    html+='</div>';
-    if(canCancel){
-      html+='<div class="notice">距预约还有 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，可以自助取消 ✓</div>';
-      html+='<button class="btn-main" style="background:#c0392b" id="do-cancel">确认取消此预约</button>';
-    }else{
-      html+='<div class="notice" style="border-color:var(--sand)">距预约仅剩 <strong style="color:var(--bronze)">'+daysLeft+'天</strong>，请直接联系取消</div>';
-      html+='<a href="tel:+12369967087" class="btn-main" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none">📱 致电 (236) 996-7087</a>';
-      html+='<div style="text-align:center;margin-top:10px;font-size:14px;color:var(--hint)">或微信 WeChat: <strong>LanLovesLife</strong></div>';
-    }
-    res.innerHTML=html;
-    if(canCancel){
-      el('do-cancel').addEventListener('click',function(){doCancelBooking(ref,bk);});
-    }
-  }).catch(function(){res.innerHTML='<div class="notice">查询失败，请重试</div>';});
+  var bk=storeGet('bk:'+ref);
+  if(!bk){res.innerHTML='<div class="notice" style="text-align:center">'+L.lookupNotFound+' <strong>'+ref+'</strong><br><span style="font-size:13px">'+(lang==='cn'?'请检查编号，或在预约时使用的同一设备上查询':'Please check your reference or use the same device you booked on.')+'</span></div>';return;}
+  if(bk.status==='cancelled'){res.innerHTML='<div class="notice" style="text-align:center">'+L.lookupCancelled+'</div>';return;}
+  var apptDate=new Date(bk.dateKey+'T'+bk.time+':00'),daysLeft=Math.floor((apptDate-new Date())/86400000),canCancel=daysLeft>=3;
+  var html='<div class="card" style="margin-bottom:14px">';
+  [[L.rk.style,bk.style],[L.rk.date,bk.dateKey],[L.rk.time,fmtTime(bk.time)],[L.rk.name,bk.name],[L.rk.price,bk.price]].forEach(function(row){html+='<div class="review-row"><span class="rk">'+row[0]+'</span><span class="rv">'+row[1]+'</span></div>';});
+  html+='</div>';
+  if(canCancel){
+    html+='<div class="notice">'+L.daysLeft+' <strong style="color:var(--bronze)">'+daysLeft+'</strong> '+L.daysLeftUnit+'</div>';
+    html+='<button class="btn-main" style="background:#c0392b" id="do-cancel">'+L.doCancel+'</button>';
+  }else{
+    html+='<div class="notice" style="border-color:var(--sand)">'+L.daysLeftFew+' <strong style="color:var(--bronze)">'+daysLeft+'</strong> '+L.daysLeftFewUnit+'</div>';
+    html+='<a href="tel:+12369967087" class="btn-main" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none">📱 (236) 996-7087</a>';
+    html+='<div style="text-align:center;margin-top:10px;font-size:14px;color:var(--hint)">WeChat: <strong>LanLovesLife</strong></div>';
+  }
+  res.innerHTML=html;
+  if(canCancel){el('do-cancel').addEventListener('click',function(){doCancelBooking(ref,bk);});}
 }
 
 function doCancelBooking(ref,bk){
-  if(!confirm('确认取消这个预约吗？'))return;
+  var L=T[lang];
+  if(!confirm(lang==='cn'?'确认取消这个预约吗？':'Are you sure you want to cancel this appointment?'))return;
   var res=el('manage-result');
-  res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">取消中...</div>';
-  // Release slot
-  if(BOOKED[bk.dateKey]){
-    BOOKED[bk.dateKey]=BOOKED[bk.dateKey].filter(function(t){return t!==bk.time;});
-    try{window.storage.set('bunny-v9',JSON.stringify(BOOKED),true);}catch(e){}
-  }
-  // Mark cancelled
-  bk.status='cancelled';
-  try{window.storage.set('bk:'+ref,JSON.stringify(bk),true);}catch(e){}
-  // Delete calendar event
+  res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">'+L.cancelLoading+'</div>';
+  if(BOOKED[bk.dateKey]){BOOKED[bk.dateKey]=BOOKED[bk.dateKey].filter(function(t2){return t2!==bk.time;});storeSet('bunny-v9',BOOKED);}
+  bk.status='cancelled';storeSet('bk:'+ref,bk);
   if(bk.eventId){gcalReq({action:'cancel',eventId:bk.eventId});}
-  res.innerHTML='<div class="card" style="text-align:center;padding:24px"><div style="font-size:30px;margin-bottom:10px">✓</div><div style="font-size:18px;font-weight:600;color:var(--bronze);margin-bottom:6px">预约已取消</div><div style="font-size:14px;color:var(--hint)">Booking '+ref+' has been cancelled</div></div>';
+  res.innerHTML='<div class="card" style="text-align:center;padding:24px"><div style="font-size:30px;margin-bottom:10px">✓</div><div style="font-size:18px;font-weight:600;color:var(--bronze);margin-bottom:6px">'+L.cancelDone+'</div><div style="font-size:14px;color:var(--hint)">Booking '+ref+'</div></div>';
 }
 
 /* ============ INIT ============ */
 function init(){
-  var saved=storeGet('bunny-v9');
-  if(saved)BOOKED=saved;
+  var saved=storeGet('bunny-v9');if(saved)BOOKED=saved;
   fetchBusy();
-
-  // Service cards removed - shown in booking flow instead
-
-  // Hours
-  var hc=el('hours-card');
-  CFG.hours.forEach(function(row){
-    var closed=row[1].includes('Closed')||row[1].includes('休息');
-    hc.innerHTML+='<div class="hours-row"><span>'+row[0]+'</span><span class="'+(closed?'hours-closed':'')+'">'+row[1]+'</span></div>';
-  });
-
-  // Parking
-  var pc=el('park-card');
-  PARKING.forEach(function(p){
-    pc.innerHTML+='<div class="info-row"><span class="i-icon">'+p.i+'</span><div><div class="i-label">'+p.label+'</div><div class="i-val">'+p.val+'</div></div></div>';
-  });
-
-  // Aftercare full
-  var af=el('ac-full');
-  AC.forEach(function(a){
-    af.innerHTML+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.cn+' <span style="font-size:12px;font-weight:400;color:var(--hint);font-family:Georgia,serif">/ '+a.en+'</span></div><div class="ac-text">'+a.d+'</div></div></div>';
-  });
-
+  applyLang();
+  renderStaticBlocks();
   renderBookCards();
   renderProg();
-
-  /* ---- EVENT LISTENERS ---- */
   el('nav-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
   el('hero-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
-
-
   el('to-new').addEventListener('click',function(){setType('new');});
   el('to-ret').addEventListener('click',function(){setType('returning');});
   el('to-ref').addEventListener('click',function(){setType('refill');});
-
   el('btn1').addEventListener('click',function(){
-    // 如果还在加载日历，等一下再跳
-    if(busyPeriods.length===0){
-      fetchBusy().then(function(){goStep(2);});
-    }else{
-      goStep(2);
-    }
+    if(!busyLoaded){el('btn1').disabled=true;el('btn1').textContent=lang==='cn'?'加载中...':'Loading...';fetchBusy().then(function(){el('btn1').disabled=false;el('btn1').textContent=T[lang].btn1;goStep(2);});}
+    else{goStep(2);}
   });
   el('btn2').addEventListener('click',function(){goStep(3);});
   el('btn3').addEventListener('click',function(){goStep(4);});
   el('back1').addEventListener('click',function(){goStep(1);});
   el('back2').addEventListener('click',function(){goStep(2);});
   el('back3').addEventListener('click',function(){goStep(3);});
-  el('btn-confirm').addEventListener('click',confirm);
-
+  el('btn-confirm').addEventListener('click',doConfirm);
   el('f-name').addEventListener('input',function(){el('btn3').disabled=!el('f-name').value.trim();});
-
   el('gcal-btn').addEventListener('click',function(){if(gcalUrlStr)window.open(gcalUrlStr,'_blank');});
   el('ac-link').addEventListener('click',function(){scrollSec('aftercare-sec');});
-
   el('lookup-btn').addEventListener('click',lookupBooking);
-
-  // Bottom nav
+  function setActive(btn){document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
   el('bn-book').addEventListener('click',function(){scrollSec('book-sec');setActive(el('bn-book'));});
   el('bn-manage').addEventListener('click',function(){scrollSec('manage-sec');setActive(el('bn-manage'));});
   el('bn-loc').addEventListener('click',function(){scrollSec('loc-sec');setActive(el('bn-loc'));});
   el('bn-care').addEventListener('click',function(){scrollSec('aftercare-sec');setActive(el('bn-care'));});
 }
-
-function setActive(btn){
-  document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-}
-
 init();
 </script>
