@@ -347,7 +347,7 @@ footer a{color:var(--sand)}
 </div>
 
 <script>
-var GCAL_URL='https://script.google.com/macros/s/AKfycbzd5WvFEXc9Em38Pafu5sTeJxkUopyZfZI7EjT_hCcA_xmSTOyAjYLOck3pqAtsvkDw/exec';
+var GCAL_URL='https://script.google.com/macros/s/AKfycby2CSW1eCUGFMUS-BGFsP9fQWjz0Ovn6nwxry-3iFd-PsM1EZP6v4QelDizlZsczoZ_/exec';
 
 /* ============ TRANSLATIONS ============ */
 var T={
@@ -622,6 +622,7 @@ function applyLang(){
   el('type-title').textContent=L.typeTitle;el('type-sub').textContent=L.typeSub;
   el('to-new-label').textContent=L.toNew;el('to-new-badge').textContent=L.toNewBadge;
   el('to-ret-label').textContent=L.toRet;el('to-ret-badge').textContent=L.toRetBadge;
+  el('to-ref-label').textContent=L.toRef;
   el('style-title').textContent=L.styleTitle;
   el('btn1').textContent=L.btn1;el('back1').textContent=L.back1;
   el('date-title').textContent=L.dateTitle;el('date-sub').textContent=L.dateSub;
@@ -766,7 +767,7 @@ function pickDate(date){S.date=date;S.time=null;el('btn2').disabled=true;renderD
 function pickTime(t2){S.time=t2;renderTimes();el('btn2').disabled=false;}
 
 function goStep(n){
-  if(n===3){S.name=el('f-name').value.trim();S.phone=el('f-phone').value.trim();S.email=el('f-email').value.trim();S.notes=el('f-notes').value.trim();}
+  if(S.step===3){S.name=el('f-name').value.trim();S.phone=el('f-phone').value.trim();S.email=el('f-email').value.trim();S.notes=el('f-notes').value.trim();}
   if(n===2)renderDates();
   if(n===4)renderReview();
   el('step'+S.step).classList.remove('active');S.step=n;el('step'+n).classList.add('active');
