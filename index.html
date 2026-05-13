@@ -200,6 +200,7 @@ footer a{color:var(--sand)}
 <div id="stats-sec" style="background:var(--sand);padding:16px 20px">
   <div style="max-width:480px;margin:0 auto">
     <div id="weekly-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center"></div>
+    <div id="sync-status" style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.55)">📅 正在同步日历...</div>
   </div>
 </div>
 
@@ -354,7 +355,7 @@ footer a{color:var(--sand)}
 </div>
 
 <script>
-var GCAL_URL='https://script.google.com/macros/s/AKfycbzuQ7sVTeyyhKeZ9leVX_GKv3m_HsS1yWYxb9LcSdfc0URW6b09k6RsWSi7kQYg3TgL/exec';
+var GCAL_URL='https://script.google.com/macros/s/AKfycbynmDWZ6qT6dqBJ-ITVZAh_iwlHywCdMEYS7VvrwmBBbixt5rpY_i5urPumWnkRnHt2/exec';
 
 /* ============ TRANSLATIONS ============ */
 var T={
@@ -583,20 +584,52 @@ function gcalReq(params){
 }
 function fetchBusy(){
   return new Promise(function(resolve){
-    try{
-      var s=new Date(),e=new Date();e.setDate(s.getDate()+50);
-      var cb='bb_busy_'+Date.now(),script;
-      window[cb]=function(data){
-        if(data.busy)busyPeriods=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
+    var s=new Date(),e=new Date();
+    e.setDate(s.getDate()+50);
+    var url=GCAL_URL+'?action=busy&start='+encodeURIComponent(s.toISOString())+'&end='+encodeURIComponent(e.toISOString());
+    var attempts=0;
+
+    function attempt(){
+      attempts++;
+      var cb='bb_busy_'+Date.now();
+      var script=document.createElement('script');
+      var done=false;
+
+      function finish(data){
+        if(done)return;done=true;
+        if(data&&data.busy&&data.busy.length){
+          busyPeriods=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
+          // 更新状态标志
+          var si=el('sync-status');
+          if(si)si.innerHTML=lang==='en'?'📅 Calendar synced':'📅 日历已同步';
+        }
         busyLoaded=true;
-        delete window[cb];if(script&&script.parentNode)script.parentNode.removeChild(script);resolve();
+        delete window[cb];
+        if(script.parentNode)script.parentNode.removeChild(script);
+        resolve();
+      }
+
+      window[cb]=function(data){finish(data);};
+      script.onerror=function(){
+        delete window[cb];
+        if(script.parentNode)script.parentNode.removeChild(script);
+        if(attempts<2){setTimeout(attempt,1000);}
+        else{busyLoaded=true;resolve();}
       };
-      script=document.createElement('script');
-      script.onerror=function(){busyLoaded=true;delete window[cb];resolve();};
-      script.src=GCAL_URL+'?action=busy&start='+encodeURIComponent(s.toISOString())+'&end='+encodeURIComponent(e.toISOString())+'&callback='+cb;
+      script.src=url+'&callback='+cb+'&_='+Date.now();
       document.head.appendChild(script);
-      setTimeout(function(){if(window[cb]){busyLoaded=true;delete window[cb];resolve();}},5000);
-    }catch(ex){busyLoaded=true;resolve();}
+      setTimeout(function(){
+        if(!done){
+          if(attempts<2){
+            done=true;
+            delete window[cb];
+            if(script.parentNode)script.parentNode.removeChild(script);
+            attempt();
+          }else{finish({});}
+        }
+      },8000);
+    }
+    attempt();
   });
 }
 
