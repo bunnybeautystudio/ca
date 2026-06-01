@@ -62,7 +62,7 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .cal-dot{width:5px;height:5px;border-radius:50%;background:var(--sand);position:absolute;bottom:3px}
 .cd.sel .cal-dot{background:#fff}
 .time-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
-.time-btn{padding:13px;border:2px solid var(--bdr);background:var(--w);border-radius:var(--r10);cursor:pointer;font-size:15px;font-weight:500;font-family:inherit;text-align:center}
+.time-btn{padding:13px 6px;border:2px solid var(--bdr);background:var(--w);border-radius:var(--r10);cursor:pointer;font-size:14px;font-weight:500;font-family:inherit;text-align:center}
 .time-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
 .prog{display:flex;align-items:center;padding:0 4px;margin-bottom:20px}
 .pd{width:24px;height:24px;border-radius:50%;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--hint);margin:0 auto 3px}
@@ -338,14 +338,17 @@ var REFILLS=[
   {cn:'仙子/漫画补睫',en:'Fairy/Manga Refill',p:40},
   {cn:'小恶魔/狐系补睫',en:'Devil/Fox Refill',p:50}
 ];
-var SCH={
-  0:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
-  1:['12:00','13:00','14:00','16:00','17:00','18:00'],
-  2:['12:00','13:00','14:00','16:00','17:00','18:00'],
-  3:['09:00','13:00','14:00','16:00','17:00','18:00'],
-  4:['10:00','13:00','14:00','16:00','17:00','18:00'],
-  5:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
-  6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00']
+/* Work hours per day — slots auto-generated every 30 min.
+   Any slot with a 2-hour free window (no GCal or existing booking conflict) will be shown.
+   o = opening time, l = last allowed appointment start time */
+var HOURS={
+  0:{o:'09:00',l:'18:00'}, // Sunday
+  1:{o:'12:00',l:'18:00'}, // Monday
+  2:{o:'12:00',l:'18:00'}, // Tuesday
+  3:{o:'09:00',l:'18:00'}, // Wednesday
+  4:{o:'10:00',l:'18:00'}, // Thursday
+  5:{o:'09:00',l:'18:00'}, // Friday
+  6:{o:'09:00',l:'18:00'}  // Saturday
 };
 
 var TX={
@@ -525,15 +528,35 @@ function getPrice(s,ct){
   return{label:orig,orig:'',tag:''};
 }
 function isBiWed(d){if(d.getDay()!==3)return false;var ref=new Date(2026,4,13),diff=Math.round((d-ref)/86400000);return diff>=0&&diff%14===0;}
-function getSlots(d){return(SCH[d.getDay()]||[]).filter(function(t){return!(isBiWed(d)&&t==='12:00');});}
-function lBusy(d,t){
-  var b=BOOKED[fmtKey(d)]||[],h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]),rS=h*60+m,rE=rS+150;
-  return b.some(function(bt){var bh=parseInt(bt.split(':')[0]),bm=parseInt(bt.split(':')[1]),bS=bh*60+bm,bE=bS+150;return rS<bE&&rE>bS;});
+
+/* Convert "HH:MM" → minutes, and back */
+function tMin(t){var p=t.split(':');return parseInt(p[0])*60+parseInt(p[1]);}
+function minT(m){return pad(Math.floor(m/60))+':'+pad(m%60);}
+
+/* Dynamically generate every 30-min slot inside work hours */
+function getSlots(d){
+  var h=HOURS[d.getDay()];
+  if(!h)return[];
+  var slots=[],om=tMin(h.o),lm=tMin(h.l);
+  for(var m=om;m<=lm;m+=60){
+    var t=minT(m);
+    if(isBiWed(d)&&t==='12:00')continue;
+    slots.push(t);
+  }
+  return slots;
 }
+
+/* Check local bookings: new slot needs 2h free window (120 min) */
+function lBusy(d,t){
+  var b=BOOKED[fmtKey(d)]||[],rS=tMin(t),rE=rS+120;
+  return b.some(function(bt){var bS=tMin(bt),bE=bS+120;return rS<bE&&rE>bS;});
+}
+
+/* Check Google Calendar busy periods: 2h window */
 function cBusy(d,t){
   if(!busy.length)return false;
   var h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]);
-  var ss=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m,0),se=new Date(ss.getTime()+150*60000);
+  var ss=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m,0),se=new Date(ss.getTime()+120*60000);
   return busy.some(function(b){return ss<b.e&&se>b.s;});
 }
 function isAvail(d,t){return!lBusy(d,t)&&!cBusy(d,t);}
@@ -610,6 +633,10 @@ function pickDate(d){
   var sl=getSlots(d),av=sl.filter(function(t){return isAvail(d,t);});
   g('time-h3').textContent=(lang==='cn'?'选择时间 - ':'Available Times - ')+fmtShort(d);
   var tg=g('time-grid');tg.innerHTML='';
+  if(!av.length){
+    tg.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:14px;font-size:13px;color:var(--hint)">'+(lang==='cn'?'当天已满，请选择其他日期':'No availability — please pick another date')+'</div>';
+    return;
+  }
   av.forEach(function(t){
     var b=document.createElement('button');
     b.className='time-btn';
