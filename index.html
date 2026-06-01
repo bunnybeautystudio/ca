@@ -1,181 +1,144 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta charset="UTF-8">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--sand:#A89880;--sand-d:#8f7f69;--sand-l:#ede8e0;--sand-ll:#faf8f4;--bronze:#615545;--dark:#1D1D1D;--muted:#6a5f58;--hint:#a89e98;--bdr:#e0d8d0;--w:#fff;--r10:10px;--r16:16px}
+:root{--sand:#A89880;--sd:#8f7f69;--sl:#ede8e0;--sll:#faf8f4;--bronze:#615545;--dark:#1D1D1D;--muted:#6a5f58;--hint:#a89e98;--bdr:#e0d8d0;--w:#fff;--r10:10px;--r16:16px}
 html{font-size:16px}
-body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;background:var(--sand-ll);color:var(--dark);line-height:1.6;max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:80px}
-h1{font-size:26px;font-weight:500;line-height:1.3}
-h2{font-size:20px;font-weight:500}
-h3{font-size:17px;font-weight:500}
-p{font-size:15px;color:var(--muted);line-height:1.7}
-a{color:var(--sand);text-decoration:none}
-
+body{font-family:'PingFang SC','Hiragino Sans GB',system-ui,sans-serif;background:var(--sll);color:var(--dark);line-height:1.6;max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:80px}
+h2{font-size:20px;font-weight:500}h3{font-size:16px;font-weight:500}
+p{font-size:14px;color:var(--muted);line-height:1.7}a{color:var(--sand);text-decoration:none}
 nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:56px}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-name{font-size:15px;letter-spacing:.06em;color:#fff;font-family:Georgia,serif}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:54px}
+.nav-logo{display:flex;align-items:center;gap:9px}
+.nav-name{font-size:14px;letter-spacing:.06em;color:#fff;font-family:Georgia,serif}
 .nav-right{display:flex;align-items:center;gap:8px}
-.lang-switch{display:flex;background:rgba(255,255,255,.15);border-radius:20px;padding:3px;gap:2px}
-.lang-btn{border:none;background:transparent;color:rgba(255,255,255,.7);font-size:12px;font-weight:600;padding:4px 10px;border-radius:16px;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:.15s}
-.lang-btn.active{background:#fff;color:var(--bronze)}
-.nav-book{background:var(--dark);color:#fff;border:none;padding:8px 14px;border-radius:var(--r10);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
-
-.hero{background:var(--sand);padding:36px 20px 32px;text-align:center}
-.hero h1{color:#fff;margin-bottom:8px;font-family:Georgia,serif}
-.hero-sub{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}
-.hero-slogan{color:rgba(255,255,255,.5);font-size:14px;font-style:italic;font-family:Georgia,serif;margin-bottom:22px}
-.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:22px}
-.pill{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13px;padding:6px 14px;border-radius:20px}
-.hero-btn{background:#fff;color:var(--bronze);border:none;padding:14px 32px;border-radius:var(--r16);font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;max-width:280px}
-
+.lang-sw{display:flex;background:rgba(255,255,255,.15);border-radius:20px;padding:3px;gap:2px}
+.lb{border:none;background:transparent;color:rgba(255,255,255,.7);font-size:12px;font-weight:600;padding:4px 10px;border-radius:16px;cursor:pointer;font-family:inherit}
+.lb.active{background:#fff;color:var(--bronze)}
+.nav-book{background:var(--dark);color:#fff;border:none;padding:8px 13px;border-radius:var(--r10);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
+.hero{background:var(--sand);padding:30px 18px 26px;text-align:center}
+.hero h1{color:#fff;font-size:25px;font-weight:500;font-family:Georgia,serif;margin-bottom:5px}
+.hero-sub{color:rgba(255,255,255,.6);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.hero-slogan{color:rgba(255,255,255,.4);font-size:13px;font-style:italic;font-family:Georgia,serif;margin-bottom:18px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:18px}
+.pill{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:12px;padding:5px 12px;border-radius:20px}
+.hero-btn{background:#fff;color:var(--bronze);border:none;padding:13px 26px;border-radius:var(--r16);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;max-width:260px}
 .strip{background:var(--w);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
-.strip-in{display:grid;grid-template-columns:1fr 1fr;padding:0}
-.si{padding:16px;text-align:center;border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
-.si:nth-child(2n){border-right:none}
-.si:nth-child(3),.si:nth-child(4){border-bottom:none}
-.si-icon{font-size:20px;margin-bottom:6px}
-.si-cn{font-size:14px;font-weight:500;margin-bottom:2px}
-.si-en{font-size:12px;color:var(--hint);font-family:Georgia,serif}
-
-.sec{padding:28px 16px}
-.sec-tag{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.sec-tag::before{content:'';width:16px;height:1.5px;background:var(--sand);display:block}
-
-.book-wrap{background:var(--sand-l);border-top:1px solid var(--bdr)}
-.prog{display:flex;align-items:center;padding:0 4px;gap:0;margin-bottom:24px}
-.prog-step{text-align:center;flex-shrink:0}
-.pd{width:26px;height:26px;border-radius:50%;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--hint);margin:0 auto 4px}
-.pd.done{background:var(--sand);border-color:var(--sand);color:#fff}
-.pd.act{border-color:var(--sand);color:var(--bronze)}
-.pl{font-size:11px;color:var(--hint)}
-.pl.act{color:var(--bronze);font-weight:600}
-.p-line{flex:1;height:2px;background:var(--bdr);margin:0 4px;margin-bottom:20px}
-.p-line.done{background:var(--sand)}
-
-.type-box{background:var(--w);border-radius:var(--r16);padding:18px;margin-bottom:16px;border:1px solid var(--bdr)}
-.type-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-.type-opt{border:2px solid var(--bdr);border-radius:var(--r10);padding:12px 8px;cursor:pointer;text-align:center;background:var(--sand-ll)}
-.type-opt.sel{border-color:var(--sand);background:var(--sand-l)}
-.to-emoji{font-size:22px;margin-bottom:4px}
-.to-cn{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
-.to-badge{font-size:12px;color:var(--bronze);font-weight:500}
-
-.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.book-card{background:var(--w);border:2px solid var(--bdr);border-radius:var(--r16);padding:14px 12px;cursor:pointer;position:relative;text-align:center;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.book-card.sel{border-color:var(--sand);background:var(--sand-l)}
-.book-card.sel::after{content:'✓';position:absolute;top:8px;right:12px;color:var(--bronze);font-size:14px;font-weight:700}
-.bc-emoji{font-size:24px;margin-bottom:6px}
-.bc-cn{font-size:14px;font-weight:600;margin-bottom:2px}
-.bc-en{font-size:11px;color:var(--hint);font-family:Georgia,serif;margin-bottom:4px}
-.bc-orig{font-size:12px;color:var(--hint);text-decoration:line-through}
-.bc-price{font-size:20px;color:var(--bronze)}
-.bc-tag{font-size:11px;color:var(--bronze);background:var(--sand-l);padding:2px 8px;border-radius:10px;margin-top:3px;display:inline-block}
-.bc-dur{font-size:11px;color:var(--hint);margin-top:4px}
-
-.date-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.date-scroll::-webkit-scrollbar{display:none}
-.date-btn{flex-shrink:0;width:60px;text-align:center;background:var(--w);border:2px solid var(--bdr);border-radius:var(--r10);padding:10px 4px;cursor:pointer}
-.date-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
-.date-btn.sel .ds{color:rgba(255,255,255,.8)}
-.dc{font-size:12px;color:var(--muted);display:block;margin-bottom:3px;font-weight:500}
-.dn{font-size:20px;font-weight:600;display:block;margin-bottom:3px}
-.ds{font-size:11px;color:var(--sand);display:block;font-weight:500}
-
-.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.time-btn{padding:14px;border:2px solid var(--bdr);background:var(--w);border-radius:var(--r10);cursor:pointer;font-size:16px;font-weight:500;font-family:inherit;text-align:center}
+.strip-grid{display:grid;grid-template-columns:1fr 1fr}
+.si{padding:13px;text-align:center;border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+.si:nth-child(2n){border-right:none}.si:nth-child(3),.si:nth-child(4){border-bottom:none}
+.si-icon{font-size:18px;margin-bottom:4px}.si-cn{font-size:13px;font-weight:500;margin-bottom:1px}.si-en{font-size:11px;color:var(--hint);font-family:Georgia,serif}
+.sec{padding:22px 16px}
+.sec-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.sec-tag::before{content:'';width:14px;height:1.5px;background:var(--sand);display:block}
+.price-table{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-bottom:10px}
+.pt-head{display:grid;grid-template-columns:1fr 70px 70px 70px;background:var(--sl);padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;border-bottom:1px solid var(--bdr)}
+.pt-row{display:grid;grid-template-columns:1fr 70px 70px 70px;padding:12px 14px;border-bottom:1px solid var(--bdr);align-items:center}
+.pt-row:last-child{border-bottom:none}
+.pt-name{font-size:14px;font-weight:500}.pt-sub{font-size:11px;color:var(--hint)}
+.pt-orig{font-size:13px;text-align:center;color:var(--bdr);text-decoration:line-through}
+.pt-new{font-size:16px;text-align:center;color:var(--bronze);font-weight:700}
+.pt-ret{font-size:15px;text-align:center;color:var(--sd);font-weight:600}
+.ref-table{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-bottom:10px}
+.ref-head{display:grid;grid-template-columns:1fr 70px;background:var(--sl);padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--bdr)}
+.ref-row{display:grid;grid-template-columns:1fr 70px;padding:12px 14px;border-bottom:1px solid var(--bdr);align-items:center}
+.ref-row:last-child{border-bottom:none}
+.pn-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pn{font-size:12px;padding:5px 12px;border-radius:20px;font-weight:500}
+.pn-a{background:var(--sl);color:var(--bronze)}.pn-b{background:var(--sll);color:var(--sd);border:1px solid var(--bdr)}.pn-c{background:var(--sll);color:var(--muted);border:1px solid var(--bdr)}
+.book-wrap{background:var(--sl);border-top:1px solid var(--bdr)}
+.cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-m{font-size:16px;font-weight:600}
+.cal-nav{background:var(--sl);border:1px solid var(--bdr);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--bronze)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px}
+.cal-dow{font-size:11px;font-weight:600;color:var(--hint);text-align:center;padding:4px 0}
+.cd{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;border:2px solid transparent;position:relative}
+.cd.av{background:var(--w);border-color:var(--bdr)}.cd.av:hover{border-color:var(--sand)}
+.cd.sel{background:var(--sand);border-color:var(--sand);color:#fff}
+.cd.em,.cd.past,.cd.bk{background:transparent;border-color:transparent;color:var(--bdr);cursor:default;pointer-events:none}
+.cal-dot{width:5px;height:5px;border-radius:50%;background:var(--sand);position:absolute;bottom:3px}
+.cd.sel .cal-dot{background:#fff}
+.time-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+.time-btn{padding:13px;border:2px solid var(--bdr);background:var(--w);border-radius:var(--r10);cursor:pointer;font-size:15px;font-weight:500;font-family:inherit;text-align:center}
 .time-btn.sel{background:var(--sand);border-color:var(--sand);color:#fff}
-
-.form-box{background:var(--w);border-radius:var(--r16);padding:18px;border:1px solid var(--bdr);margin-bottom:14px}
-.field{margin-bottom:16px}
-.field:last-child{margin-bottom:0}
-.flbl{font-size:13px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px}
-input[type=text],input[type=email],input[type=tel],textarea{font-family:inherit;font-size:16px;border:2px solid var(--bdr);border-radius:var(--r10);padding:13px 15px;width:100%;color:var(--dark);background:var(--w);outline:none;resize:none;-webkit-appearance:none}
+.prog{display:flex;align-items:center;padding:0 4px;margin-bottom:20px}
+.pd{width:24px;height:24px;border-radius:50%;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--hint);margin:0 auto 3px}
+.pd.done{background:var(--sand);border-color:var(--sand);color:#fff}.pd.act{border-color:var(--sand);color:var(--bronze)}
+.pl{font-size:10px;color:var(--hint);text-align:center}.pl.act{color:var(--bronze);font-weight:600}
+.p-line{flex:1;height:2px;background:var(--bdr);margin:0 3px;margin-bottom:16px}.p-line.done{background:var(--sand)}
+.type-opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px}
+.to{border:2px solid var(--bdr);border-radius:var(--r10);padding:10px 6px;cursor:pointer;text-align:center;background:var(--sll)}
+.to.sel{border-color:var(--sand);background:var(--sl)}
+.to-em{font-size:20px;margin-bottom:3px}.to-lb{font-size:12px;font-weight:600;color:var(--dark);margin-bottom:2px}.to-bg{font-size:11px;color:var(--bronze);font-weight:500}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.bc{background:var(--w);border:2px solid var(--bdr);border-radius:var(--r16);padding:12px 10px;cursor:pointer;position:relative;text-align:center;min-height:145px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.bc.sel{border-color:var(--sand);background:var(--sl)}.bc.sel::after{content:'\2713';position:absolute;top:7px;right:10px;color:var(--bronze);font-size:13px;font-weight:700}
+.bc-em{font-size:22px}.bc-nm{font-size:12px;font-weight:600;line-height:1.35;color:var(--dark)}.bc-sb{font-size:10px;color:var(--hint);font-family:Georgia,serif}
+.bc-or{font-size:11px;color:var(--hint);text-decoration:line-through}.bc-pr{font-size:19px;color:var(--bronze);font-weight:500}
+.bc-tg{font-size:10px;color:var(--bronze);background:var(--sl);padding:1px 7px;border-radius:10px}.bc-dr{font-size:10px;color:var(--hint)}
+.form-box{background:var(--w);border-radius:var(--r16);padding:16px;border:1px solid var(--bdr);margin-bottom:12px}
+.field{margin-bottom:14px}.field:last-child{margin-bottom:0}
+.flbl{font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:5px}
+input[type=text],input[type=email],input[type=tel],textarea{font-family:inherit;font-size:16px;border:2px solid var(--bdr);border-radius:var(--r10);padding:12px 14px;width:100%;color:var(--dark);background:var(--w);outline:none;resize:none;-webkit-appearance:none}
 input:focus,textarea:focus{border-color:var(--sand)}
-
 .card{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);overflow:hidden}
-.review-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid var(--bdr);gap:12px}
-.review-row:last-child{border-bottom:none}
-.rk{font-size:13px;color:var(--hint);flex-shrink:0}
-.rv{font-size:15px;color:var(--dark);text-align:right;font-weight:500}
-
-.notice{background:var(--w);border-radius:var(--r10);padding:14px 16px;font-size:14px;color:var(--muted);line-height:1.75;border:1px solid var(--bdr);margin-bottom:16px}
-
-.btn-main{width:100%;padding:16px;background:var(--sand);color:#fff;border:none;border-radius:var(--r16);font-size:17px;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:.02em;display:block}
-.btn-main:disabled{opacity:.35;cursor:not-allowed}
-.btn-back{background:var(--sand-l);color:var(--bronze);border:none;padding:12px 20px;border-radius:var(--r10);font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;margin-bottom:16px;display:inline-block}
-
-.gcal-bar{background:var(--sand);border-radius:var(--r16);padding:18px;margin-bottom:14px}
-.gcal-btn{background:#fff;color:var(--bronze);border:none;padding:13px;border-radius:var(--r10);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
-
-.ref-card{background:var(--sand-l);border:1.5px solid var(--sand);border-radius:var(--r16);padding:20px;text-align:center;margin-bottom:14px}
-.ref-num{font-size:30px;font-weight:700;color:var(--bronze);letter-spacing:.12em;font-family:Georgia,serif}
-
-.contact-row{display:flex;align-items:center;gap:14px;padding:16px;border-bottom:1px solid var(--bdr)}
-.contact-row:last-child{border-bottom:none}
-.c-icon{font-size:22px;flex-shrink:0}
-.c-label{font-size:12px;color:var(--hint);margin-bottom:2px}
-.c-val{font-size:16px;font-weight:600;color:var(--bronze)}
-
-.info-row{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-bottom:1px solid var(--bdr)}
-.info-row:last-child{border-bottom:none}
-.i-icon{font-size:18px;flex-shrink:0;margin-top:2px}
-.i-label{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:2px}
-.i-val{font-size:13px;color:var(--muted);line-height:1.6}
-
-.ac-row{display:flex;gap:14px;padding:16px;border-bottom:1px solid var(--bdr);align-items:flex-start}
-.ac-row:last-child{border-bottom:none}
-.ac-ic{width:40px;height:40px;border-radius:50%;background:var(--sand-l);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.ac-title{font-size:15px;font-weight:600;margin-bottom:3px}
-.ac-text{font-size:13px;color:var(--muted);line-height:1.6}
-
-.hours-row{display:flex;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--bdr);font-size:14px}
-.hours-row:last-child{border-bottom:none}
-.hours-closed{color:var(--sand)}
-.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--sand-l);border:1.5px solid var(--bdr);border-radius:var(--r10);padding:13px;color:var(--bronze);font-size:15px;font-weight:500;text-decoration:none;margin-top:12px}
-
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--w);border-top:1px solid var(--bdr);display:flex;z-index:300;padding:0}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px;cursor:pointer;color:var(--hint);font-size:11px;gap:3px;border:none;background:none;font-family:inherit}
-.bn-item.active,.bn-item:hover{color:var(--sand)}
-.bn-icon{font-size:20px}
-
-footer{background:var(--dark);padding:24px 20px;text-align:center}
-footer .f-logo{color:var(--sand);font-size:15px;font-family:Georgia,serif;letter-spacing:.1em;margin-bottom:6px}
-footer .f-info{color:rgba(255,255,255,.4);font-size:12px;line-height:1.9}
-footer a{color:var(--sand)}
-.step{display:none}.step.active{display:block}
-.hidden{display:none}
+.rr{display:flex;justify-content:space-between;align-items:center;padding:11px 15px;border-bottom:1px solid var(--bdr);gap:10px}
+.rr:last-child{border-bottom:none}.rk{font-size:12px;color:var(--hint);flex-shrink:0}.rv{font-size:14px;color:var(--dark);text-align:right;font-weight:500}
+.notice{background:var(--w);border-radius:var(--r10);padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.75;border:1px solid var(--bdr);margin-bottom:12px}
+.btn{width:100%;padding:15px;background:var(--sand);color:#fff;border:none;border-radius:var(--r16);font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;display:block}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-bk{background:var(--sl);color:var(--bronze);border:none;padding:10px 16px;border-radius:var(--r10);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;margin-bottom:14px;display:inline-block}
+.gcal-bar{background:var(--sand);border-radius:var(--r16);padding:15px;margin-bottom:12px}
+.gcal-btn{background:#fff;color:var(--bronze);border:none;padding:12px;border-radius:var(--r10);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
+.ref-card{background:var(--sl);border:1.5px solid var(--sand);border-radius:var(--r16);padding:16px;text-align:center;margin-bottom:12px}
+.ref-num{font-size:28px;font-weight:700;color:var(--bronze);letter-spacing:.12em;font-family:Georgia,serif}
+.cr{display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--bdr)}
+.cr:last-child{border-bottom:none}.ci{font-size:20px;flex-shrink:0}.cl{font-size:11px;color:var(--hint);margin-bottom:2px}.cv{font-size:15px;font-weight:600;color:var(--bronze)}
+.ir{display:flex;align-items:flex-start;gap:10px;padding:12px 15px;border-bottom:1px solid var(--bdr)}
+.ir:last-child{border-bottom:none}.ii{font-size:16px;flex-shrink:0;margin-top:2px}.il{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:2px}.iv{font-size:12px;color:var(--muted);line-height:1.6}
+.ar{display:flex;gap:12px;padding:13px 15px;border-bottom:1px solid var(--bdr);align-items:flex-start}
+.ar:last-child{border-bottom:none}.ai{width:36px;height:36px;border-radius:50%;background:var(--sl);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.at{font-size:14px;font-weight:600;margin-bottom:2px}.ad{font-size:12px;color:var(--muted);line-height:1.6}
+.hr{display:flex;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--bdr);font-size:13px}
+.hr:last-child{border-bottom:none}.hc{color:var(--sand)}
+.maps-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--sl);border:1.5px solid var(--bdr);border-radius:var(--r10);padding:12px;color:var(--bronze);font-size:14px;font-weight:500;text-decoration:none;margin-top:10px}
+.bot-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--w);border-top:1px solid var(--bdr);display:grid;grid-template-columns:1fr 1fr 1fr 1fr;z-index:300}
+.bn{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px;cursor:pointer;color:var(--hint);font-size:10px;gap:2px;border:none;background:none;font-family:inherit}
+.bn.active,.bn:hover{color:var(--sand)}.bn-ic{font-size:19px}
+footer{background:var(--dark);padding:20px;text-align:center}
+.fl{color:var(--sand);font-size:14px;font-family:Georgia,serif;letter-spacing:.1em;margin-bottom:4px}
+.fi{color:rgba(255,255,255,.38);font-size:11px;line-height:2}.fi a{color:var(--sand)}
+.step{display:none}.step.active{display:block}.hidden{display:none}
+.sync-l{text-align:center;font-size:11px;color:var(--hint);padding:4px 0 10px}
 </style>
 
-<nav>
-  <div class="nav-in">
-    <div class="nav-logo">
-      <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
-        <rect width="100" height="100" rx="10" fill="rgba(255,255,255,0.15)"/>
-        <rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-        <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
-        <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
-        <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="white" text-anchor="middle" letter-spacing="-2">BB</text>
-        <path d="M22 74 Q28 80 34 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-      </svg>
-      <span class="nav-name">BUNNYBEAUTY</span>
-    </div>
-    <div class="nav-right">
-      <div class="lang-switch">
-        <button class="lang-btn active" id="btn-cn" onclick="setLang('cn')">中文</button>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-      </div>
-      <button class="nav-book" id="nav-book-btn"></button>
-    </div>
+<nav><div class="nav-in">
+  <div class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+      <rect width="100" height="100" rx="10" fill="rgba(255,255,255,0.15)"/>
+      <rect x="6" y="6" width="88" height="88" rx="6" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
+      <ellipse cx="63" cy="22" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
+      <text x="50" y="72" font-size="38" font-family="Georgia,serif" fill="white" text-anchor="middle" letter-spacing="-2">BB</text>
+      <path d="M22 74 Q28 80 34 74" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-name">BUNNYBEAUTY</span>
   </div>
-</nav>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lb" id="btn-cn">&#20013;&#25991;</button>
+      <button class="lb active" id="btn-en">EN</button>
+    </div>
+    <button class="nav-book" id="nav-btn">Book</button>
+  </div>
+</div></nav>
 
 <div class="hero">
-  <svg width="80" height="80" viewBox="0 0 100 100" fill="none" style="margin-bottom:16px">
+  <svg width="70" height="70" viewBox="0 0 100 100" fill="none" style="margin-bottom:13px">
     <rect width="100" height="100" rx="14" fill="rgba(255,255,255,0.12)"/>
     <rect x="5" y="5" width="90" height="90" rx="10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
     <ellipse cx="37" cy="26" rx="7" ry="14" fill="none" stroke="white" stroke-width="2.5"/>
@@ -185,347 +148,350 @@ footer a{color:var(--sand)}
     <path d="M52 74 Q58 80 64 74" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
     <text x="50" y="92" font-size="7.5" font-family="Georgia,serif" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="3">BUNNYBEAUTY STUDIO</text>
   </svg>
-  <h1 id="hero-h1"></h1>
-  <div class="hero-sub">Private Lash Studio · Richmond BC</div>
+  <h1 id="h1">Lash Extensions</h1>
+  <div class="hero-sub">Private Studio &middot; Richmond BC</div>
   <div class="hero-slogan">Timeless Beauty. Artfully Crafted.</div>
-  <div class="hero-pills" id="hero-pills"></div>
-  <button class="hero-btn" id="hero-book-btn"></button>
+  <div class="hero-pills" id="pills"></div>
+  <button class="hero-btn" id="hero-btn">Book an Appointment</button>
 </div>
 
-<div class="strip">
-  <div class="strip-in" id="strip-in"></div>
-</div>
-
-<!-- WEEKLY STATS -->
-<div id="stats-sec" style="background:var(--sand);padding:16px 20px">
-  <div style="max-width:480px;margin:0 auto">
-    <div id="weekly-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center"></div>
-    <div id="sync-status" style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.55)">📅 正在同步日历...</div>
-  </div>
-</div>
+<div class="strip"><div class="strip-grid" id="strip"></div></div>
 
 <!-- BOOKING -->
-<div class="book-wrap" id="book-sec">
-<div class="sec">
-  <div class="sec-tag" id="book-tag"></div>
-  <h2 id="book-h2" style="margin-bottom:20px"></h2>
-  <div class="prog" id="prog-bar"></div>
+<div class="book-wrap" id="book-sec"><div class="sec">
+  <div class="sec-tag" id="book-tag">Online Booking</div>
+  <h2 id="book-h2" style="margin-bottom:6px">Reserve Your Spot</h2>
+  <div class="sync-l" id="sync-l">Syncing calendar...</div>
+  <div class="prog" id="prog"></div>
 
   <div id="step1" class="step active">
-    <div class="type-box">
-      <h3 style="font-size:16px;margin-bottom:4px" id="type-title"></h3>
-      <p style="font-size:13px;color:var(--hint)" id="type-sub"></p>
-      <div class="type-opts">
-        <div class="type-opt" id="to-new"><div class="to-emoji">🎉</div><div class="to-cn" id="to-new-label"></div><div class="to-badge" id="to-new-badge"></div></div>
-        <div class="type-opt" id="to-ret"><div class="to-emoji">💛</div><div class="to-cn" id="to-ret-label"></div><div class="to-badge" id="to-ret-badge"></div></div>
-        <div class="type-opt" id="to-ref"><div class="to-emoji">✿</div><div class="to-cn" id="to-ref-label"></div><div class="to-badge">$30–50</div></div>
-      </div>
+    <h3 id="date-h3" style="margin-bottom:12px">Pick a Date</h3>
+    <div class="cal-hdr">
+      <button class="cal-nav" id="cprev">&#8249;</button>
+      <div class="cal-m" id="cal-m"></div>
+      <button class="cal-nav" id="cnext">&#8250;</button>
     </div>
-    <h3 style="margin-bottom:12px" id="style-title"></h3>
-    <div class="book-grid" id="sp-grid"></div>
-    <button class="btn-main" id="btn1" disabled></button>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div id="time-sec" class="hidden">
+      <h3 id="time-h3" style="margin-bottom:11px">Available Times</h3>
+      <div class="time-grid" id="time-grid"></div>
+    </div>
+    <button class="btn" id="btn1" disabled>Next: Choose Style</button>
   </div>
 
   <div id="step2" class="step">
-    <button class="btn-back" id="back1"></button>
-    <h3 style="margin-bottom:6px" id="date-title"></h3>
-    <p style="font-size:13px;color:var(--hint);margin-bottom:14px" id="date-sub"></p>
-    <div class="date-scroll" id="date-grid"></div>
-    <div id="time-sec" class="hidden">
-      <h3 style="margin-bottom:12px" id="time-title"></h3>
-      <div class="time-grid" id="time-grid"></div>
+    <button class="btn-bk" id="bk1">&#8592; Back</button>
+    <h3 id="type-h3" style="margin-bottom:4px">New or Returning?</h3>
+    <p id="type-sub" style="font-size:12px;margin-bottom:12px">New: 50% off &middot; Returning: 20% off &middot; Refill: from $30</p>
+    <div class="type-opts">
+      <div class="to" id="to-new"><div class="to-em">&#127881;</div><div class="to-lb" id="to-new-l">New Client</div><div class="to-bg" id="to-new-b">50% off</div></div>
+      <div class="to" id="to-ret"><div class="to-em">&#128155;</div><div class="to-lb" id="to-ret-l">Returning</div><div class="to-bg" id="to-ret-b">20% off</div></div>
+      <div class="to" id="to-ref"><div class="to-em">&#10025;</div><div class="to-lb" id="to-ref-l">Refill</div><div class="to-bg">$30-50</div></div>
     </div>
-    <button class="btn-main" id="btn2" disabled></button>
+    <h3 id="style-h3" style="margin-bottom:11px">Choose Your Style</h3>
+    <div class="book-grid" id="book-grid"></div>
+    <button class="btn" id="btn2" disabled>Next: Your Info</button>
   </div>
 
   <div id="step3" class="step">
-    <button class="btn-back" id="back2"></button>
-    <h3 style="margin-bottom:14px" id="info-title"></h3>
+    <button class="btn-bk" id="bk2">&#8592; Back</button>
+    <h3 id="info-h3" style="margin-bottom:13px">Your Information</h3>
     <div class="form-box">
-      <div class="field"><span class="flbl" id="lbl-name"></span><input type="text" id="f-name" placeholder=""></div>
-      <div class="field"><span class="flbl" id="lbl-phone"></span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
-      <div class="field"><span class="flbl" id="lbl-email"></span><input type="email" id="f-email" placeholder="your@email.com"></div>
-      <div class="field" style="margin-bottom:0"><span class="flbl" id="lbl-notes"></span><textarea id="f-notes" rows="3" placeholder=""></textarea></div>
+      <div class="field"><span class="flbl" id="l-name">Full Name *</span><input type="text" id="f-name" placeholder="Your name"></div>
+      <div class="field"><span class="flbl" id="l-phone">Phone (optional)</span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
+      <div class="field"><span class="flbl" id="l-email">Email (optional)</span><input type="email" id="f-email" placeholder="your@email.com"></div>
+      <div class="field" style="margin-bottom:0"><span class="flbl" id="l-notes">Notes (optional)</span><textarea id="f-notes" rows="3" placeholder="Allergies / current lashes / desired look..."></textarea></div>
     </div>
-    <button class="btn-main" id="btn3" disabled></button>
+    <button class="btn" id="btn3" disabled>Review Booking</button>
   </div>
 
   <div id="step4" class="step">
-    <button class="btn-back" id="back3"></button>
-    <h3 style="margin-bottom:14px" id="review-title"></h3>
-    <div class="card" style="margin-bottom:14px" id="review-card"></div>
-    <div class="notice" id="cancel-notice"></div>
-    <button class="btn-main" id="btn-confirm"></button>
+    <button class="btn-bk" id="bk3">&#8592; Edit</button>
+    <h3 id="rev-h3" style="margin-bottom:13px">Review &amp; Confirm</h3>
+    <div class="card" style="margin-bottom:12px" id="rev-card"></div>
+    <div class="notice" id="c-notice">Please cancel at least 3 days in advance.</div>
+    <button class="btn" id="btn-ok">Confirm Booking</button>
   </div>
 
   <div id="step5" class="step">
-    <div style="text-align:center;padding:24px 0 20px">
-      <div style="width:72px;height:72px;border-radius:50%;background:var(--sand-l);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 14px">✿</div>
-      <div style="font-size:24px;color:var(--bronze);margin-bottom:6px;font-weight:500" id="conf-title"></div>
-      <div style="font-size:14px;color:var(--hint);font-family:Georgia,serif" id="conf-sub"></div>
+    <div style="text-align:center;padding:20px 0 16px">
+      <div style="width:65px;height:65px;border-radius:50%;background:var(--sl);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 11px">&#10025;</div>
+      <div style="font-size:21px;color:var(--bronze);margin-bottom:4px;font-weight:500" id="conf-t">All booked!</div>
+      <div style="font-size:13px;color:var(--hint);font-family:Georgia,serif" id="conf-s">See you soon</div>
     </div>
     <div class="ref-card">
-      <div style="font-size:12px;color:var(--hint);margin-bottom:6px;letter-spacing:.06em" id="ref-label"></div>
-      <div class="ref-num" id="ref-display"></div>
-      <div style="font-size:12px;color:var(--hint);margin-top:6px" id="ref-sub"></div>
+      <div style="font-size:11px;color:var(--hint);margin-bottom:5px" id="ref-l">Booking Reference</div>
+      <div class="ref-num" id="ref-n"></div>
+      <div style="font-size:11px;color:var(--hint);margin-top:5px" id="ref-s">Save this to cancel or reschedule</div>
     </div>
     <div class="gcal-bar">
-      <div style="color:#fff;font-size:16px;font-weight:600;margin-bottom:4px" id="gcal-title"></div>
-      <div style="color:rgba(255,255,255,.75);font-size:13px" id="gcal-sub"></div>
-      <button class="gcal-btn" id="gcal-btn">📅 Add to Google Calendar</button>
-      <input type="hidden" id="gcal-url">
+      <div style="color:#fff;font-size:14px;font-weight:600;margin-bottom:3px" id="gc-t">Add to Calendar</div>
+      <div style="color:rgba(255,255,255,.7);font-size:12px" id="gc-s">Address and directions pre-filled</div>
+      <button class="gcal-btn" id="gc-btn">&#128197; Add to Google Calendar</button>
+      <input type="hidden" id="gc-url">
     </div>
-    <div class="card" style="margin-bottom:14px" id="conf-sum"></div>
-    <div class="card" style="margin-bottom:14px">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px" id="contact-title"></h3></div>
-      <div class="contact-row"><span class="c-icon">📱</span><div><div class="c-label" id="phone-label"></div><a href="tel:+12369967087" class="c-val">(236) 996-7087</a></div></div>
-      <div class="contact-row"><span class="c-icon">💬</span><div><div class="c-label" id="wechat-label"></div><div class="c-val">LanLovesLife</div></div></div>
+    <div class="card" style="margin-bottom:12px" id="conf-sum"></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="padding:12px 15px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:14px" id="ct-h">Contact Us</h3></div>
+      <div class="cr"><span class="ci">&#128241;</span><div><div class="cl" id="ph-l">Phone / Text</div><a href="tel:+12369967087" class="cv">(236) 996-7087</a></div></div>
+      <div class="cr"><span class="ci">&#128172;</span><div><div class="cl" id="wc-l">WeChat</div><div class="cv">LanLovesLife</div></div></div>
     </div>
-    <div class="card" style="margin-bottom:14px">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px" id="directions-title"></h3></div>
-      <div id="loc-conf"></div>
+    <div class="card" style="margin-bottom:12px">
+      <div style="padding:12px 15px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:14px" id="dir-h">Getting Here</h3></div>
+      <div id="loc-c"></div>
     </div>
     <div class="card">
-      <div style="padding:14px 16px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:16px" id="aftercare-remind-title"></h3></div>
-      <div id="ac-mini"></div>
-      <div style="padding:14px 16px"><a id="ac-link" style="color:var(--sand);font-size:14px;cursor:pointer"></a></div>
+      <div style="padding:12px 15px;border-bottom:1px solid var(--bdr)"><h3 style="font-size:14px" id="ac-h">Aftercare Reminders</h3></div>
+      <div id="ac-m"></div>
+      <div style="padding:12px 15px"><a id="ac-more" style="color:var(--sand);font-size:13px;cursor:pointer">View full aftercare guide</a></div>
     </div>
   </div>
-</div>
-</div>
+</div></div>
+
+<!-- PRICING -->
+<div id="price-sec" style="border-top:1px solid var(--bdr);background:var(--w)"><div class="sec">
+  <div class="sec-tag" id="pr-tag">Pricing</div>
+  <h2 id="pr-h2" style="margin-bottom:10px">Services &amp; Pricing</h2>
+  <div class="pn-badges">
+    <span class="pn pn-a" id="bd-a">New clients: 50% off first visit</span>
+    <span class="pn pn-b" id="bd-b">Returning: 20% off</span>
+    <span class="pn pn-c" id="bd-c">Refill: $30-50</span>
+  </div>
+  <div class="price-table">
+    <div class="pt-head" id="pt-head"><div>Style</div><div style="text-align:center">Regular</div><div style="text-align:center;color:var(--bronze)">New</div><div style="text-align:center">Return</div></div>
+    <div id="pr-rows"></div>
+  </div>
+  <div class="ref-table">
+    <div class="ref-head" id="rf-head"><div>Refill (50%+ retention)</div><div style="text-align:center">Price</div></div>
+    <div id="rf-rows"></div>
+  </div>
+  <div style="margin-top:12px"><button class="btn" id="pr-btn">Book Now</button></div>
+</div></div>
 
 <!-- MANAGE -->
-<div id="manage-sec" style="border-top:1px solid var(--bdr);background:var(--w)">
-<div class="sec">
-  <div class="sec-tag" id="manage-tag"></div>
-  <h2 style="margin-bottom:6px" id="manage-h2"></h2>
-  <p style="margin-bottom:20px;font-size:14px" id="manage-sub"></p>
-  <div class="form-box" style="margin-bottom:14px">
+<div id="manage-sec" style="border-top:1px solid var(--bdr);background:var(--sll)"><div class="sec">
+  <div class="sec-tag" id="mg-tag">Manage Booking</div>
+  <h2 id="mg-h2" style="margin-bottom:5px">Cancel / Reschedule</h2>
+  <p id="mg-sub" style="margin-bottom:16px">Self-cancel up to 3 days before. Within 3 days, contact us directly.</p>
+  <div class="form-box" style="margin-bottom:12px">
     <div class="field" style="margin-bottom:0">
-      <span class="flbl" id="manage-lbl"></span>
-      <input type="text" id="manage-ref" style="text-transform:uppercase;letter-spacing:.08em;font-size:20px;text-align:center" placeholder="e.g. BB-A3K7">
+      <span class="flbl" id="mg-l">Enter Booking Reference</span>
+      <input type="text" id="mg-ref" style="text-transform:uppercase;letter-spacing:.1em;font-size:20px;text-align:center" placeholder="BB-XXXX">
     </div>
   </div>
-  <button class="btn-main" id="lookup-btn"></button>
-  <div id="manage-result" class="hidden" style="margin-top:16px"></div>
-</div>
-</div>
+  <button class="btn" id="lk-btn">Look Up My Booking</button>
+  <div id="mg-res" class="hidden" style="margin-top:14px"></div>
+</div></div>
 
 <!-- LOCATION -->
-<div id="loc-sec" style="background:var(--w);border-top:1px solid var(--bdr)">
-<div class="sec">
-  <div class="sec-tag" id="loc-tag"></div>
-  <h2 style="margin-bottom:16px" id="loc-h2"></h2>
+<div id="loc-sec" style="background:var(--w);border-top:1px solid var(--bdr)"><div class="sec">
+  <div class="sec-tag" id="lc-tag">Location</div>
+  <h2 id="lc-h2" style="margin-bottom:13px">Studio Address</h2>
   <div class="card">
-    <div class="info-row"><span class="i-icon">📌</span><div><div class="i-label">Bunny Beauty Studio</div><div class="i-val">7151 No. 5 Rd, Richmond, BC</div></div></div>
-    <div class="info-row"><span class="i-icon">📞</span><div><div class="i-label" id="loc-phone-label"></div><a href="tel:+12369967087" style="color:var(--sand);font-size:14px">(236) 996-7087</a></div></div>
-    <div class="info-row"><span class="i-icon">💬</span><div><div class="i-label" id="loc-wechat-label"></div><div class="i-val">LanLovesLife</div></div></div>
+    <div class="ir"><span class="ii">&#128205;</span><div><div class="il">Bunny Beauty Studio</div><div class="iv">7151 No. 5 Rd, Richmond, BC</div></div></div>
+    <div class="ir"><span class="ii">&#128222;</span><div><div class="il" id="lc-ph">Phone / Text</div><a href="tel:+12369967087" style="color:var(--sand);font-size:13px">(236) 996-7087</a></div></div>
+    <div class="ir"><span class="ii">&#128172;</span><div><div class="il" id="lc-wc">WeChat</div><div class="iv">LanLovesLife</div></div></div>
   </div>
-  <a href="https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC" target="_blank" class="maps-btn" id="maps-btn-text"></a>
-  <div class="card" style="margin-top:14px" id="hours-card"></div>
-  <h3 style="margin:24px 0 14px" id="parking-title"></h3>
-  <div class="card" id="park-card"></div>
-  <div style="background:var(--sand-l);border-radius:var(--r16);padding:16px;margin-top:12px;border:1px solid var(--bdr)">
-    <div style="font-size:13px;font-weight:600;color:var(--bronze);margin-bottom:10px" id="photo-title"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px" id="photo-grid"></div>
-    <div style="background:var(--w);border-radius:10px;padding:12px;font-size:13px;color:var(--bronze);line-height:1.7" id="parking-tip"></div>
+  <a href="https://maps.google.com/?q=7151+No+5+Rd+Richmond+BC" target="_blank" class="maps-btn" id="maps-btn">Open in Google Maps</a>
+  <div class="card" style="margin-top:12px" id="hrs-card"></div>
+  <h3 id="pk-h3" style="margin:20px 0 11px">Parking &amp; Arrival</h3>
+  <div class="card" id="pk-card"></div>
+  <div style="background:var(--sl);border-radius:var(--r16);padding:13px;margin-top:10px;border:1px solid var(--bdr)">
+    <div id="ph-title" style="font-size:12px;font-weight:600;color:var(--bronze);margin-bottom:9px">Entrance Guide</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:9px" id="ph-grid"></div>
+    <div style="background:var(--w);border-radius:10px;padding:10px;font-size:12px;color:var(--bronze);line-height:1.7" id="pk-tip"></div>
   </div>
-</div>
-</div>
+</div></div>
 
 <!-- AFTERCARE -->
-<div id="aftercare-sec" style="border-top:1px solid var(--bdr);background:var(--sand-ll)">
-<div class="sec">
-  <div class="sec-tag" id="care-tag"></div>
-  <h2 style="margin-bottom:16px" id="care-h2"></h2>
+<div id="care-sec" style="border-top:1px solid var(--bdr);background:var(--sll)"><div class="sec">
+  <div class="sec-tag" id="ac-tag">Aftercare</div>
+  <h2 id="ac-h2" style="margin-bottom:13px">Keep Your Lashes Gorgeous</h2>
   <div class="card" id="ac-full"></div>
-</div>
-</div>
+</div></div>
 
 <footer>
-  <div class="f-logo">✿ BUNNYBEAUTY STUDIO</div>
-  <div class="f-info">7151 No. 5 Rd, Richmond, BC<br><a href="tel:+12369967087">(236) 996-7087</a> · WeChat: LanLovesLife<br><span style="font-style:italic">Timeless Beauty. Artfully Crafted.</span></div>
+  <div class="fl">&#10025; BUNNYBEAUTY STUDIO</div>
+  <div class="fi">7151 No. 5 Rd, Richmond, BC<br><a href="tel:+12369967087">(236) 996-7087</a> &middot; WeChat: LanLovesLife<br><em>Timeless Beauty. Artfully Crafted.</em></div>
 </footer>
 
-<div class="bottom-nav">
-  <button class="bn-item active" id="bn-book"><span class="bn-icon">📅</span><span id="bn-book-lbl"></span></button>
-  <button class="bn-item" id="bn-manage"><span class="bn-icon">🔄</span><span id="bn-manage-lbl"></span></button>
-  <button class="bn-item" id="bn-loc"><span class="bn-icon">📍</span><span id="bn-loc-lbl"></span></button>
-  <button class="bn-item" id="bn-care"><span class="bn-icon">💧</span><span id="bn-care-lbl"></span></button>
+<div class="bot-nav">
+  <button class="bn active" id="bn-bk"><span class="bn-ic">&#128197;</span><span id="bn-bk-l">Book</span></button>
+  <button class="bn" id="bn-pr"><span class="bn-ic">&#128176;</span><span id="bn-pr-l">Pricing</span></button>
+  <button class="bn" id="bn-mg"><span class="bn-ic">&#128260;</span><span id="bn-mg-l">Manage</span></button>
+  <button class="bn" id="bn-lc"><span class="bn-ic">&#128205;</span><span id="bn-lc-l">Location</span></button>
 </div>
 
 <script>
-var GCAL_URL='https://script.google.com/macros/s/AKfycbynmDWZ6qT6dqBJ-ITVZAh_iwlHywCdMEYS7VvrwmBBbixt5rpY_i5urPumWnkRnHt2/exec';
+var GCAL='https://script.google.com/macros/s/AKfycbynmDWZ6qT6dqBJ-ITVZAh_iwlHywCdMEYS7VvrwmBBbixt5rpY_i5urPumWnkRnHt2/exec';
 
-/* ============ TRANSLATIONS ============ */
-var T={
-  cn:{
-    navBook:'立即预约',
-    heroH1:'新中式美睫',
-    pills:['✔ 款式多样','✔ 贴合眼型','✔ 灵动自然','✔ 精致不夸张','🕒 1.5–2h'],
-    heroBtn:'立即预约 →',
-    strip:[{cn:'私人工作室',en:'Private Studio'},{cn:'定制眼型',en:'Custom Lash Map'},{cn:'优质山茶花毛',en:'Premium Camellia'},{cn:'在线预约',en:'Easy Booking'}],
-    bookTag:'在线预约',bookH2:'预约你的时间',
-    typeTitle:'你是新客还是老客？',typeSub:'新客半价 · 老客8折 · 补睫5折',
-    toNew:'新客',toNewBadge:'半价',toRet:'老客',toRetBadge:'8折',toRef:'补睫',
-    styleTitle:'选择款式',
-    btn1:'下一步：选择时间 →',back1:'← 返回',
-    dateTitle:'选择日期',dateSub:'左右滑动查看更多日期',
-    timeTitle:'选择时间',
-    btn2:'下一步：填写信息 →',
-    infoTitle:'填写信息',back2:'← 返回',
-    lblName:'姓名 *',lblPhone:'电话 (选填)',lblEmail:'邮箱 (选填)',lblNotes:'备注 (选填)',
-    namePH:'您的姓名',notesPH:'过敏史 / 目前眼睫情况 / 期望效果...',
-    btn3:'查看预约详情 →',
-    reviewTitle:'确认预约信息',back3:'← 修改',
-    cancelNotice:'⚠️ 请提前 3天 取消或改期，3天内请直接联系我们。',
-    btnConfirm:'确认预约 ✓ Confirm',
-    confTitle:'预约成功！🎉',confSub:'We\'ll see you soon ✿',
-    refLabel:'预约编号',refSub:'请保存此编号，取消/修改时需要',
-    gcalTitle:'📅 添加到你的日历',gcalSub:'地址、电话、停车指引已自动填入',
-    contactTitle:'联系我们',phoneLabel:'电话 / 短信',wechatLabel:'微信',
-    directionsTitle:'📍 到店指引',aftercareRemind:'💧 护理提醒',acLink:'查看完整护理指南 →',
-    manageTag:'管理预约',manageH2:'取消 / 修改预约',
-    manageSub:'提前 3天以上 可自助取消，3天内请直接联系。',
-    manageLbl:'输入预约编号',lookupBtn:'查询我的预约 →',
-    locTag:'位置',locH2:'工作室地址',locPhoneLabel:'电话 / 短信',locWechatLabel:'微信',
-    mapsBtn:'🗺 在 Google Maps 中打开',parkingTitle:'🅿️ 停车 & 到达',
-    photoTitle:'📸 入口参考图',
-    photos:[{bg:'#6a8a5a',icon:'🌳',label:'① 入口大门',desc:'7151石柱'},{bg:'#8a9a7a',icon:'🅿️',label:'② 停车场',desc:'进门右侧'},{bg:'#7a8a9a',icon:'🏠',label:'③ 内院',desc:'一楼迎接'}],
-    parkingTip:'⚠️ 入口隐秘请减速，留意左侧石柱 7151 门牌\n进门右侧停车 → 步行至内院 → 一楼迎接 → 上二楼',
-    careTag:'护理',careH2:'爱护你的美睫',
-    progSteps:['款式','时间','信息','确认'],
-    bnBook:'预约',bnManage:'管理',bnLoc:'位置',bnCare:'护理',
-    days:['日','一','二','三','四','五','六'],
-    spotsLeft:'位',
-    rk:{style:'款式',type:'类型',date:'日期',time:'时间',duration:'时长',price:'价格',name:'姓名',phone:'电话',email:'邮箱',notes:'备注'},
-    ctypes:{new:'新客 🎉',refill:'补睫 ✿',returning:'老客 💛'},
-    refillDur:'60–75 min',
-    lookupLoading:'查询中...',lookupNotFound:'❌ 未找到编号',lookupCancelled:'此预约已取消 ✓',
-    daysLeft:'距预约还有',daysLeftUnit:'天，可以自助取消 ✓',
-    daysLeftFew:'距预约仅剩',daysLeftFewUnit:'天，请直接联系取消',
-    doCancel:'确认取消此预约',cancelLoading:'取消中...',cancelDone:'预约已取消',
-    hours:['周一 Mon','12:00 PM – 9:00 PM','周二 Tue','12:00 PM – 9:00 PM','周三 Wed','9:00 AM – 9:00 PM','周四 Thu','10:00 AM / 1:00 PM onwards','周五–周六 Fri–Sat','9:00 AM – 9:00 PM','周日 Sun','9:00 AM – 6:00 PM'],
-    parking:[
-      {i:'🔍',label:'⚠️ 入口隐秘请注意',val:'沿No.5 Rd行驶，留意两侧茂密大树夹道入口，门牌 7151 在左侧石柱，容易错过请减速'},
-      {i:'🅿️',label:'停车位置',val:'进入大门后靠右手边停车，有足够空间'},
-      {i:'🚶',label:'步行指引',val:'停车后往内院走，我在一楼迎接，带您上二楼工作室'},
-      {i:'🚌',label:'405 公交车站',val:'门口即有405路公交车站，非常方便'},
-      {i:'📲',label:'到达后发短信',val:'(236) 996-7087 — 我会出来接您'}
+var STYLES=[
+  {id:1,em:'🌿',cn:'自然穿插单根',en:'Natural Classic',scn:'清爽日常',sen:'Clean & effortless',p:60,np:40,rp:48,fp:30,dur:'90 min',fd:'60 min'},
+  {id:2,em:'🧚',cn:'仙子款',en:'Fairy Style',scn:'轻薄灵动',sen:'Light & wispy',p:80,np:40,rp:64,fp:40,dur:'90 min',fd:'60 min'},
+  {id:3,em:'📖',cn:'大/小漫画款',en:'Manga Style',scn:'自然放大眼',sen:'Doe-eyed & defined',p:80,np:40,rp:64,fp:40,dur:'90 min',fd:'60 min'},
+  {id:4,em:'😈',cn:'小恶魔款',en:'Little Devil',scn:'妩媚有神',sen:'Sultry & dramatic',p:100,np:50,rp:80,fp:50,dur:'120 min',fd:'75 min'},
+  {id:5,em:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',scn:'上扬飞扬',sen:'Lifted & voluminous',p:100,np:50,rp:80,fp:50,dur:'120 min',fd:'75 min'},
+  {id:6,em:'🤍',cn:'暂未确定/现场沟通',en:'Undecided/Consult',scn:'可来图设计，现场沟通',sen:'Bring inspo pics, decide together',p:60,pl:'$60+',np:40,rp:48,fp:30,dur:'120 min',fd:'75 min'}
+];
+var REFILLS=[
+  {cn:'自然款补睫',en:'Natural Refill',p:30},
+  {cn:'仙子/漫画补睫',en:'Fairy/Manga Refill',p:40},
+  {cn:'小恶魔/狐系补睫',en:'Devil/Fox Refill',p:50}
+];
+var SCH={
+  0:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
+  1:['12:00','13:00','14:00','16:00','17:00','18:00'],
+  2:['12:00','13:00','14:00','16:00','17:00','18:00'],
+  3:['09:00','13:00','14:00','16:00','17:00','18:00'],
+  4:['10:00','13:00','14:00','16:00','17:00','18:00'],
+  5:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
+  6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00']
+};
+
+var TX={
+  en:{
+    navBook:'Book',h1:'Lash Extensions',
+    pills:['Various styles','Custom fit','Natural look','Subtle glam','1.5-2 hrs'],
+    heroBtn:'Book an Appointment',
+    strip:[['🌿','Private Studio','Private Studio'],['✿','Custom Lash Map','Custom Lash Map'],['💎','Premium Camellia','Premium Camellia'],['📅','Easy Booking','Easy Booking']],
+    bookTag:'Online Booking',bookH2:'Reserve Your Spot',
+    syncOk:'📅 Calendar synced',syncLoad:'📅 Syncing...',
+    dateH3:'Pick a Date',timeH3:'Available Times',btn1:'Next: Choose Style',
+    typeH3:'New or Returning?',typeSub:'New: 50% off · Returning: 20% off · Refill: from $30',
+    toNew:'New Client',toNewB:'50% off',toRet:'Returning',toRetB:'20% off',toRef:'Refill',
+    styleH3:'Choose Your Style',btn2:'Next: Your Info',bk1:'Back',
+    infoH3:'Your Information',bk2:'Back',
+    lName:'Full Name *',lPhone:'Phone (optional)',lEmail:'Email (optional)',lNotes:'Notes (optional)',
+    namePH:'Your name',notesPH:'Allergies / current lashes / desired look...',
+    btn3:'Review Booking',revH3:'Review & Confirm',bk3:'Edit',
+    cNotice:'Please cancel or reschedule at least 3 days in advance. Within 3 days, please contact us directly.',
+    btnOk:'Confirm Booking',
+    confT:'All booked! 🎉',confS:'We cannot wait to see you',
+    refL:'Booking Reference',refS:'Save this to cancel or reschedule',
+    gcT:'Add to Your Calendar',gcS:'Address and directions pre-filled',
+    ctH:'Contact Us',phL:'Phone / Text',wcL:'WeChat',
+    dirH:'Getting Here',acH:'Aftercare Reminders',acMore:'View full aftercare guide',
+    prTag:'Pricing',prH2:'Services & Pricing',
+    ptHead:['Style','Regular','New','Return'],
+    rfHead:'Refill (50%+ retention)',
+    bdA:'🎉 New clients: 50% off first visit',bdB:'💛 Returning: 20% off',bdC:'✿ Refill: $30-50',
+    prBtn:'Book Now',
+    mgTag:'Manage Booking',mgH2:'Cancel / Reschedule',
+    mgSub:'Self-cancel up to 3 days before. Within 3 days, contact us directly.',
+    mgL:'Enter Booking Reference',lkBtn:'Look Up My Booking',
+    lcTag:'Location',lcH2:'Studio Address',lcPh:'Phone / Text',lcWc:'WeChat',
+    mapsBtn:'🗺 Open in Google Maps',pkH3:'🅿️ Parking & Arrival',phTitle:'📸 Entrance Guide',
+    photos:[{bg:'#6a8a5a',ic:'🌳',lb:'Entrance',ds:'7151 pillar'},{bg:'#8a9a7a',ic:'🅿️',lb:'Parking',ds:'Right of gate'},{bg:'#7a8a9a',ic:'🏠',lb:'Courtyard',ds:'1st floor'}],
+    pkTip:'The entrance is easy to miss. Slow down and look for the 7151 pillar on your left along No.5 Rd. Park on the right after entering the gate. Walk to the courtyard and I will meet you on the 1st floor.',
+    acTag:'Aftercare',acH2:'Keep Your Lashes Gorgeous',
+    bnBk:'Book',bnPr:'Pricing',bnMg:'Manage',bnLc:'Location',
+    prog:['Date','Style','Info','Confirm'],
+    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+    rk:{style:'Style',type:'Type',date:'Date',time:'Time',dur:'Duration',price:'Price',name:'Name',phone:'Phone',email:'Email',notes:'Notes'},
+    ct:{new:'New Client 🎉',refill:'Refill ✿',returning:'Returning 💛'},
+    nf:'Booking not found',nfS:'Check your reference or use the same device you booked on.',
+    cancelled:'This booking has been cancelled',
+    dOk:'Appointment in',dOkU:'days - self-cancel available',
+    dFew:'Only',dFewU:'days away - please contact us to cancel.',
+    doCancel:'Cancel This Appointment',cLoad:'Cancelling...',cDone:'Booking Cancelled',
+    hrs:[['Mon','12:00 PM - 6:00 PM'],['Tue','12:00 PM - 6:00 PM'],['Wed','9:00 AM - 6:00 PM'],['Thu','10:00 AM - 6:00 PM'],['Fri - Sun','9:00 AM - 6:00 PM']],
+    pk:[
+      {i:'🔍',l:'Easy-to-miss entrance',v:'Slow down along No.5 Rd. Look for 7151 pillar on the left in the tree-lined driveway.'},
+      {i:'🅿️',l:'Parking',v:'Park on the right after entering the gate.'},
+      {i:'🚶',l:'Directions',v:'Walk to the courtyard. I will meet you on the 1st floor and take you up to the 2nd floor studio.'},
+      {i:'🚌',l:'Bus Stop - Route 405',v:'Bus stop right at the front door.'},
+      {i:'📲',l:'Text on arrival',v:'(236) 996-7087 and I will come out to meet you.'}
     ],
     ac:[
-      {i:'💧',title:'8小时内避水避蒸汽',text:'避开水、蒸汽、桑拿，让胶水充分固化。8小时后可正常洗脸，避免大量水冲眼部。'},
-      {i:'🚫',title:'避免油性产品',text:'油脂溶解胶水，更换无油洁面及卸妆产品，检查所有护肤品标签。'},
-      {i:'🤲',title:'不要揉眼睛',text:'揉眼造成过早脱落，如有不适请联系我们。'},
-      {i:'🌙',title:'尽量仰睡',text:'侧睡压变睫毛形状，建议使用真丝枕套减少摩擦。'},
-      {i:'✿',title:'每天梳理睫毛',text:'每天早晨用螺旋刷从根部轻轻梳理，保持蓬松感。'},
-      {i:'💄',title:'不需要刷睫毛膏',text:'接睫后无需睫毛膏，使用会使睫毛结块影响效果。'},
-      {i:'🧴',title:'每周清洁两次',text:'用专用泡沫清洁睫毛，清洁度决定持久度。'},
-      {i:'📅',title:'2周内来补睫',text:'建议在2周内回来补睫，保持饱满效果。超过2周可能需要重新接全套。'}
+      {i:'💧',t:'Stay dry for 8 hours',d:'Avoid water, steam and saunas. After 8 hours you can wash normally.'},
+      {i:'🚫',t:'Go oil-free',d:'Oil breaks down lash adhesive. Switch to oil-free cleansers.'},
+      {i:'🤲',t:'No rubbing or picking',d:'Rubbing causes premature shedding. Contact us if anything feels irritating.'},
+      {i:'🌙',t:'Sleep on your back',d:'Side sleeping bends lashes. A silk pillowcase helps.'},
+      {i:'✿',t:'Brush daily',d:'Use the spoolie we give you every morning to keep lashes fluffy.'},
+      {i:'💄',t:'Skip the mascara',d:'You will not need it - mascara clumps fans together.'},
+      {i:'🧴',t:'Cleanse twice a week',d:'Use a lash-safe foam cleanser. Clean lashes last longer.'},
+      {i:'📅',t:'Come back within 2 weeks',d:'We recommend returning within 2 weeks for a fill.'}
     ]
   },
-  en:{
-    navBook:'Book Now',
-    heroH1:'Lash Extensions',
-    pills:['✔ Various styles','✔ Custom fit','✔ Natural look','✔ Subtle glam','🕒 1.5–2 hrs'],
-    heroBtn:'Book an Appointment →',
-    strip:[{cn:'Private Studio',en:'Private Studio'},{cn:'Custom Lash Map',en:'Custom Lash Map'},{cn:'Premium Camellia',en:'Premium Camellia'},{cn:'Easy Booking',en:'Easy Booking'}],
-    bookTag:'Online Booking',bookH2:'Reserve Your Spot',
-    typeTitle:'Are you a new or returning client?',typeSub:'New clients: 50% off · Returning: 20% off · Refill: 50% off',
-    toNew:'New Client',toNewBadge:'50% off',toRet:'Returning',toRetBadge:'20% off',toRef:'Refill',
-    styleTitle:'Choose your style',
-    btn1:'Next: Choose a Time →',back1:'← Back',
-    dateTitle:'Pick a date',dateSub:'Swipe to see more dates',
-    timeTitle:'Available times',
-    btn2:'Next: Your Info →',
-    infoTitle:'Your Information',back2:'← Back',
-    lblName:'Full Name *',lblPhone:'Phone (optional)',lblEmail:'Email (optional)',lblNotes:'Notes (optional)',
-    namePH:'Your name',notesPH:'Allergies / current lashes / desired look...',
-    btn3:'Review Booking →',
-    reviewTitle:'Review & Confirm',back3:'← Edit',
-    cancelNotice:'⚠️ Please cancel or reschedule at least 3 days in advance. Within 3 days, please contact us directly.',
-    btnConfirm:'Confirm Booking ✓',
-    confTitle:'You\'re all booked! 🎉',confSub:'We can\'t wait to see you ✿',
-    refLabel:'Booking Reference',refSub:'Save this — you\'ll need it to cancel or reschedule',
-    gcalTitle:'📅 Add to Your Calendar',gcalSub:'Address, phone & directions are pre-filled',
-    contactTitle:'Contact Us',phoneLabel:'Phone / Text',wechatLabel:'WeChat',
-    directionsTitle:'📍 Getting Here',aftercareRemind:'💧 Aftercare Reminders',acLink:'View full aftercare guide →',
-    manageTag:'Manage Booking',manageH2:'Cancel / Reschedule',
-    manageSub:'Self-cancel up to 3 days before your appointment. Within 3 days, please reach out directly.',
-    manageLbl:'Enter your booking reference',lookupBtn:'Look Up My Booking →',
-    locTag:'Location',locH2:'Studio Address',locPhoneLabel:'Phone / Text',locWechatLabel:'WeChat',
-    mapsBtn:'🗺 Open in Google Maps',parkingTitle:'🅿️ Parking & Arrival',
-    photoTitle:'📸 Entrance Guide',
-    photos:[{bg:'#6a8a5a',icon:'🌳',label:'① Entrance',desc:'7151 pillar'},{bg:'#8a9a7a',icon:'🅿️',label:'② Parking',desc:'Right side inside gate'},{bg:'#7a8a9a',icon:'🏠',label:'③ Courtyard',desc:'Meet you on 1st floor'}],
-    parkingTip:'⚠️ The entrance is easy to miss — slow down and look for the 7151 pillar on your left\nPark on the right → walk to the inner courtyard → I\'ll meet you on the 1st floor → up to 2nd floor studio',
-    careTag:'Aftercare',careH2:'Keep Your Lashes Gorgeous',
-    progSteps:['Style','Time','Info','Review'],
-    bnBook:'Book',bnManage:'Manage',bnLoc:'Location',bnCare:'Aftercare',
-    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-    spotsLeft:'',
-    rk:{style:'Style',type:'Client type',date:'Date',time:'Time',duration:'Duration',price:'Price',name:'Name',phone:'Phone',email:'Email',notes:'Notes'},
-    ctypes:{new:'New Client 🎉',refill:'Refill ✿',returning:'Returning 💛'},
-    refillDur:'60–75 min',
-    lookupLoading:'Looking up...',lookupNotFound:'❌ Booking not found',lookupCancelled:'This booking has been cancelled ✓',
-    daysLeft:'Your appointment is in',daysLeftUnit:'days — you can self-cancel ✓',
-    daysLeftFew:'Only',daysLeftFewUnit:'days until your appointment. Please contact us to cancel.',
-    doCancel:'Cancel This Appointment',cancelLoading:'Cancelling...',cancelDone:'Booking Cancelled',
-    hours:['Mon','12:00 PM – 9:00 PM','Tue','12:00 PM – 9:00 PM','Wed','9:00 AM – 9:00 PM','Thu','10:00 AM / 1:00 PM onwards','Fri–Sat','9:00 AM – 9:00 PM','Sun','9:00 AM – 6:00 PM'],
-    parking:[
-      {i:'🔍',label:'⚠️ Easy-to-miss entrance',val:'Drive along No. 5 Rd and watch for a tree-lined driveway — the 7151 gate pillar is on the left. Slow down, it\'s easy to miss!'},
-      {i:'🅿️',label:'Parking',val:'Park on the right side after entering the gate — plenty of space'},
-      {i:'🚶',label:'Directions',val:'Walk toward the inner courtyard. I\'ll meet you on the 1st floor and take you up to the 2nd floor studio'},
-      {i:'🚌',label:'Bus Stop — Route 405',val:'Bus stop right at the front door'},
-      {i:'📲',label:'Text on arrival',val:'(236) 996-7087 — I\'ll come out to meet you'}
+  cn:{
+    navBook:'立即预约',h1:'新中式美睫',
+    pills:['款式多样','贴合眼型','灵动自然','精致不夸张','1.5-2h'],
+    heroBtn:'立即预约',
+    strip:[['🌿','私人工作室','Private Studio'],['✿','定制眼型','Custom Lash Map'],['💎','优质山茶花毛','Premium Camellia'],['📅','在线预约','Easy Booking']],
+    bookTag:'在线预约',bookH2:'预约你的时间',
+    syncOk:'📅 日历已同步',syncLoad:'📅 正在同步...',
+    dateH3:'选择日期',timeH3:'可选时间',btn1:'下一步：选择款式',
+    typeH3:'新客还是老客？',typeSub:'新客半价 · 老客8折 · 补睫从$30起',
+    toNew:'新客',toNewB:'半价',toRet:'老客',toRetB:'8折',toRef:'补睫',
+    styleH3:'选择款式',btn2:'下一步：填写信息',bk1:'返回',
+    infoH3:'填写信息',bk2:'返回',
+    lName:'姓名 *',lPhone:'电话 (选填)',lEmail:'邮箱 (选填)',lNotes:'备注 (选填)',
+    namePH:'您的姓名',notesPH:'过敏史 / 目前眼睫情况 / 期望效果...',
+    btn3:'查看预约详情',revH3:'确认预约信息',bk3:'修改',
+    cNotice:'请提前 3天 取消或改期，3天内请直接联系我们。',
+    btnOk:'确认预约',
+    confT:'预约成功！🎉',confS:'期待见到你',
+    refL:'预约编号',refS:'请保存此编号，取消/修改时需要',
+    gcT:'添加到你的日历',gcS:'地址和停车指引已自动填入',
+    ctH:'联系我们',phL:'电话 / 短信',wcL:'微信',
+    dirH:'到店指引',acH:'护理提醒',acMore:'查看完整护理指南',
+    prTag:'价目表',prH2:'服务价格',
+    ptHead:['款式','原价','新客','老客'],
+    rfHead:'补睫 (保留50%+)',
+    bdA:'🎉 新客首次预约半价',bdB:'💛 老客8折',bdC:'✿ 补睫 $30-50',
+    prBtn:'立即预约',
+    mgTag:'管理预约',mgH2:'取消 / 修改预约',
+    mgSub:'提前 3天以上 可自助取消，3天内请直接联系。',
+    mgL:'输入预约编号',lkBtn:'查询我的预约',
+    lcTag:'位置',lcH2:'工作室地址',lcPh:'电话 / 短信',lcWc:'微信',
+    mapsBtn:'🗺 在 Google Maps 中打开',pkH3:'🅿️ 停车 & 到达',phTitle:'📸 入口参考图',
+    photos:[{bg:'#6a8a5a',ic:'🌳',lb:'入口大门',ds:'7151石柱'},{bg:'#8a9a7a',ic:'🅿️',lb:'停车场',ds:'进门右侧'},{bg:'#7a8a9a',ic:'🏠',lb:'内院',ds:'一楼迎接'}],
+    pkTip:'入口隐秘请减速，留意左侧石柱 7151 门牌。进门右侧停车，步行至内院，我在一楼迎接，带您上二楼工作室。',
+    acTag:'护理',acH2:'爱护你的美睫',
+    bnBk:'预约',bnPr:'价格',bnMg:'管理',bnLc:'位置',
+    prog:['日期','款式','信息','确认'],
+    days:['日','一','二','三','四','五','六'],
+    months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+    rk:{style:'款式',type:'类型',date:'日期',time:'时间',dur:'时长',price:'价格',name:'姓名',phone:'电话',email:'邮箱',notes:'备注'},
+    ct:{new:'新客 🎉',refill:'补睫 ✿',returning:'老客 💛'},
+    nf:'未找到编号',nfS:'请检查编号，或在预约时使用的同一设备上查询。',
+    cancelled:'此预约已取消',
+    dOk:'距预约还有',dOkU:'天，可以自助取消',
+    dFew:'距预约仅剩',dFewU:'天，请直接联系取消。',
+    doCancel:'确认取消此预约',cLoad:'取消中...',cDone:'预约已取消',
+    hrs:[['周一 Mon','12:00 PM - 6:00 PM'],['周二 Tue','12:00 PM - 6:00 PM'],['周三 Wed','9:00 AM - 6:00 PM'],['周四 Thu','10:00 AM - 6:00 PM'],['周五-周日','9:00 AM - 6:00 PM']],
+    pk:[
+      {i:'🔍',l:'入口隐秘请注意',v:'沿No.5 Rd行驶，留意茂密大树夹道入口，门牌 7151 在左侧石柱，容易错过请减速。'},
+      {i:'🅿️',l:'停车位置',v:'进入大门后靠右手边停车。'},
+      {i:'🚶',l:'步行指引',v:'停车后往内院走，我在一楼迎接，带您上二楼工作室。'},
+      {i:'🚌',l:'405 公交车站',v:'门口即有405路公交车站，非常方便。'},
+      {i:'📲',l:'到达后发短信',v:'(236) 996-7087，我会出来接您。'}
     ],
     ac:[
-      {i:'💧',title:'Stay dry for 8 hours',text:'Avoid water, steam, saunas, and heavy sweating. After 8 hours you can wash your face normally, but avoid direct water pressure on your lashes.'},
-      {i:'🚫',title:'Go oil-free',text:'Oil breaks down lash adhesive. Switch to oil-free cleansers and makeup removers, and check all your skincare labels.'},
-      {i:'🤲',title:'No rubbing or picking',text:'Rubbing your eyes causes premature shedding. If anything feels irritating, reach out and we\'ll sort it out.'},
-      {i:'🌙',title:'Sleep on your back',text:'Side sleeping bends and crushes your lashes. A silk pillowcase helps reduce friction if you\'re a side sleeper.'},
-      {i:'✿',title:'Brush daily',text:'Use the spoolie we give you every morning, brushing from mid-shaft to tip to keep your lashes fanned and fluffy.'},
-      {i:'💄',title:'Skip the mascara',text:'You won\'t need it — and mascara clumps fans together and is really hard to remove without pulling lashes off.'},
-      {i:'🧴',title:'Cleanse twice a week',text:'Use a lash-safe foam cleanser to remove oils and buildup. Clean lashes always last longer.'},
-      {i:'📅',title:'Come back within 2 weeks',text:'We recommend returning within 2 weeks for a fill to keep your set looking full. After 2 weeks you may need a new full set.'}
+      {i:'💧',t:'8小时内避水避蒸汽',d:'避开水、蒸汽、桑拿，让胶水充分固化。8小时后可正常洗脸。'},
+      {i:'🚫',t:'避免油性产品',d:'油脂溶解胶水，更换无油洁面及卸妆产品。'},
+      {i:'🤲',t:'不要揉眼睛',d:'揉眼造成过早脱落，如有不适请联系我们。'},
+      {i:'🌙',t:'尽量仰睡',d:'侧睡压变睫毛形状，建议使用真丝枕套。'},
+      {i:'✿',t:'每天梳理睫毛',d:'每天早晨用螺旋刷从根部轻轻梳理，保持蓬松感。'},
+      {i:'💄',t:'不需要刷睫毛膏',d:'接睫后无需睫毛膏，使用会使睫毛结块。'},
+      {i:'🧴',t:'每周清洁两次',d:'用专用泡沫清洁睫毛，清洁度决定持久度。'},
+      {i:'📅',t:'2周内来补睫',d:'建议在2周内回来补睫，超过2周可能需要重新接全套。'}
     ]
   }
 };
 
-/* ============ DATA ============ */
-var STYLES=[
-  {id:1,emoji:'🌿',cn:'自然穿插单根',en:'Natural Classic',sub_cn:'清爽日常',sub_en:'Clean & effortless',price:60,newP:40,retP:48,refP:30,dur:120},
-  {id:2,emoji:'🧚',cn:'仙子款',en:'Fairy Style',sub_cn:'轻薄灵动',sub_en:'Light & wispy',price:80,newP:40,retP:64,refP:40,dur:120},
-  {id:3,emoji:'📖',cn:'大/小漫画款',en:'Manga Style',sub_cn:'自然放大眼',sub_en:'Doe-eyed & defined',price:80,newP:40,retP:64,refP:40,dur:120},
-  {id:4,emoji:'😈',cn:'小恶魔款',en:'Little Devil',sub_cn:'妩媚有神',sub_en:'Sultry & dramatic',price:100,newP:50,retP:80,refP:50,dur:120},
-  {id:5,emoji:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',sub_cn:'上扬飞扬',sub_en:'Lifted & voluminous',price:100,newP:50,retP:80,refP:50,dur:120},
-  {id:6,emoji:'🤍',cn:'其他/暂未确定',en:'Other/Undecided',sub_cn:'预约后沟通',sub_en:'We\'ll figure it out together',price:60,priceLabel:'$60+',newP:40,retP:48,refP:30,dur:120}
-];
-
-var CFG={
-  address:'7151 No. 5 Rd, Richmond, BC',
-  schedule:{
-    0:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
-    1:['12:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
-    2:['12:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
-    3:['09:00','13:00','14:00','16:00','17:00','18:00','19:00','21:00'],
-    4:['10:00','13:00','14:00','16:00','17:00','18:00'],
-    5:['09:00','12:00','13:00','14:00','16:00','17:00','18:00'],
-    6:['09:00','12:00','13:00','14:00','16:00','17:00','18:00']
-  }
-};
-
-/* ============ STATE ============ */
-var lang='cn';
+var lang='en';
 var S={step:1,ctype:'',svc:null,date:null,time:null,name:'',phone:'',email:'',notes:''};
 var BOOKED={};
-var busyPeriods=[];
-var busyLoaded=false;
-var gcalUrlStr='';
+var busy=[];
+var busyOk=false;
+var gcStr='';
+var calY,calM;
 
-/* ============ HELPERS ============ */
-function el(id){return document.getElementById(id);}
+function g(id){return document.getElementById(id);}
 function pad(n){return String(n).padStart(2,'0');}
-function t(key){return T[lang][key]||T.cn[key]||'';}
+function L(){return TX[lang];}
 function fmtKey(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
 function fmtDate(d){
   if(lang==='en')return d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
@@ -535,444 +501,364 @@ function fmtShort(d){
   if(lang==='en')return d.toLocaleDateString('en-US',{month:'short',day:'numeric',weekday:'short'});
   return d.toLocaleDateString('zh-CN',{month:'short',day:'numeric',weekday:'short'});
 }
-function fmtTime(t){
-  var parts=t.split(':'),h=parseInt(parts[0]),m=parts[1],ap=h>=12?'PM':'AM',h12=h===0?12:h>12?h-12:h;
-  return h12+':'+m+' '+ap;
+function fmtT(t){var p=t.split(':'),h=parseInt(p[0]),m=p[1],ap=h>=12?'PM':'AM',h12=h===0?12:h>12?h-12:h;return h12+':'+m+' '+ap;}
+function gcFmt(d){return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';}
+
+/* ✅ FIX 1: Renamed from scrollTo → scrollSec to avoid overriding window.scrollTo */
+function scrollSec(id){
+  var e=g(id);
+  if(!e)return;
+  var y=e.getBoundingClientRect().top+window.pageYOffset-60;
+  window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
 }
-function gcalFmt(dt){return dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';}
-function scrollSec(id){var e=el(id);if(!e)return;var y=e.getBoundingClientRect().top+window.pageYOffset-60;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});}
+
 function genId(){return 'BB-'+(Date.now().toString(36).toUpperCase().slice(-4))+(Math.random().toString(36).toUpperCase().slice(-2));}
-function getPrice(svc,ctype){
-  var orig=svc.priceLabel||'$'+svc.price;
-  if(ctype==='new')return{label:'$'+svc.newP,orig:orig,tag:t('toNewBadge')};
-  if(ctype==='returning')return{label:'$'+svc.retP,orig:orig,tag:t('toRetBadge')};
-  if(ctype==='refill')return{label:'$'+svc.refP,orig:orig,tag:lang==='cn'?'补睫价':'Refill rate'};
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function ld(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}}
+function setNav(b){document.querySelectorAll('.bn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');}
+
+function getPrice(s,ct){
+  var orig=s.pl||'$'+s.p;
+  if(ct==='new')return{label:'$'+s.np,orig:orig,tag:L().toNewB};
+  if(ct==='returning')return{label:'$'+s.rp,orig:orig,tag:L().toRetB};
+  if(ct==='refill')return{label:'$'+s.fp,orig:orig,tag:lang==='en'?'Refill rate':'补睫价'};
   return{label:orig,orig:'',tag:''};
 }
-function isBiWed(date){if(date.getDay()!==3)return false;var ref=new Date(2026,4,13),diff=Math.round((date-ref)/86400000);return diff>=0&&diff%14===0;}
-function getSlots(date){return(CFG.schedule[date.getDay()]||[]).filter(function(t){return!(isBiWed(date)&&t==='12:00');});}
-function localConflict(date,t2){
-  var key=fmtKey(date),booked=BOOKED[key]||[];
-  var h=parseInt(t2.split(':')[0]),m=parseInt(t2.split(':')[1]),reqS=h*60+m,reqE=reqS+150;
-  return booked.some(function(bt){var bh=parseInt(bt.split(':')[0]),bm=parseInt(bt.split(':')[1]),bS=bh*60+bm,bE=bS+150;return reqS<bE&&reqE>bS;});
+function isBiWed(d){if(d.getDay()!==3)return false;var ref=new Date(2026,4,13),diff=Math.round((d-ref)/86400000);return diff>=0&&diff%14===0;}
+function getSlots(d){return(SCH[d.getDay()]||[]).filter(function(t){return!(isBiWed(d)&&t==='12:00');});}
+function lBusy(d,t){
+  var b=BOOKED[fmtKey(d)]||[],h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]),rS=h*60+m,rE=rS+150;
+  return b.some(function(bt){var bh=parseInt(bt.split(':')[0]),bm=parseInt(bt.split(':')[1]),bS=bh*60+bm,bE=bS+150;return rS<bE&&rE>bS;});
 }
-function calConflict(date,t2){
-  if(!busyPeriods.length)return false;
-  var h=parseInt(t2.split(':')[0]),m=parseInt(t2.split(':')[1]);
-  var ss=new Date(date.getFullYear(),date.getMonth(),date.getDate(),h,m,0);
-  var se=new Date(ss.getTime()+150*60000);
-  return busyPeriods.some(function(b){return ss<b.e&&se>b.s;});
+function cBusy(d,t){
+  if(!busy.length)return false;
+  var h=parseInt(t.split(':')[0]),m=parseInt(t.split(':')[1]);
+  var ss=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m,0),se=new Date(ss.getTime()+150*60000);
+  return busy.some(function(b){return ss<b.e&&se>b.s;});
 }
-function storeSet(key,val){try{localStorage.setItem(key,JSON.stringify(val));}catch(e){}}
-function storeGet(key){try{var v=localStorage.getItem(key);return v?JSON.parse(v):null;}catch(e){return null;}}
+function isAvail(d,t){return!lBusy(d,t)&&!cBusy(d,t);}
 
-/* ============ GCAL ============ */
-function gcalReq(params){
+function gcReq(params){
   return new Promise(function(resolve){
-    try{
-      var cb='bb_'+Date.now(),script;
-      window[cb]=function(data){delete window[cb];if(script&&script.parentNode)script.parentNode.removeChild(script);resolve(data);};
-      script=document.createElement('script');
-      script.onerror=function(){delete window[cb];resolve({});};
-      params.callback=cb;
-      var qs=Object.keys(params).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(params[k]);}).join('&');
-      script.src=GCAL_URL+'?'+qs;
-      document.head.appendChild(script);
-      setTimeout(function(){if(window[cb]){delete window[cb];resolve({});}},8000);
-    }catch(ex){resolve({});}
+    var cb='bb_'+Date.now(),sc;
+    window[cb]=function(d){delete window[cb];if(sc&&sc.parentNode)sc.parentNode.removeChild(sc);resolve(d);};
+    sc=document.createElement('script');
+    sc.onerror=function(){delete window[cb];resolve({});};
+    params.callback=cb;
+    var qs=Object.keys(params).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(params[k]);}).join('&');
+    sc.src=GCAL+'?'+qs;document.head.appendChild(sc);
+    setTimeout(function(){if(window[cb]){delete window[cb];resolve({});}},9000);
   });
 }
+
 function fetchBusy(){
   return new Promise(function(resolve){
-    var s=new Date(),e=new Date();
-    e.setDate(s.getDate()+50);
-    var url=GCAL_URL+'?action=busy&start='+encodeURIComponent(s.toISOString())+'&end='+encodeURIComponent(e.toISOString());
-    var attempts=0;
-
-    function attempt(){
-      attempts++;
-      var cb='bb_busy_'+Date.now();
-      var script=document.createElement('script');
-      var done=false;
-
-      function finish(data){
+    var s=new Date(),e=new Date();e.setDate(s.getDate()+50);
+    var tries=0;
+    function go(){
+      tries++;
+      var cb='bb_b_'+Date.now(),sc,done=false;
+      function fin(data){
         if(done)return;done=true;
-        if(data&&data.busy&&data.busy.length){
-          busyPeriods=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
-          // 更新状态标志
-          var si=el('sync-status');
-          if(si)si.innerHTML=lang==='en'?'📅 Calendar synced':'📅 日历已同步';
-        }
-        busyLoaded=true;
-        delete window[cb];
-        if(script.parentNode)script.parentNode.removeChild(script);
-        resolve();
+        if(data&&data.busy&&data.busy.length)busy=data.busy.map(function(b){return{s:new Date(b.start),e:new Date(b.end)};});
+        busyOk=true;g('sync-l').textContent=L().syncOk;
+        delete window[cb];if(sc&&sc.parentNode)sc.parentNode.removeChild(sc);
+        renderCal();resolve();
       }
-
-      window[cb]=function(data){finish(data);};
-      script.onerror=function(){
-        delete window[cb];
-        if(script.parentNode)script.parentNode.removeChild(script);
-        if(attempts<2){setTimeout(attempt,1000);}
-        else{busyLoaded=true;resolve();}
-      };
-      script.src=url+'&callback='+cb+'&_='+Date.now();
-      document.head.appendChild(script);
-      setTimeout(function(){
-        if(!done){
-          if(attempts<2){
-            done=true;
-            delete window[cb];
-            if(script.parentNode)script.parentNode.removeChild(script);
-            attempt();
-          }else{finish({});}
-        }
-      },8000);
+      window[cb]=function(data){fin(data);};
+      sc=document.createElement('script');
+      sc.onerror=function(){delete window[cb];if(tries<2)setTimeout(go,1500);else{busyOk=true;g('sync-l').textContent=L().syncOk;resolve();}};
+      sc.src=GCAL+'?action=busy&start='+encodeURIComponent(s.toISOString())+'&end='+encodeURIComponent(e.toISOString())+'&callback='+cb+'&_='+Date.now();
+      document.head.appendChild(sc);
+      setTimeout(function(){if(!done){if(tries<2){done=true;delete window[cb];if(sc&&sc.parentNode)sc.parentNode.removeChild(sc);go();}else fin({});}},7000);
     }
-    attempt();
+    go();
   });
 }
 
-/* ============ LANGUAGE ============ */
-function setLang(l){
-  lang=l;
-  el('btn-cn').classList.toggle('active',l==='cn');
-  el('btn-en').classList.toggle('active',l==='en');
-  document.documentElement.lang=l==='cn'?'zh':'en';
-  applyLang();
-  renderWeeklyStats();
-  renderBookCards();
-  renderProg();
-  if(S.date)renderTimes();
-  renderStaticBlocks();
-}
-
-function applyLang(){
-  var L=T[lang];
-  el('nav-book-btn').textContent=L.navBook;
-  el('hero-h1').textContent=L.heroH1;
-  el('hero-pills').innerHTML=L.pills.map(function(p){return'<span class="pill">'+p+'</span>';}).join('');
-  el('hero-book-btn').textContent=L.heroBtn;
-  // Strip
-  el('strip-in').innerHTML=L.strip.map(function(s,i){
-    var icons=['🌿','✿','💎','📅'];
-    return'<div class="si"><div class="si-icon">'+icons[i]+'</div><div class="si-cn">'+s.cn+'</div><div class="si-en">'+s.en+'</div></div>';
-  }).join('');
-  // Booking
-  el('book-tag').textContent=L.bookTag;el('book-h2').textContent=L.bookH2;
-  el('type-title').textContent=L.typeTitle;el('type-sub').textContent=L.typeSub;
-  el('to-new-label').textContent=L.toNew;el('to-new-badge').textContent=L.toNewBadge;
-  el('to-ret-label').textContent=L.toRet;el('to-ret-badge').textContent=L.toRetBadge;
-  el('to-ref-label').textContent=L.toRef;
-  el('style-title').textContent=L.styleTitle;
-  el('btn1').textContent=L.btn1;el('back1').textContent=L.back1;
-  el('date-title').textContent=L.dateTitle;el('date-sub').textContent=L.dateSub;
-  el('btn2').textContent=L.btn2;el('back2').textContent=L.back2;
-  el('info-title').textContent=L.infoTitle;
-  el('lbl-name').textContent=L.lblName;el('lbl-phone').textContent=L.lblPhone;
-  el('lbl-email').textContent=L.lblEmail;el('lbl-notes').textContent=L.lblNotes;
-  el('f-name').placeholder=L.namePH;el('f-notes').placeholder=L.notesPH;
-  el('btn3').textContent=L.btn3;el('back3').textContent=L.back3;
-  el('review-title').textContent=L.reviewTitle;
-  el('cancel-notice').textContent=L.cancelNotice;
-  el('btn-confirm').textContent=L.btnConfirm;
-  el('conf-title').textContent=L.confTitle;el('conf-sub').textContent=L.confSub;
-  el('ref-label').textContent=L.refLabel;el('ref-sub').textContent=L.refSub;
-  el('gcal-title').textContent=L.gcalTitle;el('gcal-sub').textContent=L.gcalSub;
-  el('contact-title').textContent=L.contactTitle;
-  el('phone-label').textContent=L.phoneLabel;el('wechat-label').textContent=L.wechatLabel;
-  el('directions-title').textContent=L.directionsTitle;
-  el('aftercare-remind-title').textContent=L.aftercareRemind;
-  el('ac-link').textContent=L.acLink;
-  // Manage
-  el('manage-tag').textContent=L.manageTag;el('manage-h2').textContent=L.manageH2;
-  el('manage-sub').textContent=L.manageSub;
-  el('manage-lbl').textContent=L.manageLbl;el('lookup-btn').textContent=L.lookupBtn;
-  // Location
-  el('loc-tag').textContent=L.locTag;el('loc-h2').textContent=L.locH2;
-  el('loc-phone-label').textContent=L.locPhoneLabel;el('loc-wechat-label').textContent=L.locWechatLabel;
-  el('maps-btn-text').textContent=L.mapsBtn;
-  el('parking-title').textContent=L.parkingTitle;
-  el('photo-title').textContent=L.photoTitle;
-  el('photo-grid').innerHTML=L.photos.map(function(p){return'<div style="background:'+p.bg+';border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:22px;margin-bottom:5px">'+p.icon+'</div><div style="font-size:10px;color:#fff;font-weight:600">'+p.label+'</div><div style="font-size:9px;color:rgba(255,255,255,.8)">'+p.desc+'</div></div>';}).join('');
-  el('parking-tip').textContent=L.parkingTip;
-  // Aftercare
-  el('care-tag').textContent=L.careTag;el('care-h2').textContent=L.careH2;
-  // Bottom nav
-  el('bn-book-lbl').textContent=L.bnBook;el('bn-manage-lbl').textContent=L.bnManage;
-  el('bn-loc-lbl').textContent=L.bnLoc;el('bn-care-lbl').textContent=L.bnCare;
-}
-
-function renderStaticBlocks(){
-  var L=T[lang];
-  // Hours
-  var hc=el('hours-card');hc.innerHTML='';
-  for(var i=0;i<L.hours.length;i+=2){
-    var closed=L.hours[i+1]==='Closed'||L.hours[i+1]==='休息 Closed';
-    hc.innerHTML+='<div class="hours-row"><span>'+L.hours[i]+'</span><span class="'+(closed?'hours-closed':'')+'">'+L.hours[i+1]+'</span></div>';
+function renderCal(){
+  var now=new Date(),today=new Date(now);today.setHours(0,0,0,0);
+  var t=L();
+  var mLabel=lang==='en'?t.months[calM]+' '+calY:calY+'年'+t.months[calM];
+  g('cal-m').textContent=mLabel;
+  var grid=g('cal-grid');
+  grid.innerHTML=t.days.map(function(d){return'<div class="cal-dow">'+d+'</div>';}).join('');
+  var first=new Date(calY,calM,1).getDay();
+  for(var i=0;i<first;i++)grid.innerHTML+='<div class="cd em"></div>';
+  var dim=new Date(calY,calM+1,0).getDate();
+  for(var day=1;day<=dim;day++){
+    var d=new Date(calY,calM,day);
+    var past=d<today;
+    var sl=getSlots(d);
+    var av=sl.filter(function(t2){return isAvail(d,t2);});
+    var isSel=S.date&&fmtKey(S.date)===fmtKey(d);
+    var cls='cd'+(isSel?' sel':past?' past':(!av.length?' bk':' av'));
+    var dot=(!past&&av.length&&!isSel)?'<div class="cal-dot"></div>':'';
+    (function(date,ok){
+      var div=document.createElement('div');div.className=cls;div.innerHTML=date.getDate()+dot;
+      if(ok)div.addEventListener('click',function(){pickDate(date);});
+      grid.appendChild(div);
+    })(d,!past&&av.length);
   }
-  // Parking
-  var pc=el('park-card');pc.innerHTML='';
-  L.parking.forEach(function(p){pc.innerHTML+='<div class="info-row"><span class="i-icon">'+p.i+'</span><div><div class="i-label">'+p.label+'</div><div class="i-val">'+p.val+'</div></div></div>';});
-  // Aftercare full
-  var af=el('ac-full');af.innerHTML='';
-  L.ac.forEach(function(a){af.innerHTML+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.title+'</div><div class="ac-text">'+a.text+'</div></div></div>';});
 }
 
-/* ============ WEEKLY STATS ============ */
-function renderWeeklyStats(){
-  var now=new Date();
-  var day=now.getDay();
-  // Week starts Monday
-  var monday=new Date(now);
-  monday.setDate(now.getDate()-(day===0?6:day-1));
-  monday.setHours(0,0,0,0);
-  var sunday=new Date(monday);
-  sunday.setDate(monday.getDate()+6);
-
-  // Count all slots in this week
-  var totalSlots=0,bookedSlots=0;
-  for(var d=new Date(monday);d<=sunday;d.setDate(d.getDate()+1)){
-    var slots=getSlots(new Date(d));
-    totalSlots+=slots.length;
-    var key=fmtKey(new Date(d));
-    bookedSlots+=(BOOKED[key]||[]).length;
-  }
-  var remaining=totalSlots-bookedSlots;
-  var pct=totalSlots>0?Math.round((bookedSlots/totalSlots)*100):0;
-
-  var isEn=lang==='en';
-  var weekStart=monday.toLocaleDateString(isEn?'en-US':'zh-CN',{month:'short',day:'numeric'});
-  var weekEnd=sunday.toLocaleDateString(isEn?'en-US':'zh-CN',{month:'short',day:'numeric'});
-
-  el('weekly-stats').innerHTML=
-    '<div style="background:rgba(255,255,255,.15);border-radius:12px;padding:12px 8px">'+
-      '<div style="font-size:22px;font-weight:700;color:#fff">'+bookedSlots+'</div>'+
-      '<div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">'+(isEn?'Booked this week':'本周已预约')+'</div>'+
-    '</div>'+
-    '<div style="background:rgba(255,255,255,.15);border-radius:12px;padding:12px 8px">'+
-      '<div style="font-size:22px;font-weight:700;color:#fff">'+remaining+'</div>'+
-      '<div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">'+(isEn?'Spots left':'剩余位置')+'</div>'+
-    '</div>'+
-    '<div style="background:rgba(255,255,255,.15);border-radius:12px;padding:12px 8px">'+
-      '<div style="font-size:22px;font-weight:700;color:#fff">'+pct+'%</div>'+
-      '<div style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">'+(isEn?'Full this week':'本周预约率')+'</div>'+
-    '</div>';
-}
-
-
-function renderProg(){
-  var steps=T[lang].progSteps;
-  var html='';
-  steps.forEach(function(s,i){
-    var n=i+1,done=n<S.step,act=n===S.step;
-    if(i>0)html+='<div class="p-line'+(done?' done':'')+'"></div>';
-    html+='<div class="prog-step"><div class="pd'+(done?' done':act?' act':'')+'">'+( done?'✓':n)+'</div><div class="pl'+(act?' act':'')+'">'+s+'</div></div>';
+function pickDate(d){
+  S.date=d;
+  S.time=null;
+  g('btn1').disabled=true;
+  renderCal();
+  var sl=getSlots(d),av=sl.filter(function(t){return isAvail(d,t);});
+  g('time-h3').textContent=(lang==='cn'?'选择时间 - ':'Available Times - ')+fmtShort(d);
+  var tg=g('time-grid');tg.innerHTML='';
+  av.forEach(function(t){
+    var b=document.createElement('button');
+    b.className='time-btn';
+    b.textContent=fmtT(t);
+    /* ✅ FIX 2: Don't call pickDate() again — just update selection state directly */
+    b.addEventListener('click',function(){
+      S.time=t;
+      document.querySelectorAll('.time-btn').forEach(function(x){x.classList.remove('sel');});
+      b.classList.add('sel');
+      g('btn1').disabled=false;
+    });
+    tg.appendChild(b);
   });
-  el('prog-bar').innerHTML=html;
+  g('time-sec').classList.remove('hidden');
 }
 
-function renderBookCards(){
-  var container=el('sp-grid');container.innerHTML='';
+function setType(v){
+  S.ctype=v;S.svc=null;g('btn2').disabled=true;
+  ['to-new','to-ret','to-ref'].forEach(function(id){g(id).classList.remove('sel');});
+  g({new:'to-new',returning:'to-ret',refill:'to-ref'}[v]).classList.add('sel');
+  renderCards();
+}
+
+function renderCards(){
+  var c=g('book-grid');c.innerHTML='';
   var isRef=S.ctype==='refill';
   STYLES.forEach(function(s){
     var p=getPrice(s,S.ctype);
-    var name=lang==='cn'?(isRef?s.cn+'补睫':s.cn):(isRef?s.en+' Refill':s.en);
-    var sub=lang==='cn'?s.sub_cn:s.sub_en;
-    var dur=isRef?T[lang].refillDur:'120 min';
-    var div=document.createElement('div');
-    div.className='book-card';div.id='bc'+s.id;
-    var html='<div class="bc-emoji">'+s.emoji+'</div>';
-    html+='<div class="bc-cn">'+name+'</div>';
-    html+='<div class="bc-en">'+sub+'</div>';
-    if(p.orig){html+='<div class="bc-orig">'+p.orig+'</div><div class="bc-price">'+p.label+'</div><span class="bc-tag">'+p.tag+'</span>';}
-    else{html+='<div class="bc-price">'+p.label+'</div>';}
-    html+='<div class="bc-dur">🕒 '+dur+'</div>';
-    div.innerHTML=html;
-    div.addEventListener('click',function(){pickSvc(s);});
-    container.appendChild(div);
+    var name=s.cn+' · '+s.en;
+    if(isRef)name=(lang==='cn'?s.cn+'补睫':s.en+' Refill');
+    var sub=s.scn+' · '+s.sen;
+    var pr=S.ctype?p.label:(s.pl||'$'+s.p+'+');
+    var durLabel=isRef?s.fd:s.dur;
+    var div=document.createElement('div');div.className='bc';div.id='bc'+s.id;
+    var h='<div class="bc-em">'+s.em+'</div><div class="bc-nm">'+name+'</div><div class="bc-sb">'+sub+'</div>';
+    if(S.ctype&&p.orig)h+='<div class="bc-or">'+p.orig+'</div><div class="bc-pr">'+p.label+'</div><span class="bc-tg">'+p.tag+'</span>';
+    else h+='<div class="bc-pr">'+pr+'</div>';
+    h+='<div class="bc-dr">'+durLabel+'</div>';
+    div.innerHTML=h;div.addEventListener('click',function(){pickSvc(s);});
+    c.appendChild(div);
   });
 }
 
-function renderDates(){
-  var dg=el('date-grid');dg.innerHTML='';
-  var today=new Date();today.setHours(0,0,0,0);
-  var DOW=T[lang].days;
-  var shown=0;
-  for(var i=1;i<=42&&shown<28;i++){
-    var d=new Date(today);d.setDate(today.getDate()+i);
-    var slots=getSlots(d);
-    var avail=slots.filter(function(t2){return!localConflict(d,t2)&&!calConflict(d,t2);});
-    if(!avail.length)continue;shown++;
-    (function(date,count){
-      var btn=document.createElement('div');
-      var dayStr=lang==='cn'?'周'+DOW[date.getDay()]:DOW[date.getDay()];
-      var spotsStr=lang==='cn'?count+'位':count;
-      btn.className='date-btn'+(S.date&&fmtKey(S.date)===fmtKey(date)?' sel':'');
-      btn.innerHTML='<span class="dc">'+dayStr+'</span><span class="dn">'+date.getDate()+'</span><span class="ds">'+spotsStr+'</span>';
-      btn.addEventListener('click',function(){pickDate(date);});
-      dg.appendChild(btn);
-    })(d,avail.length);
-  }
-  if(!dg.children.length)dg.innerHTML='<p style="font-size:13px;color:var(--hint)">'+(lang==='cn'?'暂无可预约时间，请联系我们':'No available times. Please contact us directly.')+'</p>';
-}
-
-function renderTimes(){
-  var slots=getSlots(S.date);
-  var avail=slots.filter(function(t2){return!localConflict(S.date,t2)&&!calConflict(S.date,t2);});
-  el('time-title').textContent=(lang==='cn'?'选择时间 — ':'Available times — ')+fmtShort(S.date);
-  var tg=el('time-grid');tg.innerHTML='';
-  avail.forEach(function(t2){
-    var btn=document.createElement('button');
-    btn.className='time-btn'+(S.time===t2?' sel':'');
-    btn.textContent=fmtTime(t2);
-    btn.addEventListener('click',function(){pickTime(t2);});
-    tg.appendChild(btn);
-  });
-  el('time-sec').classList.remove('hidden');
-}
-
-/* ============ ACTIONS ============ */
-function setType(v){
-  S.ctype=v;S.svc=null;el('btn1').disabled=true;
-  ['to-new','to-ret','to-ref'].forEach(function(id){el(id).classList.remove('sel');});
-  el({new:'to-new',returning:'to-ret',refill:'to-ref'}[v]).classList.add('sel');
-  renderBookCards();
-}
 function pickSvc(s){
   if(!S.ctype){alert(lang==='cn'?'请先选择新客/老客/补睫':'Please select your client type first.');return;}
-  S.svc=s;
-  document.querySelectorAll('.book-card').forEach(function(c){c.classList.remove('sel');});
-  el('bc'+s.id).classList.add('sel');el('btn1').disabled=false;
+  S.svc=s;document.querySelectorAll('.bc').forEach(function(c){c.classList.remove('sel');});
+  g('bc'+s.id).classList.add('sel');g('btn2').disabled=false;
 }
-function pickDate(date){S.date=date;S.time=null;el('btn2').disabled=true;renderDates();renderTimes();}
-function pickTime(t2){S.time=t2;renderTimes();el('btn2').disabled=false;}
+
+function renderProg(){
+  var steps=L().prog;var html='';
+  steps.forEach(function(s,i){
+    var n=i+1,done=n<S.step,act=n===S.step;
+    if(i>0)html+='<div class="p-line'+(done?' done':'')+'"></div>';
+    html+='<div style="text-align:center;flex-shrink:0"><div class="pd'+(done?' done':act?' act':'')+'">'+( done?'&#10003;':n)+'</div><div class="pl'+(act?' act':'')+'">'+s+'</div></div>';
+  });
+  g('prog').innerHTML=html;
+}
 
 function goStep(n){
-  if(S.step===3){S.name=el('f-name').value.trim();S.phone=el('f-phone').value.trim();S.email=el('f-email').value.trim();S.notes=el('f-notes').value.trim();}
-  if(n===2)renderDates();
+  if(S.step===3){S.name=g('f-name').value.trim();S.phone=g('f-phone').value.trim();S.email=g('f-email').value.trim();S.notes=g('f-notes').value.trim();}
   if(n===4)renderReview();
-  el('step'+S.step).classList.remove('active');S.step=n;el('step'+n).classList.add('active');
-  renderProg();scrollSec('book-sec');
+  g('step'+S.step).classList.remove('active');S.step=n;g('step'+n).classList.add('active');
+  renderProg();
+  scrollSec('book-sec'); /* ✅ uses scrollSec not scrollTo */
 }
 
 function renderReview(){
-  var sv=S.svc,p=getPrice(sv,S.ctype),isRef=S.ctype==='refill';
-  var label=lang==='cn'?(isRef?sv.cn+'补睫':sv.cn):(isRef?sv.en+' Refill':sv.en);
-  var RK=T[lang].rk,CT=T[lang].ctypes;
-  var prHtml=p.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p.orig+'</span> <strong style="color:var(--bronze)">'+p.label+'</strong> <span style="font-size:11px;background:var(--sand-l);color:var(--bronze);padding:2px 7px;border-radius:10px">'+p.tag+'</span>':'<strong style="color:var(--bronze)">'+p.label+'</strong>';
-  var rows=[[RK.style,'<strong>'+label+'</strong>'],[RK.type,CT[S.ctype]],[RK.date,fmtDate(S.date)],[RK.time,fmtTime(S.time)],[RK.duration,isRef?T[lang].refillDur:'120 min'],[RK.price,prHtml],[RK.name,S.name],[RK.phone,S.phone||(lang==='cn'?'未填':'N/A')],[RK.email,S.email||(lang==='cn'?'未填':'N/A')],[RK.notes,S.notes||(lang==='cn'?'无':'None')]];
-  var html='';
-  rows.forEach(function(r){html+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
-  el('review-card').innerHTML=html;
+  var svc=S.svc,p=getPrice(svc,S.ctype),isRef=S.ctype==='refill';
+  var label=lang==='cn'?(isRef?svc.cn+'补睫':svc.cn):(isRef?svc.en+' Refill':svc.en);
+  var rk=L().rk,ct=L().ct;
+  var pH=p.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:12px">'+p.orig+'</span> <strong style="color:var(--bronze)">'+p.label+'</strong> <span style="font-size:10px;background:var(--sl);color:var(--bronze);padding:1px 6px;border-radius:8px">'+p.tag+'</span>':'<strong style="color:var(--bronze)">'+p.label+'</strong>';
+  var durLabel=isRef?svc.fd:svc.dur;
+  g('rev-card').innerHTML=[[rk.style,'<strong>'+label+'</strong>'],[rk.type,ct[S.ctype]],[rk.date,fmtDate(S.date)],[rk.time,fmtT(S.time)],[rk.dur,durLabel],[rk.price,pH],[rk.name,S.name],[rk.phone,S.phone||(lang==='cn'?'未填':'N/A')],[rk.email,S.email||(lang==='cn'?'未填':'N/A')],[rk.notes,S.notes||(lang==='cn'?'无':'None')]].map(function(r){return'<div class="rr"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';}).join('');
 }
 
 function doConfirm(){
-  el('btn-confirm').disabled=true;
-  el('btn-confirm').textContent=lang==='cn'?'处理中...':'Processing...';
-  var key=fmtKey(S.date);
-  if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);
-  // Re-render stats after booking
-  storeSet('bunny-v9',BOOKED);
-  renderWeeklyStats();
-  var isRef=S.ctype==='refill',sv=S.svc,p=getPrice(sv,S.ctype);
-  var label=lang==='cn'?(isRef?sv.cn+'补睫':sv.cn):(isRef?sv.en+' Refill':sv.en);
-  var parts=key.split('-'),h=parseInt(S.time.split(':')[0]),mi=parseInt(S.time.split(':')[1]);
-  var st=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]),h,mi,0);
-  var durMin=isRef?75:120,en=new Date(st.getTime()+durMin*60000);
-  var bookingId=genId();
-  var clientDesc='📍 Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n📞 236-996-7087\n💬 WeChat: LanLovesLife\n\nStyle: '+label+'\nPrice: '+p.label+(p.tag?' ('+p.tag+')':'')+'\nBooking Ref: '+bookingId+'\n\nCancel/reschedule: at least 3 days notice required\n⚠️ Directions: Look for the 7151 gate pillar on your left along No. 5 Rd — easy to miss! Park on the right after entering.';
-  var gcalUrl='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Bunny Beauty — '+label+' · '+S.name)+'&dates='+gcalFmt(st)+'/'+gcalFmt(en)+'&details='+encodeURIComponent(clientDesc)+'&location='+encodeURIComponent(CFG.address);
-  gcalUrlStr=gcalUrl;el('gcal-url').value=gcalUrl;
-  el('ref-display').textContent=bookingId;
-  // Confirm summary
-  var p2=getPrice(sv,S.ctype),RK=T[lang].rk;
-  var sumP=p2.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:13px">'+p2.orig+'</span> <strong style="color:var(--bronze)">'+p2.label+'</strong>':'<strong style="color:var(--bronze)">'+p2.label+'</strong>';
-  var sumRows=[[RK.style,'<strong>'+label+'</strong>'],[RK.date,fmtDate(S.date)],[RK.time,fmtTime(S.time)],[RK.price,sumP],[RK.name,S.name]];
-  var sumHtml='';sumRows.forEach(function(r){sumHtml+='<div class="review-row"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
-  el('conf-sum').innerHTML=sumHtml;
-  // Parking & aftercare in confirmation
-  var lcHtml='';T[lang].parking.forEach(function(pk){lcHtml+='<div class="info-row"><span class="i-icon">'+pk.i+'</span><div><div class="i-label">'+pk.label+'</div><div class="i-val">'+pk.val+'</div></div></div>';});
-  el('loc-conf').innerHTML=lcHtml;
-  var acHtml='';T[lang].ac.slice(0,4).forEach(function(a){acHtml+='<div class="ac-row"><div class="ac-ic">'+a.i+'</div><div><div class="ac-title">'+a.title+'</div><div class="ac-text">'+a.text.substring(0,60)+'...</div></div></div>';});
-  el('ac-mini').innerHTML=acHtml;
-  el('step4').classList.remove('active');S.step=5;el('step5').classList.add('active');
-  el('prog-bar').style.display='none';scrollSec('book-sec');
-  var record={bookingId:bookingId,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:durMin,created:Date.now()};
-  storeSet('bk:'+bookingId,record);
-  var bookParams={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bookingId,start:st.toISOString(),end:en.toISOString()};
-  gcalReq(bookParams).then(function(res){if(res&&res.eventId){var bk=storeGet('bk:'+bookingId);if(bk){bk.eventId=res.eventId;storeSet('bk:'+bookingId,bk);}}});
-  try{var qs2=Object.keys(bookParams).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(bookParams[k]);}).join('&');new Image().src=GCAL_URL+'?'+qs2;}catch(e){}
+  g('btn-ok').disabled=true;g('btn-ok').textContent=lang==='cn'?'处理中...':'Processing...';
+  var key=fmtKey(S.date);if(!BOOKED[key])BOOKED[key]=[];BOOKED[key].push(S.time);sv('bunny-v9',BOOKED);
+  var isRef=S.ctype==='refill',s=S.svc,p=getPrice(s,S.ctype);
+  var label=lang==='cn'?(isRef?s.cn+'补睫':s.cn):(isRef?s.en+' Refill':s.en);
+  var pts=key.split('-'),h=parseInt(S.time.split(':')[0]),mi=parseInt(S.time.split(':')[1]);
+  var st=new Date(parseInt(pts[0]),parseInt(pts[1])-1,parseInt(pts[2]),h,mi,0);
+  var dm=isRef?75:120,en=new Date(st.getTime()+dm*60000);
+  var bid=genId();
+  var cd='Bunny Beauty Studio\n7151 No. 5 Rd, Richmond, BC\n(236) 996-7087\nWeChat: LanLovesLife\n\nStyle: '+label+'\nPrice: '+p.label+(p.tag?' ('+p.tag+')':'')+'\nRef: '+bid+'\n\nCancel: 3 days notice required.';
+  gcStr='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Bunny Beauty - '+label+' - '+S.name)+'&dates='+gcFmt(st)+'/'+gcFmt(en)+'&details='+encodeURIComponent(cd)+'&location='+encodeURIComponent('7151 No. 5 Rd, Richmond, BC');
+  g('gc-url').value=gcStr;g('ref-n').textContent=bid;
+  var rk=L().rk,p2=getPrice(s,S.ctype);
+  var sp=p2.orig?'<span style="text-decoration:line-through;color:var(--hint);font-size:12px">'+p2.orig+'</span> <strong style="color:var(--bronze)">'+p2.label+'</strong>':'<strong style="color:var(--bronze)">'+p2.label+'</strong>';
+  g('conf-sum').innerHTML=[[rk.style,'<strong>'+label+'</strong>'],[rk.date,fmtDate(S.date)],[rk.time,fmtT(S.time)],[rk.price,sp],[rk.name,S.name]].map(function(r){return'<div class="rr"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';}).join('');
+  var lc=g('loc-c');lc.innerHTML='';
+  L().pk.forEach(function(pk){lc.innerHTML+='<div class="ir"><span class="ii">'+pk.i+'</span><div><div class="il">'+pk.l+'</div><div class="iv">'+pk.v+'</div></div></div>';});
+  var am=g('ac-m');am.innerHTML='';
+  L().ac.slice(0,4).forEach(function(a){am.innerHTML+='<div class="ar"><div class="ai">'+a.i+'</div><div><div class="at">'+a.t+'</div><div class="ad">'+a.d.substring(0,55)+'...</div></div></div>';});
+  g('step4').classList.remove('active');S.step=5;g('step5').classList.add('active');g('prog').style.display='none';
+  scrollSec('book-sec'); /* ✅ uses scrollSec */
+  sv('bk:'+bid,{bookingId:bid,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:dm,created:Date.now()});
+  var bp={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bid,start:st.toISOString(),end:en.toISOString()};
+  gcReq(bp).then(function(res){if(res&&res.eventId){var bk=ld('bk:'+bid);if(bk){bk.eventId=res.eventId;sv('bk:'+bid,bk);}}});
+  try{var qs=Object.keys(bp).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(bp[k]);}).join('&');new Image().src=GCAL+'?'+qs;}catch(e){}
 }
 
-/* ============ MANAGE ============ */
 function lookupBooking(){
-  var ref=el('manage-ref').value.trim().toUpperCase();
+  var ref=g('mg-ref').value.trim().toUpperCase();
   if(!ref){alert(lang==='cn'?'请输入预约编号':'Please enter your booking reference');return;}
-  var res=el('manage-result'),L=T[lang];
+  var res=g('mg-res'),t=L();
   res.classList.remove('hidden');
-  var bk=storeGet('bk:'+ref);
-  if(!bk){res.innerHTML='<div class="notice" style="text-align:center">'+L.lookupNotFound+' <strong>'+ref+'</strong><br><span style="font-size:13px">'+(lang==='cn'?'请检查编号，或在预约时使用的同一设备上查询':'Please check your reference or use the same device you booked on.')+'</span></div>';return;}
-  if(bk.status==='cancelled'){res.innerHTML='<div class="notice" style="text-align:center">'+L.lookupCancelled+'</div>';return;}
-  var apptDate=new Date(bk.dateKey+'T'+bk.time+':00'),daysLeft=Math.floor((apptDate-new Date())/86400000),canCancel=daysLeft>=3;
-  var html='<div class="card" style="margin-bottom:14px">';
-  [[L.rk.style,bk.style],[L.rk.date,bk.dateKey],[L.rk.time,fmtTime(bk.time)],[L.rk.name,bk.name],[L.rk.price,bk.price]].forEach(function(row){html+='<div class="review-row"><span class="rk">'+row[0]+'</span><span class="rv">'+row[1]+'</span></div>';});
+  var bk=ld('bk:'+ref);
+  if(!bk){res.innerHTML='<div class="notice" style="text-align:center">'+t.nf+' <strong>'+ref+'</strong><br><span style="font-size:12px">'+t.nfS+'</span></div>';return;}
+  if(bk.status==='cancelled'){res.innerHTML='<div class="notice" style="text-align:center">'+t.cancelled+'</div>';return;}
+  var appt=new Date(bk.dateKey+'T'+bk.time+':00'),dl=Math.floor((appt-new Date())/86400000),can=dl>=3;
+  var html='<div class="card" style="margin-bottom:12px">';
+  [[t.rk.style,bk.style],[t.rk.date,bk.dateKey],[t.rk.time,fmtT(bk.time)],[t.rk.name,bk.name],[t.rk.price,bk.price]].forEach(function(r){html+='<div class="rr"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>';});
   html+='</div>';
-  if(canCancel){
-    html+='<div class="notice">'+L.daysLeft+' <strong style="color:var(--bronze)">'+daysLeft+'</strong> '+L.daysLeftUnit+'</div>';
-    html+='<button class="btn-main" style="background:#c0392b" id="do-cancel">'+L.doCancel+'</button>';
+  if(can){
+    html+='<div class="notice">'+t.dOk+' <strong style="color:var(--bronze)">'+dl+'</strong> '+t.dOkU+'</div>';
+    html+='<button class="btn" style="background:#c0392b" id="do-cancel">'+t.doCancel+'</button>';
   }else{
-    html+='<div class="notice" style="border-color:var(--sand)">'+L.daysLeftFew+' <strong style="color:var(--bronze)">'+daysLeft+'</strong> '+L.daysLeftFewUnit+'</div>';
-    html+='<a href="tel:+12369967087" class="btn-main" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none">📱 (236) 996-7087</a>';
-    html+='<div style="text-align:center;margin-top:10px;font-size:14px;color:var(--hint)">WeChat: <strong>LanLovesLife</strong></div>';
+    html+='<div class="notice" style="border-color:var(--sand)">'+t.dFew+' <strong style="color:var(--bronze)">'+dl+'</strong> '+t.dFewU+'</div>';
+    html+='<a href="tel:+12369967087" class="btn" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none">&#128241; (236) 996-7087</a>';
+    html+='<div style="text-align:center;margin-top:10px;font-size:13px;color:var(--hint)">WeChat: <strong>LanLovesLife</strong></div>';
   }
   res.innerHTML=html;
-  if(canCancel){el('do-cancel').addEventListener('click',function(){doCancelBooking(ref,bk);});}
+  if(can){g('do-cancel').addEventListener('click',function(){doCancel(ref,bk);});}
 }
 
-function doCancelBooking(ref,bk){
-  var L=T[lang];
-  if(!confirm(lang==='cn'?'确认取消这个预约吗？':'Are you sure you want to cancel this appointment?'))return;
-  var res=el('manage-result');
-  res.innerHTML='<div style="text-align:center;padding:20px;color:var(--hint)">'+L.cancelLoading+'</div>';
-  if(BOOKED[bk.dateKey]){BOOKED[bk.dateKey]=BOOKED[bk.dateKey].filter(function(t2){return t2!==bk.time;});storeSet('bunny-v9',BOOKED);}
-  bk.status='cancelled';storeSet('bk:'+ref,bk);
-  if(bk.eventId){gcalReq({action:'cancel',eventId:bk.eventId});}
-  res.innerHTML='<div class="card" style="text-align:center;padding:24px"><div style="font-size:30px;margin-bottom:10px">✓</div><div style="font-size:18px;font-weight:600;color:var(--bronze);margin-bottom:6px">'+L.cancelDone+'</div><div style="font-size:14px;color:var(--hint)">Booking '+ref+'</div></div>';
+function doCancel(ref,bk){
+  var t=L();
+  if(!confirm(lang==='cn'?'确认取消这个预约吗？':'Are you sure you want to cancel?'))return;
+  var res=g('mg-res');
+  res.innerHTML='<div style="text-align:center;padding:18px;color:var(--hint)">'+t.cLoad+'</div>';
+  if(BOOKED[bk.dateKey]){BOOKED[bk.dateKey]=BOOKED[bk.dateKey].filter(function(t2){return t2!==bk.time;});sv('bunny-v9',BOOKED);}
+  bk.status='cancelled';sv('bk:'+ref,bk);
+  if(bk.eventId)gcReq({action:'cancel',eventId:bk.eventId});
+  res.innerHTML='<div class="card" style="text-align:center;padding:20px"><div style="font-size:26px;margin-bottom:8px">&#10003;</div><div style="font-size:16px;font-weight:600;color:var(--bronze);margin-bottom:4px">'+t.cDone+'</div><div style="font-size:12px;color:var(--hint)">'+ref+'</div></div>';
 }
 
-/* ============ INIT ============ */
-function init(){
-  var saved=storeGet('bunny-v9');if(saved)BOOKED=saved;
-  fetchBusy();
-  applyLang();
-  renderStaticBlocks();
-  renderBookCards();
-  renderProg();
-  el('nav-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
-  el('hero-book-btn').addEventListener('click',function(){scrollSec('book-sec');});
-  el('to-new').addEventListener('click',function(){setType('new');});
-  el('to-ret').addEventListener('click',function(){setType('returning');});
-  el('to-ref').addEventListener('click',function(){setType('refill');});
-  el('btn1').addEventListener('click',function(){
-    if(!busyLoaded){el('btn1').disabled=true;el('btn1').textContent=lang==='cn'?'加载中...':'Loading...';fetchBusy().then(function(){el('btn1').disabled=false;el('btn1').textContent=T[lang].btn1;goStep(2);});}
-    else{goStep(2);}
+function setLang(l){
+  lang=l;
+  g('btn-cn').classList.toggle('active',l==='cn');
+  g('btn-en').classList.toggle('active',l==='en');
+  applyLang();renderStatic();renderCards();renderProg();renderCal();
+  if(S.date)pickDate(S.date);
+}
+
+function applyLang(){
+  var t=L();
+  g('nav-btn').textContent=t.navBook;g('h1').textContent=t.h1;g('hero-btn').textContent=t.heroBtn;
+  g('pills').innerHTML=t.pills.map(function(p){return'<span class="pill">'+p+'</span>';}).join('');
+  g('strip').innerHTML=t.strip.map(function(s){return'<div class="si"><div class="si-icon">'+s[0]+'</div><div class="si-cn">'+s[1]+'</div><div class="si-en">'+s[2]+'</div></div>';}).join('');
+  g('book-tag').textContent=t.bookTag;g('book-h2').textContent=t.bookH2;
+  g('sync-l').textContent=busyOk?t.syncOk:t.syncLoad;
+  g('date-h3').textContent=t.dateH3;g('btn1').textContent=t.btn1;
+  g('type-h3').textContent=t.typeH3;g('type-sub').textContent=t.typeSub;
+  g('to-new-l').textContent=t.toNew;g('to-new-b').textContent=t.toNewB;
+  g('to-ret-l').textContent=t.toRet;g('to-ret-b').textContent=t.toRetB;
+  g('to-ref-l').textContent=t.toRef;
+  g('style-h3').textContent=t.styleH3;g('btn2').textContent=t.btn2;g('bk1').textContent=t.bk1;
+  g('info-h3').textContent=t.infoH3;g('bk2').textContent=t.bk2;
+  g('l-name').textContent=t.lName;g('l-phone').textContent=t.lPhone;
+  g('l-email').textContent=t.lEmail;g('l-notes').textContent=t.lNotes;
+  g('f-name').placeholder=t.namePH;g('f-notes').placeholder=t.notesPH;
+  g('btn3').textContent=t.btn3;g('rev-h3').textContent=t.revH3;g('bk3').textContent=t.bk3;
+  g('c-notice').textContent=t.cNotice;g('btn-ok').textContent=t.btnOk;
+  g('conf-t').textContent=t.confT;g('conf-s').textContent=t.confS;
+  g('ref-l').textContent=t.refL;g('ref-s').textContent=t.refS;
+  g('gc-t').textContent=t.gcT;g('gc-s').textContent=t.gcS;
+  g('ct-h').textContent=t.ctH;g('ph-l').textContent=t.phL;g('wc-l').textContent=t.wcL;
+  g('dir-h').textContent=t.dirH;g('ac-h').textContent=t.acH;g('ac-more').textContent=t.acMore;
+  g('pr-tag').textContent=t.prTag;g('pr-h2').textContent=t.prH2;
+  g('bd-a').textContent=t.bdA;g('bd-b').textContent=t.bdB;g('bd-c').textContent=t.bdC;
+  g('pt-head').innerHTML='<div>'+t.ptHead[0]+'</div><div style="text-align:center">'+t.ptHead[1]+'</div><div style="text-align:center;color:var(--bronze)">'+t.ptHead[2]+'</div><div style="text-align:center">'+t.ptHead[3]+'</div>';
+  g('rf-head').innerHTML='<div>'+t.rfHead+'</div><div style="text-align:center">Price</div>';
+  g('pr-btn').textContent=t.prBtn;
+  g('mg-tag').textContent=t.mgTag;g('mg-h2').textContent=t.mgH2;g('mg-sub').textContent=t.mgSub;
+  g('mg-l').textContent=t.mgL;g('lk-btn').textContent=t.lkBtn;
+  g('lc-tag').textContent=t.lcTag;g('lc-h2').textContent=t.lcH2;
+  g('lc-ph').textContent=t.lcPh;g('lc-wc').textContent=t.lcWc;
+  g('maps-btn').textContent=t.mapsBtn;g('pk-h3').textContent=t.pkH3;
+  g('ph-title').textContent=t.phTitle;
+  g('ph-grid').innerHTML=t.photos.map(function(p){return'<div style="background:'+p.bg+';border-radius:10px;padding:10px 7px;text-align:center"><div style="font-size:20px;margin-bottom:3px">'+p.ic+'</div><div style="font-size:9px;color:#fff;font-weight:600">'+p.lb+'</div><div style="font-size:8px;color:rgba(255,255,255,.8)">'+p.ds+'</div></div>';}).join('');
+  g('pk-tip').textContent=t.pkTip;
+  g('ac-tag').textContent=t.acTag;g('ac-h2').textContent=t.acH2;
+  g('bn-bk-l').textContent=t.bnBk;g('bn-pr-l').textContent=t.bnPr;
+  g('bn-mg-l').textContent=t.bnMg;g('bn-lc-l').textContent=t.bnLc;
+}
+
+function renderStatic(){
+  var t=L();
+  var pr=g('pr-rows');pr.innerHTML='';
+  STYLES.forEach(function(s){
+    pr.innerHTML+='<div class="pt-row"><div><div class="pt-name">'+s.em+' '+s.cn+'</div><div class="pt-sub">'+s.en+'</div></div><div class="pt-orig">'+(s.pl||'$'+s.p)+'</div><div class="pt-new">$'+s.np+'</div><div class="pt-ret">$'+s.rp+(s.pl?'+':'')+'</div></div>';
   });
-  el('btn2').addEventListener('click',function(){goStep(3);});
-  el('btn3').addEventListener('click',function(){goStep(4);});
-  el('back1').addEventListener('click',function(){goStep(1);});
-  el('back2').addEventListener('click',function(){goStep(2);});
-  el('back3').addEventListener('click',function(){goStep(3);});
-  el('btn-confirm').addEventListener('click',doConfirm);
-  el('f-name').addEventListener('input',function(){el('btn3').disabled=!el('f-name').value.trim();});
-  el('gcal-btn').addEventListener('click',function(){if(gcalUrlStr)window.open(gcalUrlStr,'_blank');});
-  el('ac-link').addEventListener('click',function(){scrollSec('aftercare-sec');});
-  el('lookup-btn').addEventListener('click',lookupBooking);
-  function setActive(btn){document.querySelectorAll('.bn-item').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
-  el('bn-book').addEventListener('click',function(){scrollSec('book-sec');setActive(el('bn-book'));});
-  el('bn-manage').addEventListener('click',function(){scrollSec('manage-sec');setActive(el('bn-manage'));});
-  el('bn-loc').addEventListener('click',function(){scrollSec('loc-sec');setActive(el('bn-loc'));});
-  el('bn-care').addEventListener('click',function(){scrollSec('aftercare-sec');setActive(el('bn-care'));});
+  var rf=g('rf-rows');rf.innerHTML='';
+  REFILLS.forEach(function(r){
+    rf.innerHTML+='<div class="ref-row"><div class="pt-name">'+(lang==='cn'?r.cn:r.en)+'</div><div class="pt-new" style="text-align:center">$'+r.p+'</div></div>';
+  });
+  var hc=g('hrs-card');hc.innerHTML='';
+  t.hrs.forEach(function(r){var cl=r[1]==='Closed'||r[1].includes('休息');hc.innerHTML+='<div class="hr"><span>'+r[0]+'</span><span class="'+(cl?'hc':'')+'">'+r[1]+'</span></div>';});
+  var pc=g('pk-card');pc.innerHTML='';
+  t.pk.forEach(function(p){pc.innerHTML+='<div class="ir"><span class="ii">'+p.i+'</span><div><div class="il">'+p.l+'</div><div class="iv">'+p.v+'</div></div></div>';});
+  var af=g('ac-full');af.innerHTML='';
+  t.ac.forEach(function(a){af.innerHTML+='<div class="ar"><div class="ai">'+a.i+'</div><div><div class="at">'+a.t+'</div><div class="ad">'+a.d+'</div></div></div>';});
+}
+
+function init(){
+  var saved=ld('bunny-v9');if(saved)BOOKED=saved;
+  var now=new Date();calY=now.getFullYear();calM=now.getMonth();
+  applyLang();renderStatic();renderCards();renderProg();renderCal();
+  fetchBusy();
+
+  g('btn-cn').addEventListener('click',function(){setLang('cn');});
+  g('btn-en').addEventListener('click',function(){setLang('en');});
+  g('nav-btn').addEventListener('click',function(){scrollSec('book-sec');});       /* ✅ scrollSec */
+  g('hero-btn').addEventListener('click',function(){scrollSec('book-sec');});      /* ✅ scrollSec */
+  g('pr-btn').addEventListener('click',function(){scrollSec('book-sec');});        /* ✅ scrollSec */
+  g('cprev').addEventListener('click',function(){calM--;if(calM<0){calM=11;calY--;}renderCal();});
+  g('cnext').addEventListener('click',function(){calM++;if(calM>11){calM=0;calY++;}renderCal();});
+  g('to-new').addEventListener('click',function(){setType('new');});
+  g('to-ret').addEventListener('click',function(){setType('returning');});
+  g('to-ref').addEventListener('click',function(){setType('refill');});
+  g('btn1').addEventListener('click',function(){
+    if(!busyOk){
+      g('btn1').disabled=true;
+      g('btn1').textContent=lang==='cn'?'加载中...':'Loading...';
+      fetchBusy().then(function(){
+        g('btn1').disabled=false;
+        g('btn1').textContent=L().btn1;
+        goStep(2);
+      });
+    } else {
+      goStep(2);
+    }
+  });
+  g('btn2').addEventListener('click',function(){goStep(3);});
+  g('btn3').addEventListener('click',function(){goStep(4);});
+  g('bk1').addEventListener('click',function(){goStep(1);});
+  g('bk2').addEventListener('click',function(){goStep(2);});
+  g('bk3').addEventListener('click',function(){goStep(3);});
+  g('btn-ok').addEventListener('click',doConfirm);
+  g('f-name').addEventListener('input',function(){g('btn3').disabled=!g('f-name').value.trim();});
+  g('gc-btn').addEventListener('click',function(){if(gcStr)window.open(gcStr,'_blank');});
+  g('ac-more').addEventListener('click',function(){scrollSec('care-sec');});       /* ✅ scrollSec */
+  g('lk-btn').addEventListener('click',lookupBooking);
+  g('bn-bk').addEventListener('click',function(){scrollSec('book-sec');setNav(g('bn-bk'));});    /* ✅ scrollSec */
+  g('bn-pr').addEventListener('click',function(){scrollSec('price-sec');setNav(g('bn-pr'));});   /* ✅ scrollSec */
+  g('bn-mg').addEventListener('click',function(){scrollSec('manage-sec');setNav(g('bn-mg'));});  /* ✅ scrollSec */
+  g('bn-lc').addEventListener('click',function(){scrollSec('loc-sec');setNav(g('bn-lc'));});     /* ✅ scrollSec */
 }
 init();
 </script>
