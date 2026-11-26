@@ -43,6 +43,7 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .pt-new{font-size:16px;text-align:center;color:var(--bronze);font-weight:700}
 .pt-ret{font-size:15px;text-align:center;color:var(--sd);font-weight:600}
 .pt-std{font-size:13px;text-align:center;color:var(--hint);font-weight:400}
+.lock-btn{display:block;width:100%;margin-top:10px;background:var(--bronze);color:#fff;border:none;border-radius:var(--r10);padding:11px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .lock-box{font-size:12px;color:var(--muted);line-height:1.7;margin:2px 2px 6px}
 .lock-link{display:inline-block;font-size:13px;font-weight:600;color:var(--bronze);border-bottom:1px solid var(--sand);margin:0 2px 16px;cursor:pointer}
 .rf-one{display:flex;justify-content:space-between;align-items:center;padding:13px 14px}
@@ -340,7 +341,7 @@ footer{background:var(--dark);padding:20px;text-align:center}
   <div class="mb-perks" id="mb-perks"></div>
   <div id="mb-cards"></div>
   <div class="mb-fine" id="mb-fine"></div>
-  <a href="tel:+12369967087" class="btn" id="mb-btn" style="text-align:center;text-decoration:none">Contact Me to Join</a>
+  <button class="btn" id="mb-btn">Copy my WeChat ID to join</button>
   <div style="text-align:center;margin-top:10px;font-size:13px;color:var(--hint)">WeChat: <strong>BunnyBeauty_Studio</strong> &middot; (236) 996-7087</div>
 </div></div>
 
@@ -425,8 +426,8 @@ var TX={
     ],
     mbPop:'POPULAR',
     mbFine:'Birthday perk: cardholder only, once a year, available after 1 month of membership. Studio terms apply.',
-    mbBtn:'📲 Contact Me to Join',addonNote:'Add-ons +$8 each: extra density / lower lashes / removal of another salon\'s lashes. Mention it in Notes. Refills are 50% off.',
-    priceLockNote:'📢 Prices will increase in 2027. Join a prepaid membership by Dec 31 to keep 2026 prices.',
+    mbBtn:'📋 Copy WeChat ID to Join',mbCopied:'✅ Copied! Open WeChat → Add Contacts → Paste',addonNote:'Add-ons +$8 each: extra density / lower lashes / removal of another salon\'s lashes. Mention it in Notes. Refills are 50% off.',
+    priceLockNote:['📢 Prices will increase in 2027.','Join a prepaid membership by Dec 31 to keep 2026 prices.'],lockBtn:'💗 See Membership Details →',
     bdB:'🎁 New clients: free lower lashes',bdC:'✿ All refills: 50% off',
     prBtn:'Book Now',
     mgTag:'Manage Booking',mgH2:'Cancel / Reschedule',
@@ -505,8 +506,8 @@ var TX={
     ],
     mbPop:'最受欢迎',
     mbFine:'生日福利限持卡人本人 · 每年一次 · 办卡满 1 个月可用 · 解释权归本店所有',
-    mbBtn:'📲 联系我办卡',addonNote:'加密 / 下睫毛 / 卸除非本店睫毛 各 +$8，如需要请在备注中说明。',
-    priceLockNote:'📢 2027年价格将有所上浮，12月31日前办理充值会员即可锁定2026价格。',
+    mbBtn:'📋 复制微信号，加我办卡',mbCopied:'✅ 已复制！打开微信 → 添加朋友 → 粘贴',addonNote:'加密 / 下睫毛 / 卸除非本店睫毛 各 +$8，如需要请在备注中说明。',
+    priceLockNote:['📢 2027年价格将有所上浮','12月31日前办理充值会员即可锁定2026价格'],lockBtn:'💗 了解会员充值详情 →',
     bdB:'🎁 新客赠送下睫毛',bdC:'✿ 补睫统一半价',
     prBtn:'立即预约',
     mgTag:'管理预约',mgH2:'取消 / 修改预约',
@@ -874,7 +875,7 @@ function applyLang(){
   g('pr-tag').textContent=t.prTag;g('pr-h2').textContent=t.prH2;
   g('bd-b').textContent=t.bdB;g('bd-c').textContent=t.bdC;
   g('pt-head').innerHTML='<div>'+t.ptHead[0]+'</div><div style="text-align:center">'+t.ptHead[1]+'</div><div style="text-align:center;color:var(--hint);font-weight:400">'+t.ptHead[2]+'</div>';
-  g('price-lock-note').textContent=t.priceLockNote;
+  g('price-lock-note').innerHTML='<div>'+t.priceLockNote[0]+'</div><div>'+t.priceLockNote[1]+'</div><button class="lock-btn" id="lock-btn">'+t.lockBtn+'</button>';
   g('addon-note').textContent=t.addonNote;
   g('ad-head').innerHTML='<div>'+t.adHead[0]+'</div><div style="text-align:center">'+t.adHead[1]+'</div><div style="text-align:center;color:var(--hint);font-weight:400">'+t.adHead[2]+'</div>';
   g('rf-t').textContent=t.rfT;g('rf-s').textContent=t.rfS;g('rf-v').textContent=t.rfV;
@@ -911,6 +912,13 @@ function renderStatic(){
   t.pk.forEach(function(p){pc.innerHTML+='<div class="ir"><span class="ii">'+p.i+'</span><div><div class="il">'+p.l+'</div><div class="iv">'+p.v+'</div></div></div>';});
   var af=g('ac-full');af.innerHTML='';
   t.ac.forEach(function(a){af.innerHTML+='<div class="ar"><div class="ai">'+a.i+'</div><div><div class="at">'+a.t+'</div><div class="ad">'+a.d+'</div></div></div>';});
+}
+
+function copyWx(){
+  var id='BunnyBeauty_Studio',b=g('mb-btn');
+  function done(){b.textContent=L().mbCopied;setTimeout(function(){b.textContent=L().mbBtn;},4000);}
+  function fb(){var ta=document.createElement('textarea');ta.value=id;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,99);try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(id).then(done,fb);}else fb();
 }
 
 function init(){
@@ -951,7 +959,9 @@ function init(){
   g('f-name').addEventListener('input',function(){g('btn3').disabled=!g('f-name').value.trim();});
   g('gc-btn').addEventListener('click',function(){if(gcStr)window.open(gcStr,'_blank');});
   g('ac-more').addEventListener('click',function(){scrollSec('care-sec');});
-  g('lock-link').addEventListener('click',function(){scrollSec('member-sec');});       /* ✅ scrollSec */
+  g('lock-link').addEventListener('click',function(){scrollSec('member-sec');});
+  g('mb-btn').addEventListener('click',copyWx);
+  g('price-lock-note').addEventListener('click',function(e){if(e.target.closest('#lock-btn'))scrollSec('member-sec');});       /* ✅ scrollSec */
   g('lk-btn').addEventListener('click',lookupBooking);
   g('bn-bk').addEventListener('click',function(){scrollSec('book-sec');setNav(g('bn-bk'));});    /* ✅ scrollSec */
   g('bn-pr').addEventListener('click',function(){scrollSec('price-sec');setNav(g('bn-pr'));});   /* ✅ scrollSec */
