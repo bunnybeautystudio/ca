@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="robots" content="noindex">
+<title>复制预约确认消息 · Bunny Beauty</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Hiragino Sans GB',system-ui,sans-serif;background:#faf8f4;color:#1D1D1D;max-width:480px;margin:0 auto;padding:20px 16px 40px}
+.hd{font-size:13px;color:#8f7f69;letter-spacing:.08em;margin-bottom:12px}
+.msg{white-space:pre-wrap;background:#fff;border:1.5px dashed #A89880;border-radius:12px;padding:16px;font-size:16px;line-height:1.75;margin-bottom:16px}
+.btn{width:100%;padding:16px;background:#615545;color:#fff;border:none;border-radius:14px;font-size:17px;font-weight:600;font-family:inherit;cursor:pointer}
+.btn.ok{background:#3f7a4f}
+.tip{text-align:center;font-size:13px;color:#a89e98;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="hd">✿ BUNNY BEAUTY · 发给客人的确认消息</div>
+<div class="msg" id="msg"></div>
+<button class="btn" id="btn">📋 一键复制</button>
+<div class="tip" id="tip">复制后打开微信 / 短信，粘贴发送给客人</div>
+<script>
+{
+  var text = '';
+  try { text = decodeURIComponent(location.hash.slice(1)); } catch (e) { text = ''; }
+  var msg = document.getElementById('msg'), btn = document.getElementById('btn'), tip = document.getElementById('tip');
+  msg.textContent = text || '（没有找到消息内容）';
+  function done() { btn.textContent = '✅ 已复制！去微信粘贴'; btn.classList.add('ok'); }
+  function fb() {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, 99999);
+    var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    if (ok) done(); else tip.textContent = '自动复制失败，请长按上面的文字手动复制';
+  }
+  btn.addEventListener('click', function () {
+    if (!text) return;
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fb); else fb();
+  });
+}
+</script>
+</body>
+</html>
