@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta charset="UTF-8">
@@ -35,13 +35,31 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .sec-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:7px;display:flex;align-items:center;gap:7px}
 .sec-tag::before{content:'';width:14px;height:1.5px;background:var(--sand);display:block}
 .price-table{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-bottom:10px}
-.pt-head{display:grid;grid-template-columns:1fr 70px 70px 70px;background:var(--sl);padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;border-bottom:1px solid var(--bdr)}
-.pt-row{display:grid;grid-template-columns:1fr 70px 70px 70px;padding:12px 14px;border-bottom:1px solid var(--bdr);align-items:center}
+.pt-head{display:grid;grid-template-columns:1fr 80px 80px;background:var(--sl);padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;border-bottom:1px solid var(--bdr)}
+.pt-row{display:grid;grid-template-columns:1fr 80px 80px;padding:12px 14px;border-bottom:1px solid var(--bdr);align-items:center}
 .pt-row:last-child{border-bottom:none}
 .pt-name{font-size:14px;font-weight:500}.pt-sub{font-size:11px;color:var(--hint)}
 .pt-orig{font-size:13px;text-align:center;color:var(--bdr);text-decoration:line-through}
 .pt-new{font-size:16px;text-align:center;color:var(--bronze);font-weight:700}
 .pt-ret{font-size:15px;text-align:center;color:var(--sd);font-weight:600}
+.pt-std{font-size:13px;text-align:center;color:var(--hint);font-weight:400}
+.lock-box{font-size:12px;color:var(--muted);line-height:1.7;margin:2px 2px 6px}
+.lock-link{display:inline-block;font-size:13px;font-weight:600;color:var(--bronze);border-bottom:1px solid var(--sand);margin:0 2px 16px;cursor:pointer}
+.rf-one{display:flex;justify-content:space-between;align-items:center;padding:13px 14px}
+.rf-val{font-size:16px;font-weight:700;color:var(--bronze);white-space:nowrap}
+.mb-intro{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.7}
+.mb-perks{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);padding:12px 14px;margin-bottom:12px;font-size:13px;color:var(--dark);line-height:1.9}
+.mb-card{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);padding:14px;margin-bottom:10px;position:relative}
+.mb-card.pop{background:var(--sl);border:1.5px solid var(--sd)}
+.mb-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+.mb-nm{font-size:18px;font-weight:600}.mb-en{font-size:13px;color:var(--hint);font-family:Georgia,serif;margin-left:6px;font-weight:400}
+.mb-pr{font-size:24px;font-weight:700;color:#a05a4c;font-family:Georgia,serif;text-align:right;line-height:1.1}
+.mb-cap{display:inline-block;font-size:11px;font-weight:600;background:var(--sl);color:var(--bronze);padding:2px 9px;border-radius:10px;margin-top:4px}
+.mb-card.pop .mb-cap{background:var(--sd);color:#fff}
+.mb-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;background:var(--sd);color:#fff;padding:2px 9px;border-radius:10px;margin-bottom:6px}
+.mb-li{font-size:13px;line-height:1.8;color:var(--dark)}.mb-li span{font-size:11px;color:var(--hint)}
+.mb-fine{font-size:11px;color:var(--hint);line-height:1.7;margin:4px 2px 14px}
+.addon-note{font-size:12px;color:var(--muted);background:var(--w);border:1px dashed var(--bdr);border-radius:var(--r10);padding:9px 12px;margin-bottom:14px;line-height:1.6}
 .ref-table{background:var(--w);border-radius:var(--r16);border:1px solid var(--bdr);overflow:hidden;margin-bottom:10px}
 .ref-head{display:grid;grid-template-columns:1fr 70px;background:var(--sl);padding:10px 14px;font-size:11px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--bdr)}
 .ref-row{display:grid;grid-template-columns:1fr 70px;padding:12px 14px;border-bottom:1px solid var(--bdr);align-items:center}
@@ -130,8 +148,8 @@ footer{background:var(--dark);padding:20px;text-align:center}
   </div>
   <div class="nav-right">
     <div class="lang-sw">
-      <button class="lb" id="btn-cn">&#20013;&#25991;</button>
-      <button class="lb active" id="btn-en">EN</button>
+      <button class="lb active" id="btn-cn">&#20013;&#25991;</button>
+      <button class="lb" id="btn-en">EN</button>
     </div>
     <button class="nav-book" id="nav-btn">Book</button>
   </div>
@@ -182,14 +200,15 @@ footer{background:var(--dark);padding:20px;text-align:center}
   <div id="step2" class="step">
     <button class="btn-bk" id="bk1">&#8592; Back</button>
     <h3 id="type-h3" style="margin-bottom:4px">New or Returning?</h3>
-    <p id="type-sub" style="font-size:12px;margin-bottom:12px">New: $30 off &middot; Returning: special rate &middot; Refill: 50% off</p>
+    <p id="type-sub" style="font-size:12px;margin-bottom:12px">New clients: free lower lashes &middot; All refills: 50% off</p>
     <div class="type-opts">
-      <div class="to" id="to-new"><div class="to-em">&#127881;</div><div class="to-lb" id="to-new-l">New Client</div><div class="to-bg" id="to-new-b">$30 off</div></div>
-      <div class="to" id="to-ret"><div class="to-em">&#128155;</div><div class="to-lb" id="to-ret-l">Returning</div><div class="to-bg" id="to-ret-b">Returning rate</div></div>
-      <div class="to" id="to-ref"><div class="to-em">&#10025;</div><div class="to-lb" id="to-ref-l">Refill</div><div class="to-bg">$38-49</div></div>
+      <div class="to" id="to-new"><div class="to-em">&#127881;</div><div class="to-lb" id="to-new-l">New Client</div><div class="to-bg" id="to-new-b">Free lower lashes</div></div>
+      <div class="to" id="to-ret"><div class="to-em">&#128155;</div><div class="to-lb" id="to-ret-l">Returning</div><div class="to-bg" id="to-ret-b">Welcome back</div></div>
+      <div class="to" id="to-ref"><div class="to-em">&#10025;</div><div class="to-lb" id="to-ref-l">Refill</div><div class="to-bg" id="to-ref-b">50% off</div></div>
     </div>
     <h3 id="style-h3" style="margin-bottom:11px">Choose Your Style</h3>
     <div class="book-grid" id="book-grid"></div>
+    <div class="addon-note" id="addon-note"></div>
     <button class="btn" id="btn2" disabled>Next: Your Info</button>
   </div>
 
@@ -197,7 +216,7 @@ footer{background:var(--dark);padding:20px;text-align:center}
     <button class="btn-bk" id="bk2">&#8592; Back</button>
     <h3 id="info-h3" style="margin-bottom:13px">Your Information</h3>
     <div class="form-box">
-      <div class="field"><span class="flbl" id="l-name">Full Name *</span><input type="text" id="f-name" placeholder="Your name"></div>
+      <div class="field"><span class="flbl" id="l-name">Name *</span><input type="text" id="f-name" placeholder="WeChat or RED (Xiaohongshu) name recommended"></div>
       <div class="field"><span class="flbl" id="l-phone">Phone (optional)</span><input type="tel" id="f-phone" placeholder="(604) 000-0000"></div>
       <div class="field"><span class="flbl" id="l-email">Email (optional)</span><input type="email" id="f-email" placeholder="your@email.com"></div>
       <div class="field" style="margin-bottom:0"><span class="flbl" id="l-notes">Notes (optional)</span><textarea id="f-notes" rows="3" placeholder="Allergies / current lashes / desired look..."></textarea></div>
@@ -252,19 +271,21 @@ footer{background:var(--dark);padding:20px;text-align:center}
 <div id="price-sec" style="border-top:1px solid var(--bdr);background:var(--w)"><div class="sec">
   <div class="sec-tag" id="pr-tag">Pricing</div>
   <h2 id="pr-h2" style="margin-bottom:10px">Services &amp; Pricing</h2>
-  <div id="price-lock-note" style="background:var(--sl);border:1.5px solid var(--sand);border-radius:var(--r16);padding:13px 14px;margin-bottom:14px;font-size:13px;font-weight:600;color:var(--bronze);line-height:1.6;text-align:center">💗 Existing clients lock in their current pricing for the calendar year and are unaffected by any price change.</div>
+  <div id="price-lock-note" style="background:var(--sl);border:1.5px solid var(--sand);border-radius:var(--r16);padding:13px 14px;margin-bottom:14px;font-size:13px;font-weight:600;color:var(--bronze);line-height:1.6;text-align:center">📢 Prices will increase in 2027. To lock in current pricing, ask about our prepaid membership. Contact me for details (WeChat: BunnyBeauty_Studio).</div>
   <div class="pn-badges">
-    <span class="pn pn-a" id="bd-a">New clients: $30 off first visit</span>
-    <span class="pn pn-b" id="bd-b">Returning: special rate</span>
+    <span class="pn pn-b" id="bd-b">New clients: free lower lashes</span>
     <span class="pn pn-c" id="bd-c">Refill: 50% off</span>
   </div>
   <div class="price-table">
-    <div class="pt-head" id="pt-head"><div>Style</div><div style="text-align:center">Regular</div><div style="text-align:center;color:var(--bronze)">New</div><div style="text-align:center">Return</div></div>
+    <div class="pt-head" id="pt-head"></div>
     <div id="pr-rows"></div>
   </div>
-  <div class="ref-table">
-    <div class="ref-head" id="rf-head"><div>Refill (50%+ retention)</div><div style="text-align:center">Price</div></div>
-    <div id="rf-rows"></div>
+  <div class="lock-box" id="lock-box"></div>
+  <a class="lock-link" id="lock-link"></a>
+  <div class="ref-table"><div class="rf-one"><div><div class="pt-name" id="rf-t"></div><div class="pt-sub" id="rf-s"></div></div><div class="rf-val" id="rf-v"></div></div></div>
+  <div class="price-table">
+    <div class="pt-head" id="ad-head"></div>
+    <div id="ad-rows"></div>
   </div>
   <div style="margin-top:12px"><button class="btn" id="pr-btn">Book Now</button></div>
 </div></div>
@@ -311,6 +332,18 @@ footer{background:var(--dark);padding:20px;text-align:center}
   <div class="card" id="ac-full"></div>
 </div></div>
 
+<!-- MEMBERSHIP -->
+<div id="member-sec" style="border-top:1px solid var(--bdr);background:var(--w)"><div class="sec">
+  <div class="sec-tag" id="mb-tag">Membership</div>
+  <h2 id="mb-h2" style="margin-bottom:6px">Prepaid Membership</h2>
+  <div class="mb-intro" id="mb-intro"></div>
+  <div class="mb-perks" id="mb-perks"></div>
+  <div id="mb-cards"></div>
+  <div class="mb-fine" id="mb-fine"></div>
+  <a href="tel:+12369967087" class="btn" id="mb-btn" style="text-align:center;text-decoration:none">Contact Me to Join</a>
+  <div style="text-align:center;margin-top:10px;font-size:13px;color:var(--hint)">WeChat: <strong>BunnyBeauty_Studio</strong> &middot; (236) 996-7087</div>
+</div></div>
+
 <footer>
   <div class="fl">&#10025; BUNNYBEAUTY STUDIO</div>
   <div class="fi">7151 No. 5 Rd, Richmond, BC<br><a href="tel:+12369967087">(236) 996-7087</a> &middot; WeChat: BunnyBeauty_Studio<br><em>Timeless Beauty. Artfully Crafted.</em></div>
@@ -327,12 +360,12 @@ footer{background:var(--dark);padding:20px;text-align:center}
 var GCAL='https://script.google.com/macros/s/AKfycbynmDWZ6qT6dqBJ-ITVZAh_iwlHywCdMEYS7VvrwmBBbixt5rpY_i5urPumWnkRnHt2/exec';
 
 var STYLES=[
-  {id:1,em:'🌿',cn:'自然穿插单根',en:'Natural Classic',scn:'清爽日常',sen:'Clean & effortless',p:75,np:45,rp:58,fp:38,dur:'90 min',fd:'60 min'},
-  {id:2,em:'🧚',cn:'仙子款',en:'Fairy Style',scn:'轻薄灵动',sen:'Light & wispy',p:78,np:48,rp:64,fp:39,dur:'90 min',fd:'60 min'},
-  {id:3,em:'📖',cn:'大/小漫画款',en:'Manga Style',scn:'自然放大眼',sen:'Doe-eyed & defined',p:88,np:58,rp:68,fp:44,dur:'90 min',fd:'60 min'},
-  {id:4,em:'👶',cn:'B/C+婴儿弯综合款',en:'B/C+ Baby Curl Combo',scn:'软萌混合弯度',sen:'Soft mixed-curl blend',p:88,np:58,rp:68,fp:44,dur:'120 min',fd:'75 min'},
-  {id:5,em:'🦊',cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',scn:'上扬飞扬',sen:'Lifted & voluminous',p:98,np:68,rp:78,fp:49,dur:'120 min',fd:'75 min'},
-  {id:6,em:'🤍',cn:'暂未确定/现场沟通',en:'Undecided/Consult',scn:'可来图设计，现场沟通',sen:'Bring inspo pics, decide together',p:75,np:45,rp:58,fp:38,dur:'120 min',fd:'75 min'}
+  {id:1,em:'🌿',p27:60,cn:'自然穿插单根',en:'Natural Classic',scn:'清爽日常',sen:'Clean & effortless',p:75,np:45,rp:58,fp:38,dur:'90 min',fd:'60 min'},
+  {id:2,em:'🧚',p27:68,cn:'仙子款/流苏款',en:'Fairy/Wispy',scn:'轻薄灵动',sen:'Light & wispy',p:78,np:48,rp:64,fp:39,dur:'90 min',fd:'60 min'},
+  {id:3,em:'📖',p27:73,cn:'漫画款/网红款',en:'Manga/Trendy',scn:'自然放大眼',sen:'Doe-eyed & defined',p:88,np:58,rp:68,fp:44,dur:'90 min',fd:'60 min'},
+  {id:4,em:'👶',p27:73,cn:'B/C+婴儿弯综合款',en:'B/C+ Baby Curl Combo',scn:'软萌混合弯度',sen:'Soft mixed-curl blend',p:88,np:58,rp:68,fp:44,dur:'120 min',fd:'75 min'},
+  {id:5,em:'🦊',p27:88,cn:'泰式/狐系浓密款',en:'Thai/Fox Dense',scn:'上扬飞扬',sen:'Lifted & voluminous',p:98,np:68,rp:78,fp:49,dur:'120 min',fd:'75 min'},
+  {id:6,em:'🤍',p27:60,fx:1,cn:'来图定制',en:'Custom Design',scn:'可来图设计，现场沟通',sen:'Bring inspo pics, decide together',p:75,np:45,rp:60,fp:38,dur:'120 min',fd:'75 min'}
 ];
 var REFILLS=[
   {cn:'自然款补睫',en:'Natural Refill',p:38},
@@ -362,12 +395,12 @@ var TX={
     bookTag:'Online Booking',bookH2:'Reserve Your Spot',
     syncOk:'📅 Calendar synced',syncLoad:'📅 Syncing...',
     dateH3:'Pick a Date',timeH3:'Available Times',btn1:'Next: Choose Style',
-    typeH3:'New or Returning?',typeSub:'New: $30 off · Returning: special rate · Refill: 50% off',
-    toNew:'New Client',toNewB:'$30 off',toRet:'Returning',toRetB:'Returning rate',toRef:'Refill',
+    typeH3:'New or Returning?',typeSub:'New clients: free lower lashes · All refills: 50% off',
+    toNew:'New Client',toNewB:'Free lower lashes',toRefB:'50% off',toRet:'Returning',toRetB:'Welcome back',toRef:'Refill',
     styleH3:'Choose Your Style',btn2:'Next: Your Info',bk1:'Back',
     infoH3:'Your Information',bk2:'Back',
-    lName:'Full Name *',lPhone:'Phone (optional)',lEmail:'Email (optional)',lNotes:'Notes (optional)',
-    namePH:'Your name',notesPH:'Allergies / current lashes / desired look...',
+    lName:'Name *',lPhone:'Phone (optional)',lEmail:'Email (optional)',lNotes:'Notes (optional)',
+    namePH:'WeChat or RED (Xiaohongshu) name recommended',notesPH:'Allergies / current lashes / desired look...',
     btn3:'Review Booking',revH3:'Review & Confirm',bk3:'Edit',
     cNotice:'Please cancel or reschedule at least 3 days in advance. Within 3 days, please contact us directly.',
     btnOk:'Confirm Booking',
@@ -377,10 +410,24 @@ var TX={
     ctH:'Contact Us',phL:'Phone / Text',wcL:'WeChat',
     dirH:'Getting Here',acH:'Aftercare Reminders',acMore:'View full aftercare guide',
     prTag:'Pricing',prH2:'Services & Pricing',
-    ptHead:['Style','Regular','New','Return'],
-    rfHead:'Refill (50%+ retention)',
-    priceLockNote:'💗 Existing clients lock in their current pricing for the calendar year and are unaffected by any price change.',
-    bdA:'🎉 New clients: $30 off first visit',bdB:'💛 Returning: special rate',bdC:'✿ Refill: 50% off',
+    ptHead:['Style','2026','2027'],
+    rfT:'✿ Refill',rfS:'Within 2 weeks · 50%+ retention',rfV:'50% off',
+    adHead:['Add-ons','2026','2027'],addons:[['Extra density',8,8],['Lower lashes',8,10],['Removal (other salon\'s work)',8,8]],
+    lockBox:'How to keep 2026 prices: join any prepaid membership by Dec 31. Members keep paying the 2026 prices above in 2027. Balance never expires, and you can switch styles anytime.',
+    lockLink:'See membership perks ↓',
+    mbTag:'Membership',mbH2:'Prepaid Membership',
+    mbIntro:'Join by Dec 31 · Balance never expires · Switch styles anytime',
+    mbPerks:['💗 Member rates = 2026 prices, locked in for 2027','✨ Extra density: no extra charge','👁 Lower lashes: +$8 (2027 regular +$10)'],
+    mbCards:[
+      {nm:'Classic',sub:'',pr:288,cap:'Unlimited',pop:0,li:['Refill within 2 weeks, any retention','Refer a new client: +$15 on your card']},
+      {nm:'Silver',sub:'',pr:388,cap:'10 spots only',pop:1,li:['All Classic perks','1 free full set in your birthday month','Share your balance with family & friends','3 free lower-lash add-ons ($30 value)']},
+      {nm:'Gold',sub:'',pr:588,cap:'5 spots only',pop:0,li:['All Silver perks','Free lower lashes every visit','Priority weekend booking','Aftercare welcome kit + 1 extra refill']}
+    ],
+    mbPop:'POPULAR',
+    mbFine:'Birthday perk: cardholder only, once a year, available after 1 month of membership. Studio terms apply.',
+    mbBtn:'📲 Contact Me to Join',addonNote:'Add-ons +$8 each: extra density / lower lashes / removal of another salon\'s lashes. Mention it in Notes. Refills are 50% off.',
+    priceLockNote:'📢 Prices will increase in 2027. Join a prepaid membership by Dec 31 to keep 2026 prices.',
+    bdB:'🎁 New clients: free lower lashes',bdC:'✿ All refills: 50% off',
     prBtn:'Book Now',
     mgTag:'Manage Booking',mgH2:'Cancel / Reschedule',
     mgSub:'Self-cancel up to 3 days before. Within 3 days, contact us directly.',
@@ -428,12 +475,12 @@ var TX={
     bookTag:'在线预约',bookH2:'预约你的时间',
     syncOk:'📅 日历已同步',syncLoad:'📅 正在同步...',
     dateH3:'选择日期',timeH3:'可选时间',btn1:'下一步：选择款式',
-    typeH3:'新客还是老客？',typeSub:'新客立减$30 · 老客专享价 · 补睫半价',
-    toNew:'新客',toNewB:'立减$30',toRet:'老客',toRetB:'老客价',toRef:'补睫',
+    typeH3:'新客还是老客？',typeSub:'新客赠送下睫毛 · 补睫统一半价',
+    toNew:'新客',toNewB:'赠送下睫毛',toRefB:'统一半价',toRet:'老客',toRetB:'欢迎回来',toRef:'补睫',
     styleH3:'选择款式',btn2:'下一步：填写信息',bk1:'返回',
     infoH3:'填写信息',bk2:'返回',
-    lName:'姓名 *',lPhone:'电话 (选填)',lEmail:'邮箱 (选填)',lNotes:'备注 (选填)',
-    namePH:'您的姓名',notesPH:'过敏史 / 目前眼睫情况 / 期望效果...',
+    lName:'称呼 *',lPhone:'电话 (选填)',lEmail:'邮箱 (选填)',lNotes:'备注 (选填)',
+    namePH:'建议填写微信或小红书名字',notesPH:'过敏史 / 目前眼睫情况 / 期望效果...',
     btn3:'查看预约详情',revH3:'确认预约信息',bk3:'修改',
     cNotice:'请提前 3天 取消或改期，3天内请直接联系我们。',
     btnOk:'确认预约',
@@ -443,10 +490,24 @@ var TX={
     ctH:'联系我们',phL:'电话 / 短信',wcL:'微信',
     dirH:'到店指引',acH:'护理提醒',acMore:'查看完整护理指南',
     prTag:'价目表',prH2:'服务价格',
-    ptHead:['款式','原价','新客','老客'],
-    rfHead:'补睫 (保留50%+)',
-    priceLockNote:'💗 现有客户同年享受锁定价格，不受任何价格变动影响。',
-    bdA:'🎉 新客首次预约立减$30',bdB:'💛 老客专享价',bdC:'✿ 补睫半价',
+    ptHead:['款式','2026 价格','2027 价格'],
+    rfT:'✿ 补睫',rfS:'两周内 · 保留50%以上',rfV:'统一半价',
+    adHead:['加购项目','2026','2027'],addons:[['加密',8,8],['下睫毛',8,10],['卸除非本店睫毛',8,8]],
+    lockBox:'如何锁定2026价格：12月31日前办理任意一张充值会员卡，2027年起仍按上表2026价格扣款。余额不过期，可随意换款。',
+    lockLink:'查看充值会员福利 ↓',
+    mbTag:'充值会员',mbH2:'充值会员 · 锁定特惠价',
+    mbIntro:'12月31日前办卡 · 余额不过期 · 可随意换款',
+    mbPerks:['💗 会员价 = 2026价格，2027年继续锁定','✨ 加密款式免加价','👁 下睫毛 +$8（2027年非会员 +$10）'],
+    mbCards:[
+      {nm:'经典卡',sub:'Classic',pr:288,cap:'不限名额',pop:0,li:['两周内补睫不限留存率','推荐新客，卡内加 $15']},
+      {nm:'银卡',sub:'Silver',pr:388,cap:'限 10 位',pop:1,li:['包含经典卡全部福利','生日月免费全套 1 次','家人闺蜜共享余额','加送 3 次下睫毛（价值 $30）']},
+      {nm:'金卡',sub:'Gold',pr:588,cap:'限 5 位',pop:0,li:['包含银卡全部福利','每次免费下睫毛','周末黄金档优先预约','护理欢迎礼 + 额外补睫一次']}
+    ],
+    mbPop:'最受欢迎',
+    mbFine:'生日福利限持卡人本人 · 每年一次 · 办卡满 1 个月可用 · 解释权归本店所有',
+    mbBtn:'📲 联系我办卡',addonNote:'加密 / 下睫毛 / 卸除非本店睫毛 各 +$8，如需要请在备注中说明。',
+    priceLockNote:'📢 2027年价格将有所上浮，12月31日前办理充值会员即可锁定2026价格。',
+    bdB:'🎁 新客赠送下睫毛',bdC:'✿ 补睫统一半价',
     prBtn:'立即预约',
     mgTag:'管理预约',mgH2:'取消 / 修改预约',
     mgSub:'提前 3天以上 可自助取消，3天内请直接联系。',
@@ -488,7 +549,7 @@ var TX={
   }
 };
 
-var lang='en';
+var lang='cn';
 var S={step:1,ctype:'',svc:null,date:null,time:null,name:'',phone:'',email:'',notes:''};
 var BOOKED={};
 var busy=[];
@@ -525,11 +586,11 @@ function ld(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null;}ca
 function setNav(b){document.querySelectorAll('.bn').forEach(function(x){x.classList.remove('active');});b.classList.add('active');}
 
 function getPrice(s,ct){
-  var orig=s.pl||'$'+s.p;
-  if(ct==='new')return{label:'$'+s.np,orig:orig,tag:L().toNewB};
-  if(ct==='returning')return{label:'$'+s.rp,orig:orig,tag:L().toRetB};
-  if(ct==='refill')return{label:'$'+s.fp,orig:orig,tag:lang==='en'?'Refill rate':'补睫价'};
-  return{label:orig,orig:'',tag:''};
+  /* No new-client discount. Booking flow shows a "from" price with "+", no strikethrough. */
+  /* Main price for everyone = rp. New clients get free lower lashes instead of a discount. */
+  if(ct==='new')return{label:'$'+s.rp+'+',orig:'',tag:L().toNewB};
+  if(ct==='refill')return{label:L().rfV,orig:'',tag:''};
+  return{label:'$'+s.rp+'+',orig:'',tag:''};
 }
 function isBiWed(d){if(d.getDay()!==3)return false;var ref=new Date(2026,4,13),diff=Math.round((d-ref)/86400000);return diff>=0&&diff%14===0;}
 
@@ -672,12 +733,12 @@ function renderCards(){
     var name=s.cn+' · '+s.en;
     if(isRef)name=(lang==='cn'?s.cn+'补睫':s.en+' Refill');
     var sub=s.scn+' · '+s.sen;
-    var pr=S.ctype?p.label:(s.pl||'$'+s.p+'+');
+    var pr=p.label;
     var durLabel=isRef?s.fd:s.dur;
     var div=document.createElement('div');div.className='bc';div.id='bc'+s.id;
     var h='<div class="bc-em">'+s.em+'</div><div class="bc-nm">'+name+'</div><div class="bc-sb">'+sub+'</div>';
-    if(S.ctype&&p.orig)h+='<div class="bc-or">'+p.orig+'</div><div class="bc-pr">'+p.label+'</div><span class="bc-tg">'+p.tag+'</span>';
-    else h+='<div class="bc-pr">'+pr+'</div>';
+    h+='<div class="bc-pr">'+pr+'</div>';
+    if(S.ctype&&p.tag)h+='<span class="bc-tg">'+p.tag+'</span>';
     h+='<div class="bc-dr">'+durLabel+'</div>';
     div.innerHTML=h;div.addEventListener('click',function(){pickSvc(s);});
     c.appendChild(div);
@@ -741,7 +802,6 @@ function doConfirm(){
   sv('bk:'+bid,{bookingId:bid,eventId:'',name:S.name,phone:S.phone,style:label,price:p.label,ctype:S.ctype,dateKey:key,time:S.time,durMin:dm,created:Date.now()});
   var bp={action:'book',name:S.name,phone:S.phone||'',email:S.email||'',style:label,price:p.label+(p.tag?' ('+p.tag+')':''),ctype:S.ctype,notes:S.notes||'',bookingId:bid,start:st.toISOString(),end:en.toISOString()};
   gcReq(bp).then(function(res){if(res&&res.eventId){var bk=ld('bk:'+bid);if(bk){bk.eventId=res.eventId;sv('bk:'+bid,bk);}}});
-  try{var qs=Object.keys(bp).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(bp[k]);}).join('&');new Image().src=GCAL+'?'+qs;}catch(e){}
 }
 
 function lookupBooking(){
@@ -798,7 +858,7 @@ function applyLang(){
   g('type-h3').textContent=t.typeH3;g('type-sub').textContent=t.typeSub;
   g('to-new-l').textContent=t.toNew;g('to-new-b').textContent=t.toNewB;
   g('to-ret-l').textContent=t.toRet;g('to-ret-b').textContent=t.toRetB;
-  g('to-ref-l').textContent=t.toRef;
+  g('to-ref-l').textContent=t.toRef;g('to-ref-b').textContent=t.toRefB;
   g('style-h3').textContent=t.styleH3;g('btn2').textContent=t.btn2;g('bk1').textContent=t.bk1;
   g('info-h3').textContent=t.infoH3;g('bk2').textContent=t.bk2;
   g('l-name').textContent=t.lName;g('l-phone').textContent=t.lPhone;
@@ -812,10 +872,17 @@ function applyLang(){
   g('ct-h').textContent=t.ctH;g('ph-l').textContent=t.phL;g('wc-l').textContent=t.wcL;
   g('dir-h').textContent=t.dirH;g('ac-h').textContent=t.acH;g('ac-more').textContent=t.acMore;
   g('pr-tag').textContent=t.prTag;g('pr-h2').textContent=t.prH2;
-  g('bd-a').textContent=t.bdA;g('bd-b').textContent=t.bdB;g('bd-c').textContent=t.bdC;
-  g('pt-head').innerHTML='<div>'+t.ptHead[0]+'</div><div style="text-align:center">'+t.ptHead[1]+'</div><div style="text-align:center;color:var(--bronze)">'+t.ptHead[2]+'</div><div style="text-align:center">'+t.ptHead[3]+'</div>';
-  g('rf-head').innerHTML='<div>'+t.rfHead+'</div><div style="text-align:center">Price</div>';
+  g('bd-b').textContent=t.bdB;g('bd-c').textContent=t.bdC;
+  g('pt-head').innerHTML='<div>'+t.ptHead[0]+'</div><div style="text-align:center">'+t.ptHead[1]+'</div><div style="text-align:center;color:var(--hint);font-weight:400">'+t.ptHead[2]+'</div>';
   g('price-lock-note').textContent=t.priceLockNote;
+  g('addon-note').textContent=t.addonNote;
+  g('ad-head').innerHTML='<div>'+t.adHead[0]+'</div><div style="text-align:center">'+t.adHead[1]+'</div><div style="text-align:center;color:var(--hint);font-weight:400">'+t.adHead[2]+'</div>';
+  g('rf-t').textContent=t.rfT;g('rf-s').textContent=t.rfS;g('rf-v').textContent=t.rfV;
+  g('lock-box').textContent=t.lockBox;g('lock-link').textContent=t.lockLink;
+  g('mb-tag').textContent=t.mbTag;g('mb-h2').textContent=t.mbH2;g('mb-intro').textContent=t.mbIntro;
+  g('mb-perks').innerHTML=t.mbPerks.map(function(x){return'<div>'+x+'</div>';}).join('');
+  g('mb-cards').innerHTML=t.mbCards.map(function(c){return'<div class="mb-card'+(c.pop?' pop':'')+'">'+(c.pop?'<div class="mb-badge">'+t.mbPop+'</div>':'')+'<div class="mb-top"><div class="mb-nm">'+c.nm+(c.sub?'<span class="mb-en">'+c.sub+'</span>':'')+'</div><div><div class="mb-pr">$'+c.pr+'</div><div style="text-align:right"><span class="mb-cap">'+c.cap+'</span></div></div></div>'+c.li.map(function(x){return'<div class="mb-li">· '+x+'</div>';}).join('')+'</div>';}).join('');
+  g('mb-fine').textContent=t.mbFine;g('mb-btn').textContent=t.mbBtn;
   g('pr-btn').textContent=t.prBtn;
   g('mg-tag').textContent=t.mgTag;g('mg-h2').textContent=t.mgH2;g('mg-sub').textContent=t.mgSub;
   g('mg-l').textContent=t.mgL;g('lk-btn').textContent=t.lkBtn;
@@ -834,12 +901,10 @@ function renderStatic(){
   var t=L();
   var pr=g('pr-rows');pr.innerHTML='';
   STYLES.forEach(function(s){
-    pr.innerHTML+='<div class="pt-row"><div><div class="pt-name">'+s.em+' '+s.cn+'</div><div class="pt-sub">'+s.en+'</div></div><div class="pt-orig">'+(s.pl||'$'+s.p)+'</div><div class="pt-new">$'+s.np+'</div><div class="pt-ret">$'+s.rp+(s.pl?'+':'')+'</div></div>';
+    pr.innerHTML+='<div class="pt-row"><div><div class="pt-name">'+s.em+' '+s.cn+'</div><div class="pt-sub">'+s.en+'</div></div>'+(s.fx?'<div class="pt-new" style="grid-column:2/4">$'+s.rp+'+</div>':'<div class="pt-new">$'+s.rp+'</div><div class="pt-std">$'+s.p27+'</div>')+'</div>';
   });
-  var rf=g('rf-rows');rf.innerHTML='';
-  REFILLS.forEach(function(r){
-    rf.innerHTML+='<div class="ref-row"><div class="pt-name">'+(lang==='cn'?r.cn:r.en)+'</div><div class="pt-new" style="text-align:center">$'+r.p+'</div></div>';
-  });
+  var ad=g('ad-rows');ad.innerHTML='';
+  t.addons.forEach(function(x){ad.innerHTML+='<div class="pt-row"><div class="pt-name">'+x[0]+'</div><div class="pt-new">+$'+x[1]+'</div><div class="pt-std">+$'+x[2]+'</div></div>';});
   var hc=g('hrs-card');hc.innerHTML='';
   t.hrs.forEach(function(r){var cl=r[1]==='Closed'||r[1].includes('休息');hc.innerHTML+='<div class="hr"><span>'+r[0]+'</span><span class="'+(cl?'hc':'')+'">'+r[1]+'</span></div>';});
   var pc=g('pk-card');pc.innerHTML='';
@@ -885,7 +950,8 @@ function init(){
   g('btn-ok').addEventListener('click',doConfirm);
   g('f-name').addEventListener('input',function(){g('btn3').disabled=!g('f-name').value.trim();});
   g('gc-btn').addEventListener('click',function(){if(gcStr)window.open(gcStr,'_blank');});
-  g('ac-more').addEventListener('click',function(){scrollSec('care-sec');});       /* ✅ scrollSec */
+  g('ac-more').addEventListener('click',function(){scrollSec('care-sec');});
+  g('lock-link').addEventListener('click',function(){scrollSec('member-sec');});       /* ✅ scrollSec */
   g('lk-btn').addEventListener('click',lookupBooking);
   g('bn-bk').addEventListener('click',function(){scrollSec('book-sec');setNav(g('bn-bk'));});    /* ✅ scrollSec */
   g('bn-pr').addEventListener('click',function(){scrollSec('price-sec');setNav(g('bn-pr'));});   /* ✅ scrollSec */
