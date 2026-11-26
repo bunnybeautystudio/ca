@@ -43,6 +43,7 @@ nav{background:var(--sand);padding:0 16px;position:sticky;top:0;z-index:200}
 .pt-new{font-size:16px;text-align:center;color:var(--bronze);font-weight:700}
 .pt-ret{font-size:15px;text-align:center;color:var(--sd);font-weight:600}
 .pt-std{font-size:13px;text-align:center;color:var(--hint);font-weight:400}
+.conf-note{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r16);padding:12px 16px;margin-bottom:12px;font-size:13px;color:var(--muted);line-height:1.9;text-align:center}
 .lock-btn{display:block;width:100%;margin-top:10px;background:var(--bronze);color:#fff;border:none;border-radius:var(--r10);padding:11px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .lock-box{font-size:12px;color:var(--muted);line-height:1.7;margin:2px 2px 6px}
 .lock-link{display:inline-block;font-size:13px;font-weight:600;color:var(--bronze);border-bottom:1px solid var(--sand);margin:0 2px 16px;cursor:pointer}
@@ -239,6 +240,7 @@ footer{background:var(--dark);padding:20px;text-align:center}
       <div style="font-size:21px;color:var(--bronze);margin-bottom:4px;font-weight:500" id="conf-t">All booked!</div>
       <div style="font-size:13px;color:var(--hint);font-family:Georgia,serif" id="conf-s">See you soon</div>
     </div>
+    <div class="conf-note" id="conf-note"></div>
     <div class="ref-card">
       <div style="font-size:11px;color:var(--hint);margin-bottom:5px" id="ref-l">Booking Reference</div>
       <div class="ref-num" id="ref-n"></div>
@@ -405,7 +407,7 @@ var TX={
     btn3:'Review Booking',revH3:'Review & Confirm',bk3:'Edit',
     cNotice:'Please cancel or reschedule at least 3 days in advance. Within 3 days, please contact us directly.',
     btnOk:'Confirm Booking',
-    confT:'All booked! 🎉',confS:'We cannot wait to see you',
+    confT:'All booked! 🎉',confS:'We cannot wait to see you',confNote:['🤎 Allergies or sensitivities? Please let me know in advance ✨','🔔 I\'ll send you a reminder 1 day before'],
     refL:'Booking Reference',refS:'Save this to cancel or reschedule',
     gcT:'Add to Your Calendar',gcS:'Address and directions pre-filled',
     ctH:'Contact Us',phL:'Phone / Text',wcL:'WeChat',
@@ -485,7 +487,7 @@ var TX={
     btn3:'查看预约详情',revH3:'确认预约信息',bk3:'修改',
     cNotice:'请提前 3天 取消或改期，3天内请直接联系我们。',
     btnOk:'确认预约',
-    confT:'预约成功！🎉',confS:'期待见到你',
+    confT:'预约成功啦！💕',confS:'期待见到你',confNote:['🤎 过敏/敏感请提前沟通 ✨','🔔 预约前 1 天我会提醒你哦'],
     refL:'预约编号',refS:'请保存此编号，取消/修改时需要',
     gcT:'添加到你的日历',gcS:'地址和停车指引已自动填入',
     ctH:'联系我们',phL:'电话 / 短信',wcL:'微信',
@@ -868,6 +870,7 @@ function applyLang(){
   g('btn3').textContent=t.btn3;g('rev-h3').textContent=t.revH3;g('bk3').textContent=t.bk3;
   g('c-notice').textContent=t.cNotice;g('btn-ok').textContent=t.btnOk;
   g('conf-t').textContent=t.confT;g('conf-s').textContent=t.confS;
+  g('conf-note').innerHTML=t.confNote.map(function(x){return'<div>'+x+'</div>';}).join('');
   g('ref-l').textContent=t.refL;g('ref-s').textContent=t.refS;
   g('gc-t').textContent=t.gcT;g('gc-s').textContent=t.gcS;
   g('ct-h').textContent=t.ctH;g('ph-l').textContent=t.phL;g('wc-l').textContent=t.wcL;
